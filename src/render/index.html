@@ -1,0 +1,7 @@
+---
+title: "Welcome!"
+layout: "default"
+isPage: true
+---
+
+<p>Welcome to My Website!</p>

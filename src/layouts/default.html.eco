@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= @document.title %> | atnartur.ru</title>
+</head>
+<body>
+    <h1><%= @document.title %></h1>
+    <%- @content %>
+</body>
+</html>
