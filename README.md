@@ -1,4 +1,4 @@
-# Your [DocPad](http://docpad.org) Project
+# [atnartur.ru](http://atnartur.ru)
 
 ## License
-Copyright &copy; 2016+ All rights reserved.
+Copyright &copy; 2013-2016 Атнагулов Артур. Лицензия MIT.
