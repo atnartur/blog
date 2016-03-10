@@ -9,7 +9,8 @@
     "docpad-plugin-marked": "~2.3.0",
     "docpad-plugin-paged": "~2.4.0",
     "docpad-plugin-sitemap": "~2.2.0",
-    "docpad-plugin-swig": "thisispete/docpad-plugin-swig"
+    "docpad-plugin-swig": "thisispete/docpad-plugin-swig",
+    "richtypo": "^1.0.1"
   },
   "main": "node_modules/.bin/docpad-server",
   "scripts": {
