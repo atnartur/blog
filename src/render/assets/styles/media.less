@@ -14,24 +14,35 @@
         }
         
         nav{
-            @height: 50px;
-            
             width: 100%;
-            height:@height;
-            margin-top:10px;
             margin-bottom: 0 !important;
-            
-            .nav{
+
+            li a{
+                text-align: center;
+            }
+
+            #socials{
+                overflow:hidden;
+                text-align:center;
+                padding:10px;
+
                 li{
+                    overflow:hidden;
+                    display: inline !important;
+                    width: auto;
+
                     a{
-                        line-height: @height !important;
+                        display: inline !important;
                     }
                 }
             }
-            
-            .nav-center();
         }
     }
+
+    .navbar-toggle{
+        display: block;
+    }
+
     #sidebar{
         border-top:1px solid #ccc;
         margin-top:30px;
@@ -64,7 +75,7 @@
                 margin:0 !important;
                 
                 li{
-                    display: block !important;
+                    display: block;
                     
                     a{
                         display: block;

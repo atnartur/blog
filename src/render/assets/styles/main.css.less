@@ -15,25 +15,22 @@ body{
 
 header{
     @height: 100px;
-    
-    padding-bottom:20px;
-    overflow: hidden;
-    height:@height;
     background:@main-color;
-    //.shadow();
+    overflow: hidden;
+    .shadow();
+    margin-bottom:15px;
     
     .logo{
-        float:left;
+        text-align:center;
         
         h1{
-            text-align:left;
             font-weight: 100;
             margin:0;
             margin-top:5px;
             padding:0;
             font-size:4em;
             line-height: 1;
-            font-family: Roboto;
+            font-family: Roboto, Helvetica Neue, Segoe UI Light;
             
             a{
                 &, &:hover{
@@ -44,111 +41,48 @@ header{
         }
         
         h2{
-            text-align:left;
             font-size: 1.2em;
             margin:0;
-            font-weight: bolder;
+            font-weight: 100;
             color:#fff;
         }
     }
     
     nav{
-        bottom:0;
-        height:@height;
-        float:right;
-        margin:0;
-        
-        .collapse{
-            text-align: center;
-            
-            .nav{
-                li{        
-                    a{
-                        color: #fff;
-                        font-size:20px;
-                        font-weight:100;
-                        line-height:@height;
-                        padding-top:0;
-                        padding-bottom:0;
-                        
-                        &:hover, &:active, &:focus{
-                            background: darken(@main-color, 6.5%);
-                            .hover_transition();
-                        }
-                    }
-                }
-            }
-        }
-        
-        .navbar-toggle{
-            z-index:300;
-            
-            .icon-bar{
-                background: #fff;
-            }
-            
-            &:hover{
-                background: darken(@main-color, 6.5%);
-            }
-        }
-    }
-}
+        margin:0 !important; 
 
-#socials{
-    margin-bottom:30px;
-    background: darken(@main-color, 6.5%);
-    .shadow();
-    
-    .navbar{
-        height: 36px !important;
-        min-height: inherit !important;
-        ul{
-            margin-top:0;
-            margin-bottom:0;
-            
-            li{
+        .nav{
+            li{        
                 a{
-                    padding-bottom:5px;
-                    padding-top:5px;
-                    color:#fff;
-                    overflow: hidden;
-                    
-                    i.fa{
-                        height: 25px;
-                        font-size:25px;
-                        float:left;
-                    }
-                    .text{
-                        margin-top:3px;
-                        margin-left:5px;
-                        
-                        display: inline-block;
-                        float:left;
-                        vertical-align: middle;
-                    }
+                    color: #fff;
+                    font-size:17px;
+                    font-weight:100;
                     
                     &:hover, &:active, &:focus{
-                        background: darken(@main-color, 12%);
+                        background: darken(@main-color, 6.5%);
                         .hover_transition();
                     }
                 }
             }
         }
     }
-}
-
-.nav-center(){
-    .navbar-nav {
-        width: 100%;
+    .navbar-toggle{
+        z-index:300;
         text-align: center;
+        width: 90%;
+        margin:0 auto;
+        float:none;
+        
+        .icon-bar{
+            background: #fff;
+            text-align: center;
+            margin:0 auto;
+        }
+        
+        &:hover{
+            background: darken(@main-color, 6.5%);
+        }
     }
-    .navbar-nav > li {
-        float: none;
-        display: inline-block;
-    }
-}
-.nav-center{
-    .nav-center();
 }
 
 .posts{
@@ -164,7 +98,7 @@ header{
         h1{
             margin-top:0;
             font-weight:100;
-            font-size:50px;
+            font-size:30px;
             padding-bottom:5px;
         }
 
@@ -173,7 +107,7 @@ header{
             padding-bottom:5px;
             
             p{
-                font-size:18px;
+                font-size:15px;
                 line-height: 1.7;
                 margin-bottom:20px;
                 text-align: justify;
@@ -361,9 +295,10 @@ footer{
     font-size:17px;
     color:#777;
     text-align: center;
+    font-weight: 300;
     
     a{
-        font-weight: 100;
+        font-weight: 300;
         font-size:20px;
         color:#333;
         text-decoration: none;
