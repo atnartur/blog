@@ -83,7 +83,7 @@
                     <h2>Категории</h2>
                     <div class="list-group">
                         <% for key, cat of @categories: %>
-                            <a href="/cats/<%- cat.slug %>" class="list-group-item"><%- cat.name %></a>
+                            <a href="/cat/<%- cat.slug %>.html" class="list-group-item"><%- cat.name %></a>
                         <% end %>
                     </div>
                 </div>

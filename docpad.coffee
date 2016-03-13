@@ -2,6 +2,7 @@
 # http://docpad.org/docs/config
 
 richtypo = require 'richtypo'
+marked = require 'marked'
 
 # Define the DocPad Configuration
 docpadConfig = {
@@ -11,13 +12,13 @@ docpadConfig = {
 		site:
 			title: 'atnartur.ru'
 
-		cutTag: '<!-- cut -->'
+		cutTag: '<!--more-->'
 
 		# Post part before “cut”
 		cuttedContent: (content) ->            
 			if @hasReadMore content
 				cutIdx = content.search @cutTag
-				content[0..cutIdx-1]
+				marked(content[0..cutIdx-1])
 			else
 				content
 
@@ -49,8 +50,14 @@ docpadConfig = {
 			database.findAllLive({relativeOutDirPath: /posts[\/\\]\w+/ }).on "add", (model) ->
 				model.setMetaDefaults({layout:"post"})
 	plugins:
-		related:
-			parentCollectionName: 'posts'
+		moment:
+			formats: [
+				{raw: 'date', format: 'DD.MM.YYYY', formatted: 'humanDate'}
+			]
+		redirector:
+			redirects: 
+				# source: destination
+				"/padenie-hostinga-2-vozvrashtenie-durdoma": "/posts/2015/1gb-fail2.html"
 
 }
 
