@@ -82,10 +82,9 @@
                 <div class="widget">
                     <h2>Категории</h2>
                     <div class="list-group">
-                        <a href="" class="list-group-item">123</a>
-                        <a href="" class="list-group-item">123</a>
-                        <a href="" class="list-group-item">123</a>
-                        <a href="" class="list-group-item">123</a>
+                        <% for key, cat of @categories: %>
+                            <a href="/cats/<%- cat.slug %>" class="list-group-item"><%- cat.name %></a>
+                        <% end %>
                     </div>
                 </div>
             </aside>

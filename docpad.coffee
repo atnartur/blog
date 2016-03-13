@@ -29,11 +29,29 @@ docpadConfig = {
 		rt: (s) ->
 			s and (richtypo.rich s)
 
+		categories:
+			projects:
+				slug: 'projects'
+				name: 'Проекты'
+
+		getDocumentsForCategory: (categoryId) ->
+			return @getCollection('posts').findAll(category: categoryId)
+
+		getCategoriesForDocument: (document) ->
+			document ?= @getDocument()
+			categoryId = document.get('category')
+			categories = @categories[categoryId] 
+			console.log(categories)
+			return categories
+
 	collections:
-        posts: (database)->
-        	# database.findAllLive({relativeOutDirPath: /posts[\/\\]\w+/ }) # , [date:-1]
-        	database.findAllLive({relativeOutDirPath: /posts[\/\\]\w+/ }).on "add", (model) ->
-                model.setMetaDefaults({layout:"post"})
+		posts: (database)->
+			database.findAllLive({relativeOutDirPath: /posts[\/\\]\w+/ }).on "add", (model) ->
+				model.setMetaDefaults({layout:"post"})
+	plugins:
+		related:
+			parentCollectionName: 'posts'
+
 }
 
 # Export the DocPad Configuration

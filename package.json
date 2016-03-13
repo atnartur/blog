@@ -4,16 +4,21 @@
   "description": "New DocPad project without using a skeleton",
   "dependencies": {
     "docpad": "~6.78.4",
+    "docpad-plugin-category": "~2.0.0",
     "docpad-plugin-eco": "~2.1.0",
     "docpad-plugin-less": "~2.4.1",
     "docpad-plugin-marked": "~2.3.0",
+    "docpad-plugin-menu": "~2.1.0",
     "docpad-plugin-paged": "~2.4.0",
+    "docpad-plugin-related": "~2.2.2",
     "docpad-plugin-sitemap": "~2.2.0",
-    "docpad-plugin-swig": "thisispete/docpad-plugin-swig",
-    "richtypo": "^1.0.1"
+    "docpad-plugin-tagging": "~2.0.3",
+    "richtypo": "^1.0.1",
+    "underscore": "^1.8.3"
   },
   "main": "node_modules/.bin/docpad-server",
   "scripts": {
     "start": "node_modules/.bin/docpad-server"
-  }
+  },
+  "devDependencies": {}
 }
