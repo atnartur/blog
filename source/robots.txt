@@ -1,0 +1,7 @@
+User-agent:*
+Disallow: /r/
+Disallow: /search.xml
+Allow:*
+
+Host: atnartur.ru
+Sitemap: http://atnartur.ru/sitemap.xml

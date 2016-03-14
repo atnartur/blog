@@ -75,4 +75,7 @@ deploy:
   message: hexo deploy
 
 alias:
-  r/soft: "https://yadi.sk/d/25_b5E68aYSVB"
+  r/soft/: https://yadi.sk/d/25_b5E68aYSVB
+  r/bookstorage/: http://dev.atnartur.ru/projects/bookstorage
+  r/zastavki/: https://yadi.sk/d/WUa-plPqmBHWg
+  r/soboi/: https://yadi.sk/d/V8lbyzGtibTpR
