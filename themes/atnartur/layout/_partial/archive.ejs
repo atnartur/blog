@@ -4,8 +4,8 @@
 	<% }) %>
 </div>
 <% if (page.total > 1){ %>
-  <nav id="page-nav">
-	<%- paginator({
+  <nav id="page-nav" style="text-align: center;">
+	<%- bs_paginator({
 	  prev_text: "&laquo; Предыдущие",
 	  next_text: "Следующие &raquo;"
 	}) %>
