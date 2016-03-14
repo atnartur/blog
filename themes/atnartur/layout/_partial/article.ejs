@@ -10,10 +10,7 @@
 			<%- post.content %>
 	  	<% } %>
 	</div>
-	<% if (post.comments && config.disqus_shortname){ %>
-		<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
-	<% } %>
-
+	
 	<div class="post_footer">
 		<div class="post_info">	
 			<i class="fa fa-calendar-o"></i> <%- partial('post/date', {class_name: 'article-date', date_format: null}) %> 
