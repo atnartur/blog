@@ -14,7 +14,7 @@ timezone: Europe/Moscow
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://atnartur.ru
 root: /
-permalink: :year/:title/
+permalink: posts/:year/:title/
 permalink_defaults:
 
 # Directory
@@ -69,3 +69,6 @@ theme: atnartur
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:
+
+alias:
+  r/soft: "https://yadi.sk/d/25_b5E68aYSVB"
