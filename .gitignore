@@ -7,3 +7,4 @@ public/
 .deploy*/
 *.min.css
 *.cache
+themes/atnartur/source/libs

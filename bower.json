@@ -1,0 +1,23 @@
+{
+  "name": "atnartur.ru",
+  "description": "",
+  "main": "",
+  "authors": [
+    "atnartur <i@atnartur.ru>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/atnartur/blog",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "^4.5.0",
+    "bootstrap3-typeahead": "bassjobsen/Bootstrap-3-Typeahead#4.0.0"
+  }
+}
