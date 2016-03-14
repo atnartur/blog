@@ -68,7 +68,10 @@ theme: atnartur
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: ssh://git@github.com/atnartur/blog.git
+  branch: gh-pages
+  message: hexo deploy
 
 alias:
   r/soft: "https://yadi.sk/d/25_b5E68aYSVB"
