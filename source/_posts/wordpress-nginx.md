@@ -20,12 +20,13 @@ alias: /osobennosti-ustanovki-wordpress-na-nginx/
 Примерную конфигурацию wordpress сайта можно посмотреть [здесь](https://gist.github.com/atnartur/f065cc2befaacabb2cd7).
 
 Если при попытке обновить плагины/темы/самого себя Wordpress спросил FTP данные от вашего сервера, пропишите в файл _wp-config.php_ следующую строку:
+```php
+define('FS_METHOD', 'direct');
+```
 
-_define('FS_METHOD', 'direct');_
+Если обновление завершается ошибкой "не удалось создать директорию", попробуйте повысить права на папки `wp-content/upgrade`, `wp-content/themes` и `wp-content/plugins`. Но до 777 доводить не надо.
 
-Если обновление завершается ошибкой "не удалось создать директорию", попробуйте повысить права на папки _wp-content/upgrade_, _wp-content/themes_ и _wp-content/plugins_. Но до 777 доводить не надо.
-
-Если у Вас стоит (или стоял) какой-нибудь кеширующий плагин (например WP-Super-Cache), нужно проверить, очищен ли кеш в директории _wp-content/cache_ (если она есть), на всякий случай проставить на нее права 777 (опять же, если она есть) и убрать константу _WPCACHEHOME_ и _WP_CACHE_ из _wp-config.php_.
+Если у Вас стоит (или стоял) какой-нибудь кеширующий плагин (например WP-Super-Cache), нужно проверить, очищен ли кеш в директории `wp-content/cache` (если она есть), на всякий случай проставить на нее права 777 (опять же, если она есть) и убрать константу `WPCACHEHOME` и `WP_CACHE` из `wp-config.php`.
 
 Теперь [atnartur.ru](http://atnartur.ru), [wikitatar.ru](http://wikitatar.ru), [old.atnartur.ru](http://old.atnartur.ru) работают быстрее:)
 
