@@ -16,8 +16,10 @@
 	<div class="post_footer">
 		<div class="post_info">
 			<i class="fa fa-calendar-o"></i> <%- partial('post/date', {class_name: 'article-date', date_format: null}) %> | 
-			<i class="fa fa-folder-o"></i> <%- partial('post/category') %> | 
-			<i class="fa fa-tag"></i> <%- partial('post/tag') %>
+			<i class="fa fa-folder-o"></i> <%- partial('post/category') %> 
+			<% if (!post.excerpt && !index){ %> |
+				<i class="fa fa-tag"></i> <%- partial('post/tag') %>
+			<% } %>
 		</div>
 		<% if (post.excerpt && index){ %>
 			<% if (theme.excerpt_link){ %>

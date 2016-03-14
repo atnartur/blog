@@ -2,7 +2,7 @@
   <%
   var tags = [];
   post.tags.forEach(function(tag){
-    tags.push('<a href="' + config.root + tag.path + '">' + tag.name + '<span>' + tag.length  + '</span></a>');
+    tags.push('<a href="' + config.root + tag.path + '">' + tag.name + '</a>');
   });
   %>
   <%- tags.join(', ') %>

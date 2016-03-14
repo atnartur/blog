@@ -8,7 +8,7 @@ var nano = require('gulp-cssnano');
 var rename = require('gulp-rename');
 
 gulp.task('css', function() {
-    gulp.src('themes/atnartur/source/styles/main.less')
+    gulp.src('themes/atnartur/source/styles/_main.less')
     	.pipe(less())
     	.pipe(nano())
     	.pipe(rename('main.min.css'))

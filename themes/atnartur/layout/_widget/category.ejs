@@ -2,7 +2,7 @@
 	<h2>Категории</h2>
 	<div class="list-group">
 		<% site.categories.sort('name').each(function(item){ %>
-			<a href="<%- config.root %><%- item.path %>" class="list-group-item"><%= item.name %><span><%= item.posts.length %></span></a>
+			<a href="<%- config.root %><%- item.path %>" class="list-group-item"><%= item.name %> <small><%= item.posts.length %></small></a>
 		<% }); %>
 	</div>    
 <% } %>

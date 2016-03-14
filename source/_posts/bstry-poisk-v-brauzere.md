@@ -1,0 +1,66 @@
+---
+title: Быстрый поиск в браузере
+tags:
+  - Firefox
+  - Google
+  - Opera
+  - браузеры
+  - Хром
+  - Яндекс
+id: 470
+categories:
+  - Софт
+date: 2013-08-06 19:00:00
+---
+
+Из названия вряд ли можно понять суть статьи. В каждом браузере есть адресная строка. Кроме непосредственно адресов туда можно вводить сразу поисковые запросы, которые потом уходят в Google или Яндекс. Чтобы ускорить поиск можно использовать префиксы (небольшие слова, которые идут в начале поискового запроса). Как этим пользоваться читайте далее. <!--more-->
+
+Давайте смотреть на практике. При простом наборе текста в адресной строке поисковый запрос уходит в Google (у меня):
+
+[![Image 002](http://atnartur.ru/wp-content/uploads/2013/07/Image-0025-150x71.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0025.png)
+[![Image 003](http://atnartur.ru/wp-content/uploads/2013/07/Image-0032-300x106.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0032.png)
+
+А теперь напишем перед запросом букву y (английская Y)
+
+[![](http://atnartur.ru/wp-content/uploads/2013/07/Image-0052-300x11.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0052.png)
+
+Дальше жмем TAB или просто пробел и поиск идет уже через Яндекс!
+
+[![](http://atnartur.ru/wp-content/uploads/2013/07/Image-0063-300x28.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0063.png)
+
+Набираем поисковый запрос
+
+[![](http://atnartur.ru/wp-content/uploads/2013/07/Image-0073-300x29.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0073.png)
+
+нажимаем Enter и запрос уходит в Яндекс!
+
+[![](http://atnartur.ru/wp-content/uploads/2013/07/Image-0082-300x149.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0082.png)
+
+Например:
+
+*   js - [javascript.ru](http://javascript.ru)
+*   php - [php.su](http://php.su)
+*   y - [yandex.ru](http://yandex.ru)
+*   g - [google.ru](http://google.ru)
+
+### Как настроить
+
+**Хром**: 
+Для добавления новой поисковой системы: заходим на сайт поисковой системы / Правой кнопкой по строке поиска / Добавить как поисковую систему... / Указываем данные
+Для настройки: Новая вкладка / Правой кнопкой по адресной строке / Изменить поисковые системы 
+
+[![Image 009](http://atnartur.ru/wp-content/uploads/2013/07/Image-0091-150x150.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0091.png)[![Image 010](http://atnartur.ru/wp-content/uploads/2013/07/Image-0101-150x150.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0101.png)
+
+**Firefox**
+Добавление новой: (почти как в Хроме)
+Для настройки: Кликните по стрелочке рядом с поисковой формой / Управление поисковыми системами
+
+[![Image 011](http://atnartur.ru/wp-content/uploads/2013/07/Image-0113-150x150.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0113.png)[![Image 012](http://atnartur.ru/wp-content/uploads/2013/07/Image-0123-150x150.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0123.png)
+
+**Opera 12**
+Для добавления: (почти как в Хроме)
+Для настройки: Открыть новую вкладку / По стрелочке в поисковой форме на экспресс панели / Настроить поиск
+
+[![Image 013](http://atnartur.ru/wp-content/uploads/2013/07/Image-0133-150x150.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0133.png)[![Image 014](http://atnartur.ru/wp-content/uploads/2013/07/Image-0143-150x67.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0143.png)
+
+Понравилось? Делитесь статьей с друзьями! Что-то не понятно? Пишите в комментарии! 

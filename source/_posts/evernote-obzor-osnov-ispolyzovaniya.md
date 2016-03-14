@@ -1,0 +1,69 @@
+---
+title: 'Evernote - обзор, основы использования'
+tags:
+  - todo
+  - заметки
+  - синхронизация
+id: 371
+categories:
+  - Софт
+date: 2013-07-25 13:00:00
+---
+
+Evernote - очень удобный сервис заметок с онлайн синхронизацией, клиентами для Windows, Android и многое другое... Подробнее ниже. <!--more-->
+
+[![](http://atnartur.ru/wp-content/uploads/2013/07/Image-0022.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0022.png)
+
+Вспомните, как часто приходится вам что-то записывать в Интернете? Ссылки, пароли, интересные статьи.... Перечислять можно долго. Но как это все удобно организовать? Именно для этого создан сервис заметок Evernote!
+
+### Веб-клиент
+
+Вот так выглядит интерфейс [веб-клиента Evernote](http://evernote.com):
+
+[![Веб-клиент Evernote](http://atnartur.ru/wp-content/uploads/2013/07/Image-0061-300x142.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0061.png)
+
+Слева: метки, список блокнотов и поле для быстрого доступа к меткам. Во второй колонке находится список заметок, которые отображаются в третьей.
+
+Настроить интерфейс можно через специальное меню, которое находится снизу:
+
+[![Настройка веб-клиента](http://atnartur.ru/wp-content/uploads/2013/07/Image-0071.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0071.png)
+
+Evernote в первую очередь создан конечно же для текстов. И редактор там действительно поражает:
+
+[![Evernote редактор](http://atnartur.ru/wp-content/uploads/2013/07/Image-0023.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0023.png)
+
+Он выглядит так же, как и обычный в ворде. Но есть несколько специфических кнопок. Первая создает список задач примерно такой же, как и в [Wunderlist](http://atnartur.ru/wunderlist-obzor/ "Wunderlist — обзор"). Вторая очищает форматирование. Нужна в тех случаях, когда вы скопировали текст из внешнего источника (веб-страницы, другого текстового документа и так далее...) и он выглядит неправильно. Третья позволяет прикрепить любой файл.
+
+Для организации заметок используются метки. При наборе названия метки выходят подсказки и после нажатия на Enter она дописывается полностью. 
+
+[![](http://atnartur.ru/wp-content/uploads/2013/07/Image-005.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-005.png)
+
+Заметками можно делиться через почту, в социальных сетях и через прямую ссылку:
+
+[![Поделиться](http://atnartur.ru/wp-content/uploads/2013/07/Image-0151-150x150.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0151.png)
+
+### Программы и расширения
+
+Для удобства существует программы и расширения Evernote.
+
+[Клиент для Windows](http://evernote.com/intl/ru/evernote/ "Скачать") позволяет хранить все, что есть в Evernote, в оффлайн режиме. Можно установить онлайн синхронизацию через определенные промежутки времени.
+
+[![Evernote for Windows](http://atnartur.ru/wp-content/uploads/2013/07/Image-0121-300x232.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0121.png)
+
+Web clipper (для [Chrome](https://chrome.google.com/webstore/detail/evernote-web-clipper/pioclpoplcdbaefihamjohnefbikjilc "Скачать") | [Firefox](https://addons.mozilla.org/ru/firefox/addon/evernote-web-clipper/?src=search "Скачать")) умеет копировать целые веб-страницы сразу в Evernote. Удобно в тех случаях, если вам надо прочитать статью позже или без доступа к Интернету. А также можно сохранить выделенный текст.
+
+[![Evernote Web Clipper](http://atnartur.ru/wp-content/uploads/2013/07/Image-0111-150x150.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0111.png)[![Evernote Web Clipper](http://atnartur.ru/wp-content/uploads/2013/07/Image-0131-150x150.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0131.png)
+
+После нажатия на кнопку "Сохранить фрагмент", текст будет отправлен на сервер Evernote. Чтобы статья появилась в других программах Evernote, нужно синхронизировать данные.
+
+Очень хорошо копируется текст с хабра, нашего сайта (оказывается), новостные сайты, цепочки писем из GMail. С контакта копируется через раз. 
+
+Clearly (для [Chrome](https://chrome.google.com/webstore/detail/clearly/iooicodkiihhpojmmeghjclgihfjdjhj/related "Скачать") | [Firefox](https://addons.mozilla.org/ru/firefox/addon/clearly/?src=search "Скачать")) убирает с веб-страницы всю рекламу и другое назойливое содержимое и представляет текст удобным для чтения. 
+
+[![Evernote Clearly](http://atnartur.ru/wp-content/uploads/2013/07/Image-0141-300x175.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0141.png)
+
+Также есть приложение для [Android](https://play.google.com/store/apps/details?id=com.evernote&hl=ru "Скачать") и [iOS](https://itunes.apple.com/ru/app/evernote/id281796108?mt=8 "Скачать").
+
+Зарегистрироваться можно [здесь](http://evernote.com).
+
+Если что-то не понятно - спрашивайте в комментариях. Понравился обзор? Поделись!
