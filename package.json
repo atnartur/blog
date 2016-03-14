@@ -1,29 +1,25 @@
 {
-  "name": "no-skeleton.docpad",
-  "version": "0.1.0",
-  "description": "New DocPad project without using a skeleton",
+  "name": "atnartur.ru",
+  "version": "1.0.0",
+  "private": true,
+  "hexo": {
+    "version": "3.2.0"
+  },
   "dependencies": {
-    "docpad": "~6.78.4",
-    "docpad-plugin-alias": "~2.1.0",
-    "docpad-plugin-category": "~2.0.0",
-    "docpad-plugin-cleanurls": "~2.8.1",
-    "docpad-plugin-eco": "~2.1.0",
-    "docpad-plugin-less": "~2.4.1",
-    "docpad-plugin-marked": "~2.3.0",
-    "docpad-plugin-menu": "~2.1.0",
-    "docpad-plugin-moment": "~2.0.2",
-    "docpad-plugin-paged": "~2.4.0",
-    "docpad-plugin-redirector": "~2.0.1",
-    "docpad-plugin-related": "~2.2.2",
-    "docpad-plugin-rss": "~2.3.1",
-    "docpad-plugin-sitemap": "~2.2.0",
-    "marked": "^0.3.5",
-    "richtypo": "^1.0.1",
-    "underscore": "^1.8.3"
+    "hexo": "^3.2.0",
+    "hexo-generator-archive": "^0.1.4",
+    "hexo-generator-category": "^0.1.3",
+    "hexo-generator-index": "^0.2.0",
+    "hexo-generator-tag": "^0.2.0",
+    "hexo-renderer-ejs": "^0.2.0",
+    "hexo-renderer-stylus": "^0.3.1",
+    "hexo-renderer-marked": "^0.2.10",
+    "hexo-server": "^0.2.0"
   },
-  "main": "node_modules/.bin/docpad-server",
-  "scripts": {
-    "start": "node_modules/.bin/docpad-server"
-  },
-  "devDependencies": {}
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-cssnano": "^2.1.1",
+    "gulp-less": "^3.0.5",
+    "gulp-rename": "^1.2.2"
+  }
 }

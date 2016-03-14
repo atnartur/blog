@@ -1,0 +1,68 @@
+<article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemprop="blogPost">
+	<% if (post.link || post.title){ %>
+		<%- partial('post/title', {class_name: 'article-title'}) %>
+	<% } %>
+	
+	<div class="post_content">
+		<% if (post.excerpt && index){ %>
+			<%- post.excerpt %>
+	  	<% } else { %>
+			<%- post.content %>
+	  	<% } %>
+	</div>
+	<% if (post.comments && config.disqus_shortname){ %>
+		<a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
+	<% } %>
+	<div class="post_footer">
+		<div class="post_info">
+			<i class="fa fa-calendar-o"></i> <%- partial('post/date', {class_name: 'article-date', date_format: null}) %> | 
+			<i class="fa fa-folder-o"></i> <%- partial('post/category') %> | 
+			<i class="fa fa-tag"></i> <%- partial('post/tag') %>
+		</div>
+		<% if (post.excerpt && index){ %>
+			<% if (theme.excerpt_link){ %>
+				<a href="<%- url_for(post.path) %>#more" class="read_more">
+					<%= theme.excerpt_link %> <i class="fa fa-long-arrow-right"></i>
+				</a>
+			<% } %>
+		<% } else { %>
+			<div class="btn-group social_buttons">
+				<button
+				  class="btn btn-default disabled"
+				>
+				  Поделиться:
+				</button>
+			  
+				<a class="btn btn-default" target="_blank" title="Через ВКонтакте" 
+					href="http://vk.com/share.php?url=_URL_&title=_TITLE_&description=_DESCTEXT_&image=_URL_TO_MEDIA"
+				>
+				  <i class="fa fa-vk fa-lg vk"></i>
+				</a>
+			  
+				<a class="btn btn-default" target="_blank" title="Через Твиттер"
+					href="http://twitter.com/share?url=_URL_&text=_DESCTEXT_"
+				>
+				  <i class="fa fa-twitter fa-lg tw"></i>
+				</a>
+			  
+				<a class="btn btn-default" target="_blank" title="Через Facebook"
+					href="http://www.facebook.com/sharer.php?u=_URL_&t=_DESCTEXT_"
+				>
+					<i class="fa fa-facebook fa-lg fb"></i>
+				</a>
+				<a class="btn btn-default" target="_blank" title="Через Google Plus"
+					href="https://plusone.google.com/_/+1/confirm?hl=en&url=_URL_"
+				>
+				  <i class="fa fa-google-plus fa-lg google"></i>
+				</a>
+			</div>
+		<% } %>
+	</div>
+</article>
+<% if (!index && post.comments && config.disqus_shortname){ %>
+	<section id="comments">
+	  	<div id="disqus_thread">
+			<noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  	</div>
+	</section>
+<% } %>

@@ -1,0 +1,8 @@
+<% if (site.posts.length){ %>
+    <h2>Последние записи</h2>
+    <div class="list-group">
+        <% site.posts.sort('date', -1).limit(5).each(function(post){ %>
+            <a href="<%- url_for(post.path) %>" class="list-group-item"><%= post.title || '(no title)' %></a>
+        <% }) %>
+    </div>
+<% } %>

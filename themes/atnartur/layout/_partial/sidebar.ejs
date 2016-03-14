@@ -1,0 +1,7 @@
+<aside class="col-md-3" id="sidebar">
+	<% theme.widgets.forEach(function(widget){ %>
+		<div class="widget">
+			<%- partial('_widget/' + widget) %>
+		</div>
+  	<% }) %>
+</aside>
