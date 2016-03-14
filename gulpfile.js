@@ -15,4 +15,8 @@ gulp.task('css', function() {
     	.pipe(gulp.dest('themes/atnartur/source/styles/'));
 });
 
+gulp.task('watch', function() {
+    gulp.watch('themes/atnartur/source/styles/*', ['css']);
+});
+
 gulp.task('default',['css']);
