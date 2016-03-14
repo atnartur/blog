@@ -15,11 +15,11 @@ date: 2013-04-02 17:00:00
 Всем привет! Первое апреля прошло, все уже оттерли белые спины и смыли зубную пасту с лица. А разговор о первоапрельских шутках в Интернете еще идет. В этой статье шутки, на которые я наткнулся вчера. <!--more-->
 
 **Yo FM**
-[![Yo fm](http://atnartur.ru/wp-content/uploads/2013/04/c78b0b81cba87ff1333ea2af73e709e2-300x187.jpg)](http://atnartur.ru/wp-content/uploads/2013/04/c78b0b81cba87ff1333ea2af73e709e2.jpg)
+[![Yo fm](/content/2013/04/c78b0b81cba87ff1333ea2af73e709e2-300x187.jpg)](/content/2013/04/c78b0b81cba87ff1333ea2af73e709e2.jpg)
 
 Вместо Радио Рекорд первого апреля звучало Yo FM со странной музыкой: реп, хип-хоп и т. д... В общем, такое не нравится обычному слушателю радио. Такое событие объяснялось следующим:
 
-[![Рекорд: сообщение о Yo Fm](http://atnartur.ru/wp-content/uploads/2013/04/Image-000-300x71.png)](http://atnartur.ru/wp-content/uploads/2013/04/Image-000.png)
+[![Рекорд: сообщение о Yo Fm](/content/2013/04/Image-000-300x71.png)](/content/2013/04/Image-000.png)
 
 [Подробнее об этом на сайте Радио Рекорд](http://www.radiorecord.ru/news/137324/)
 
@@ -29,7 +29,7 @@ date: 2013-04-02 17:00:00
 
 Как это все происходит: вы нажимаете на кнопку, в динамиках (наушниках) начинает звучать странный звук, а на экране появляется предложение поднясти устройство к носу.
 
-[![Google нос](http://atnartur.ru/wp-content/uploads/2013/04/a569b13285ae14a4cd2fc69e4c4d8af7-300x118.jpg)](http://atnartur.ru/wp-content/uploads/2013/04/a569b13285ae14a4cd2fc69e4c4d8af7.jpg)
+[![Google нос](/content/2013/04/a569b13285ae14a4cd2fc69e4c4d8af7-300x118.jpg)](/content/2013/04/a569b13285ae14a4cd2fc69e4c4d8af7.jpg)
 
 Сам пробовал:D Никакого запаха естественно не идет и идти не может. Но почему же? На этот случай тоже приготовлено объяснение:
 > c 1 апреля от [google.com/intl/ru/landin…](https://t.co/CIbi2xRKGN "https://www.google.com/intl/ru/landing/nose/help.html") [twitter.com/atnartur/statu…](http://t.co/lME4D0FUkq "http://twitter.com/atnartur/status/318802682909446144/photo/1")

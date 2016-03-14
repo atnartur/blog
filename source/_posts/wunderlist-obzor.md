@@ -13,13 +13,13 @@ date: 2013-05-24 20:00:00
 
 Wunderlist - прекрасный менеджер задач (TODO), который имеет множество программ для разных ОС, онлайн синхронизацию... Все по порядку далее. <!--more-->
 
-[![Приветствие](http://atnartur.ru/wp-content/uploads/2013/05/Image-0001-300x58.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0001.png)
+[![Приветствие](/content/2013/05/Image-0001-300x58.png)](/content/2013/05/Image-0001.png)
 
 Именно такая надпись встречает нас на сайте проекта. 
 
 Идем на регистрацию
 
-[![Регистрация Wunderlist](http://atnartur.ru/wp-content/uploads/2013/05/Image-0023-183x300.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0023.png)
+[![Регистрация Wunderlist](/content/2013/05/Image-0023-183x300.png)](/content/2013/05/Image-0023.png)
 
 Какая красота.... Ну никак не ждал тут такого дизайна...
 
@@ -29,17 +29,17 @@ Wunderlist - прекрасный менеджер задач (TODO), котор
 
 Вскоре попадаем в личный кабинет:
 
-[![Сайт Wunderlist](http://atnartur.ru/wp-content/uploads/2013/05/Image-0032-300x117.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0032.png)
+[![Сайт Wunderlist](/content/2013/05/Image-0032-300x117.png)](/content/2013/05/Image-0032.png)
 
 Чтобы вы удостоверились, что это все-таки сайт, а не программа, даю вам скриншот с адресной строкой. Все на своих местах. После нескольких дней использования, я добавил несколько списков задач, которые располагаются в левой колонке и, конечно же, сами задачи у меня тоже присутствуют. Все ссылки в тексте задачи становятся нажимаемыми (посмотрите на слово "atnartur.ru").
 
 При двойном клике на задачу, открывается такое окно:
 
-[![Информация о задаче Wunderlist](http://atnartur.ru/wp-content/uploads/2013/05/Image-0042-300x132.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0042.png)
+[![Информация о задаче Wunderlist](/content/2013/05/Image-0042-300x132.png)](/content/2013/05/Image-0042.png)
 
 Здесь можно добавить подзадачи, поставить крайний срок, написать описание.... Для добавления крайнего срока задачи выскакивает такой календарик:
 
-[![Календарь Wunderlist](http://atnartur.ru/wp-content/uploads/2013/05/Image-0051-234x300.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0051.png)
+[![Календарь Wunderlist](/content/2013/05/Image-0051-234x300.png)](/content/2013/05/Image-0051.png)
 
 Подробнее о списках задач: в постоянные списки (такие как "личное", "школа", "проекты", "события") можно добавлять задачи. В случае необходимости появляются "умные" списки ("сегодня", "неделя"...), в которых видны задачи, запланированные на сегодня, на неделю...
 
@@ -49,13 +49,13 @@ Wunderlist - прекрасный менеджер задач (TODO), котор
 
 Вот так выглядит клинет для Windows:
 
-[![Windows Wunderlist](http://atnartur.ru/wp-content/uploads/2013/05/Image-0071-300x200.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0071.png)
+[![Windows Wunderlist](/content/2013/05/Image-0071-300x200.png)](/content/2013/05/Image-0071.png)
 
 Да, это действительно клиент для Windows. Не верите? Видите часы справа снизу?
 
 А вот так - расширение. Оно помогает сохранять статьи в TODO лист.
 
-[![Расширение Wunderlist Хром](http://atnartur.ru/wp-content/uploads/2013/05/Image-0061-186x300.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0061.png)
+[![Расширение Wunderlist Хром](/content/2013/05/Image-0061-186x300.png)](/content/2013/05/Image-0061.png)
 
 ### Заключение
 

@@ -9,7 +9,7 @@ tags:
 
 Только что я прочитал одноименную статью на сайте habrahabr.ru. [Вот она](http://habrahabr.ru/post/189706/). Это мой небольшой ответ на эту публикацию. <!--more-->
 
-[![](http://atnartur.ru/wp-content/uploads/2013/08/Image-004.png)](http://atnartur.ru/wp-content/uploads/2013/08/Image-004.png)
+[![](/content/2013/08/Image-004.png)](/content/2013/08/Image-004.png)
 
 Автором этой статьи является некий Marc Scott. По тексту статьи там несколько раз упоминается Великобритания и можно предположить, что она там и была написана. Перевел её пользователь [guessss_who](http://habrahabr.ru/users/guessss_who).
 

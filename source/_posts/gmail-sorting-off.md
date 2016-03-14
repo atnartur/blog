@@ -11,7 +11,7 @@ date: 2013-07-23 19:00:00
 
 Недавно в GMail появилась новая сортировка писем по соцсетям, промоакциям.... Как выключить её написано далее.<!--more-->
 
-[![GMail preview](http://atnartur.ru/wp-content/uploads/2013/07/Image-027-300x136.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-027.png)
+[![GMail preview](/content/2013/07/Image-027-300x136.png)](/content/2013/07/Image-027.png)
 
 (что-то спама на фоне много...)
 
@@ -21,11 +21,11 @@ date: 2013-07-23 19:00:00
 
 Идем в настройки
 
-[![Настройки GMail](http://atnartur.ru/wp-content/uploads/2013/07/Image-028-300x280.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-028.png)
+[![Настройки GMail](/content/2013/07/Image-028-300x280.png)](/content/2013/07/Image-028.png)
 
 И выбираем там вкладку "Папка "Входящие""
 
-[![Настройка GMail](http://atnartur.ru/wp-content/uploads/2013/07/Image-029-300x136.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-029.png)
+[![Настройка GMail](/content/2013/07/Image-029-300x136.png)](/content/2013/07/Image-029.png)
 
 И выбираем из выпадающего меню пункт, который больше понравится:
 
@@ -39,6 +39,6 @@ date: 2013-07-23 19:00:00
 
 Получается примерно так:
 
-[![](http://atnartur.ru/wp-content/uploads/2013/07/Image-031-300x54.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-031.png)
+[![](/content/2013/07/Image-031-300x54.png)](/content/2013/07/Image-031.png)
 
 Если вы воспользовались этой инструкцией, делитесь ею с друзьями! Если что-то не поняли, пишите в комментарии, отвечу!

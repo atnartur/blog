@@ -17,24 +17,24 @@ date: 2013-08-06 19:00:00
 
 Давайте смотреть на практике. При простом наборе текста в адресной строке поисковый запрос уходит в Google (у меня):
 
-[![Image 002](http://atnartur.ru/wp-content/uploads/2013/07/Image-0025-150x71.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0025.png)
-[![Image 003](http://atnartur.ru/wp-content/uploads/2013/07/Image-0032-300x106.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0032.png)
+[![Image 002](/content/2013/07/Image-0025-150x71.png)](/content/2013/07/Image-0025.png)
+[![Image 003](/content/2013/07/Image-0032-300x106.png)](/content/2013/07/Image-0032.png)
 
 А теперь напишем перед запросом букву y (английская Y)
 
-[![](http://atnartur.ru/wp-content/uploads/2013/07/Image-0052-300x11.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0052.png)
+[![](/content/2013/07/Image-0052-300x11.png)](/content/2013/07/Image-0052.png)
 
 Дальше жмем TAB или просто пробел и поиск идет уже через Яндекс!
 
-[![](http://atnartur.ru/wp-content/uploads/2013/07/Image-0063-300x28.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0063.png)
+[![](/content/2013/07/Image-0063-300x28.png)](/content/2013/07/Image-0063.png)
 
 Набираем поисковый запрос
 
-[![](http://atnartur.ru/wp-content/uploads/2013/07/Image-0073-300x29.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0073.png)
+[![](/content/2013/07/Image-0073-300x29.png)](/content/2013/07/Image-0073.png)
 
 нажимаем Enter и запрос уходит в Яндекс!
 
-[![](http://atnartur.ru/wp-content/uploads/2013/07/Image-0082-300x149.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0082.png)
+[![](/content/2013/07/Image-0082-300x149.png)](/content/2013/07/Image-0082.png)
 
 Например:
 
@@ -49,18 +49,18 @@ date: 2013-08-06 19:00:00
 Для добавления новой поисковой системы: заходим на сайт поисковой системы / Правой кнопкой по строке поиска / Добавить как поисковую систему... / Указываем данные
 Для настройки: Новая вкладка / Правой кнопкой по адресной строке / Изменить поисковые системы 
 
-[![Image 009](http://atnartur.ru/wp-content/uploads/2013/07/Image-0091-150x150.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0091.png)[![Image 010](http://atnartur.ru/wp-content/uploads/2013/07/Image-0101-150x150.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0101.png)
+[![Image 009](/content/2013/07/Image-0091-150x150.png)](/content/2013/07/Image-0091.png)[![Image 010](/content/2013/07/Image-0101-150x150.png)](/content/2013/07/Image-0101.png)
 
 **Firefox**
 Добавление новой: (почти как в Хроме)
 Для настройки: Кликните по стрелочке рядом с поисковой формой / Управление поисковыми системами
 
-[![Image 011](http://atnartur.ru/wp-content/uploads/2013/07/Image-0113-150x150.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0113.png)[![Image 012](http://atnartur.ru/wp-content/uploads/2013/07/Image-0123-150x150.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0123.png)
+[![Image 011](/content/2013/07/Image-0113-150x150.png)](/content/2013/07/Image-0113.png)[![Image 012](/content/2013/07/Image-0123-150x150.png)](/content/2013/07/Image-0123.png)
 
 **Opera 12**
 Для добавления: (почти как в Хроме)
 Для настройки: Открыть новую вкладку / По стрелочке в поисковой форме на экспресс панели / Настроить поиск
 
-[![Image 013](http://atnartur.ru/wp-content/uploads/2013/07/Image-0133-150x150.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0133.png)[![Image 014](http://atnartur.ru/wp-content/uploads/2013/07/Image-0143-150x67.png)](http://atnartur.ru/wp-content/uploads/2013/07/Image-0143.png)
+[![Image 013](/content/2013/07/Image-0133-150x150.png)](/content/2013/07/Image-0133.png)[![Image 014](/content/2013/07/Image-0143-150x67.png)](/content/2013/07/Image-0143.png)
 
 Понравилось? Делитесь статьей с друзьями! Что-то не понятно? Пишите в комментарии! 

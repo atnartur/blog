@@ -11,7 +11,7 @@ date: 2013-05-16 14:00:00
 
 В Яндекс.Диске проходит новая акция: после того, как вы отправите с камеры или фотоаппарата фотографии или видео, вам дают дополнительные 32 гигабайта! Подробности здесь. <!--more-->
 
-[![Image 001](http://atnartur.ru/wp-content/uploads/2013/05/Image-0013-300x179.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0013.png)
+[![Image 001](/content/2013/05/Image-0013-300x179.png)](/content/2013/05/Image-0013.png)
 
 У кого нет Яндекс.Диска, его нужно конечно же [зарегистрировать по этой ссылке](http://atnartur.ru/r/ydisk "Зарегистрировать Яндекс.Диск"). Если уже зарегистрированы, читаем дальше.
 
@@ -20,11 +20,11 @@ date: 2013-05-16 14:00:00
 После обновления подключаем камеру и разрешаем импорт фотографий из камеры на Яндекс.Диск. Все! 32 гигабайта получены! 
 
 После получения приходит такое письмо:
-[![Image 003](http://atnartur.ru/wp-content/uploads/2013/05/Image-0031-300x263.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0031.png)
+[![Image 003](/content/2013/05/Image-0031-300x263.png)](/content/2013/05/Image-0031.png)
 
 Делитесь статьей с друзьями и отвечайте в комментариях!
 
 P.S. Кто хочет еще 5 ГБ, поставьте Яндекс.Браузер с [этой страницы](https://mail.yandex.ru/neo2/?force2pane#disk/tuning/).
 
 Мой диск сейчас:
-[![Image 004](http://atnartur.ru/wp-content/uploads/2013/05/Image-0041-300x32.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0041.png)
+[![Image 004](/content/2013/05/Image-0041-300x32.png)](/content/2013/05/Image-0041.png)

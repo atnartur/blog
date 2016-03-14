@@ -17,11 +17,11 @@ date: 2013-05-09 16:00:00
 
 **RSS клиент нашелся**. Мне понравился [Feedly](https://chrome.google.com/webstore/detail/feedly-your-news-rss-goog/hipbfijinpcgfogaopmgehiegacbhmob). Все красиво и все работает. 
 
-[![](http://atnartur.ru/wp-content/uploads/2013/05/Image-008-300x140.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-008.png)
+[![](/content/2013/05/Image-008-300x140.png)](/content/2013/05/Image-008.png)
 
 **Пароли** потихоньку переносятся сами. Хотя не заметил пока, что хром сохраняет несколько паролей на одной странице, как мне [писали ВК](http://vk.com/wall69498414_2193?reply=2194). Вот что у меня было в опере на одном из сайтов: 
 
- [![](http://atnartur.ru/wp-content/uploads/2013/05/Image-002-копия-300x146.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-002-копия.png)
+ [![](/content/2013/05/Image-002-копия-300x146.png)](/content/2013/05/Image-002-копия.png)
 
 В хроме нет такого окошка - уже плохо. Но есть ли сохранение нескольких паролей на одной страничке? Пока тоже его не увидел.
 
@@ -35,15 +35,15 @@ date: 2013-05-09 16:00:00
 
 **Реклама в чатах ВК** непонятно откуда взялась. Очень странно. Вот так это выгядит
 
-[![](http://atnartur.ru/wp-content/uploads/2013/05/Image-004-300x108.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-004.png)
+[![](/content/2013/05/Image-004-300x108.png)](/content/2013/05/Image-004.png)
 
 Реклама появляется внизу сообщений и сдвигает их вверх, что очень неприятно. Не знаю уж, баг это или фича, но это точно мешает переписываться. Пошел смотреть код... 
 
-[![](http://atnartur.ru/wp-content/uploads/2013/05/Image-005-300x37.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-005.png)
+[![](/content/2013/05/Image-005-300x37.png)](/content/2013/05/Image-005.png)
 
 Видите подчеркнутое, да? Дальше стал смотреть в сторону установленных недавно расширений. При просмотре Feedly нашел: 
 
-[![](http://atnartur.ru/wp-content/uploads/2013/05/Image-006-300x180.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-006.png)
+[![](/content/2013/05/Image-006-300x180.png)](/content/2013/05/Image-006.png)
 
 Очень странно... Какая связь между Feedly и ВК - непонятно...
 
@@ -51,7 +51,7 @@ date: 2013-05-09 16:00:00
 
 В качестве экспресс панели поставил [Speed Dial 2](https://chrome.google.com/webstore/detail/speed-dial-2/jpfpebmajhhopeonhlcgidhclcccjcik). Он мне очень понравился и выглядит он так:
 
-[![Image 007](http://atnartur.ru/wp-content/uploads/2013/05/Image-007-300x151.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-007.png)
+[![Image 007](/content/2013/05/Image-007-300x151.png)](/content/2013/05/Image-007.png)
 
 Пришлось поставить свой фон, но сам дизайн тоже очень хорошо. Правая панелька содержит приложения, закладки и историю. Тоже очень удобно.
 

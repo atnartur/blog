@@ -16,11 +16,11 @@ date: 2013-05-10 19:00:00
 
 Как оказалось, реклама эта не от Feedly, а от Mail Checker Plus for Google Mail.
 
-[![Image 001](http://atnartur.ru/wp-content/uploads/2013/05/Image-0012-300x56.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0012.png)
+[![Image 001](/content/2013/05/Image-0012-300x56.png)](/content/2013/05/Image-0012.png)
 
 А в Feedly она появлялась из-за Mail Checker как раз:)  Пришлось искать другое расширение. И я его нашел. Это [Checker Plus for Gmail](https://chrome.google.com/webstore/detail/checker-plus-for-gmail/oeopbcgkkoapgobdbedcemjljbihmemj). Делает все то же самое и, на первый взгляд, не ставит рекламы. На странице оплаты написано следующее (читайте подчеркнутое одной линией):
 
-[![Image 002](http://atnartur.ru/wp-content/uploads/2013/05/Image-0022-300x130.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0022.png)
+[![Image 002](/content/2013/05/Image-0022-300x130.png)](/content/2013/05/Image-0022.png)
 
 А теперь прочитайте подчеркнутое двумя линиями! Google Переводчик старался изо всех сил!:DDD
 

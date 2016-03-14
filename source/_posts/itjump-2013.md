@@ -27,38 +27,38 @@ date: 2013-10-13 11:00:00
 
 Приехали, начали думать над названием. Точно не помню, сколько часов мы над ним думали, но в результате не выдержали и пошли к главному эксперту смены [Алмазу Мубинову](http://mubinov.com). Он предложил название: Oh my Granny. "В таких случаях называют проекты так, чтобы просто привлечь внимание." На презентации проектов он скажет: "Я им сказал первое попавшееся. Не думал, то это дойдет до сегодняшнего дня".
 
-[![](http://atnartur.ru/wp-content/uploads/2013/10/gzYZzbAccNA-210x300.jpg)](http://atnartur.ru/wp-content/uploads/2013/10/gzYZzbAccNA.jpg)
+[![](/content/2013/10/gzYZzbAccNA-210x300.jpg)](/content/2013/10/gzYZzbAccNA.jpg)
 
 Затем пошла реализация. Я писал преимущественно клиентскую часть, а Костя с Данилом - серверную. Не помню уже, сколько раз мы обсуждали архитектуру...
 
 Затем мы поехали в IT-парк. Там была [программа для старшеклассников и студентов](http://vpered.withgoogle.com/education/students) от Google (в рамках проекта "Вперед вместе с Google"). Там выступили сотрудники Google, а также прошли презентации мировых иновационных интернет-проектов. А затем презентации проектов IT-Jump, среди которых [Cafe4me](http://cafe4me.ru), [i Visual info](http://ivisual.info/), [KeepLinks](http://keeplinks.org) (руководителем которого является Костя) и другие.
 
-[![](http://atnartur.ru/wp-content/uploads/2013/10/E6HsliRAhXc-300x199.jpg)](http://atnartur.ru/wp-content/uploads/2013/10/E6HsliRAhXc.jpg)
+[![](/content/2013/10/E6HsliRAhXc-300x199.jpg)](/content/2013/10/E6HsliRAhXc.jpg)
 
 После этого уже началась настоящая работа. На моем ноутбуке была поставлена виртуальная машина с Debian 7 на борту. На неё поставили Nginx, Node.js, Redis, Git... Это был наш production-сервер (для показа) и мой - для тестирования, т. к. на Windows не возможно было все это развернуть нормально.
 
 За неделю мы сделали 347 коммитов. А ветвление стало похожим на карту Московского метро.
 
-[![](http://atnartur.ru/wp-content/uploads/2013/10/Image-000-150x123.png)](http://atnartur.ru/wp-content/uploads/2013/10/Image-000.png)[![](http://atnartur.ru/wp-content/uploads/2013/10/Image-004-150x150.png)](http://atnartur.ru/wp-content/uploads/2013/10/Image-004.png)
+[![](/content/2013/10/Image-000-150x123.png)](/content/2013/10/Image-000.png)[![](/content/2013/10/Image-004-150x150.png)](/content/2013/10/Image-004.png)
 
 На моем ноутбуке была проблема: если я его закрывал и потом открывал, то он не мог подключиться к wifi нормально... В Байтике это вообще дошло до того, что на виртуальной машине интернет был, а на самом ноутбуке - нет. Пришлось переустанавливать драйверы. Обновление драйверов wifi через wifi (:D) не привело к исправлению проблемы, т. к. обновления сам Windows не нашел. С 5 (!) раза переустановки драйверов вроде бы стало все нормально. Как видим, рядом открыт ноут с сайтом поддержки Samsung.
 
-[![](http://atnartur.ru/wp-content/uploads/2013/10/QcsD0oAvrWw-300x200.jpg)](http://atnartur.ru/wp-content/uploads/2013/10/QcsD0oAvrWw.jpg)
+[![](/content/2013/10/QcsD0oAvrWw-300x200.jpg)](/content/2013/10/QcsD0oAvrWw.jpg)
 
 Плюс JavaScript на клиенте и сложность JavaScript на сервере - это события. На клиенте особых проблем нету, а вот на сервере получается 13 уровень вложенности... 
 
-[![](http://atnartur.ru/wp-content/uploads/2013/10/Image-001-250x300.png)](http://atnartur.ru/wp-content/uploads/2013/10/Image-001.png)
+[![](/content/2013/10/Image-001-250x300.png)](/content/2013/10/Image-001.png)
 
 Мой экран блокировки делал чудеса. Не было ни дня, чтобы меня не спросили про какой-нибудь из проектов. И это было приятно:) Даже сфоткал кто-то!
 Как поставить свою картинку на экран блокировки, можно прочитать [здесь](http://atnartur.ru/kak-izmenity-fon-okna-privetstviya-v-windows-7/ "Как изменить фон окна приветствия в Windows 7").
 
-[![](http://atnartur.ru/wp-content/uploads/2013/10/DSC_0223-300x200.jpg)](http://atnartur.ru/wp-content/uploads/2013/10/DSC_0223.jpg)
+[![](/content/2013/10/DSC_0223-300x200.jpg)](/content/2013/10/DSC_0223.jpg)
 
 У Данила нетбук ICL. ICL поставляет компьютерную технику преимущественно для государственных учреждений. Но каким-то загадочным способом он попал к Данилу. На самом деле, ноутбуки данной компании очень тормозят. Один из ноутбуков, которых я чинил, вообще не мог сам выключаться. Он застывал на табличке "Завершение работы" и все... 
 
 Но сейчас не об этом. Аппарат Данила вообще интересное явление: вроде бы ICL, вроде бы фигня, вроде бы тормозит, но с сенсорным и крутящимся экраном, который может превратить нетбук в планшет, с прикольной клавиатурой. Также есть ручка для переноски и стилус. И сенсор работает даже на линуксе. В общем, у меня осталось противоречивое впечатление.
 
-[![_Al_i4Sla-c](http://atnartur.ru/wp-content/uploads/2013/10/Al_i4Sla-c-150x150.jpg)](http://atnartur.ru/wp-content/uploads/2013/10/Al_i4Sla-c.jpg)[![9pVrFcutHow](http://atnartur.ru/wp-content/uploads/2013/10/9pVrFcutHow-150x150.jpg)](http://atnartur.ru/wp-content/uploads/2013/10/9pVrFcutHow.jpg)[![fwTfpNj_A1g](http://atnartur.ru/wp-content/uploads/2013/10/fwTfpNj_A1g-150x150.jpg)](http://atnartur.ru/wp-content/uploads/2013/10/fwTfpNj_A1g.jpg)[![iW5Xt0Zohx8](http://atnartur.ru/wp-content/uploads/2013/10/iW5Xt0Zohx8-150x150.jpg)](http://atnartur.ru/wp-content/uploads/2013/10/iW5Xt0Zohx8.jpg)
+[![_Al_i4Sla-c](/content/2013/10/Al_i4Sla-c-150x150.jpg)](/content/2013/10/Al_i4Sla-c.jpg)[![9pVrFcutHow](/content/2013/10/9pVrFcutHow-150x150.jpg)](/content/2013/10/9pVrFcutHow.jpg)[![fwTfpNj_A1g](/content/2013/10/fwTfpNj_A1g-150x150.jpg)](/content/2013/10/fwTfpNj_A1g.jpg)[![iW5Xt0Zohx8](/content/2013/10/iW5Xt0Zohx8-150x150.jpg)](/content/2013/10/iW5Xt0Zohx8.jpg)
 
 А это мы:)
 

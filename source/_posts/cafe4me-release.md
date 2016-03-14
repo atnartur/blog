@@ -25,7 +25,7 @@ _И… *барабанная дробь* этот день настал!!!
 
 Ваши Cafe4me._
 
-[![logo_cub](http://atnartur.ru/wp-content/uploads/2013/08/logo_cub.png)](http://atnartur.ru/wp-content/uploads/2013/08/logo_cub.png)
+[![logo_cub](/content/2013/08/logo_cub.png)](/content/2013/08/logo_cub.png)
 
 <iframe width="560" height="315" src="//www.youtube.com/embed/t9l4_zIQcHw" frameborder="0" allowfullscreen></iframe>
 

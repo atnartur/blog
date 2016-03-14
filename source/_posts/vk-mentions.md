@@ -12,17 +12,17 @@ date: 2013-10-16 23:00:00
 
 Функция была придумана не зря: все пользователи, которые были упомянуты, будут оповещены сразу после публикования записи. И ваша запись появится у них в новостях. Также упоминания получаются автоматически, когда вы нажимаете на кнопку "Ответить" рядом с сообщением на стене. Вероятность того, что о вашем сообщении или комментарии узнают, повышается.
 
-[![Image 010](http://atnartur.ru/wp-content/uploads/2013/10/Image-010-300x97.png)](http://atnartur.ru/wp-content/uploads/2013/10/Image-010.png)[![](http://atnartur.ru/wp-content/uploads/2013/10/Image-009-300x95.png)](http://atnartur.ru/wp-content/uploads/2013/10/Image-009.png)[![](http://atnartur.ru/wp-content/uploads/2013/10/Image-008-300x94.png)](http://atnartur.ru/wp-content/uploads/2013/10/Image-008.png)
+[![Image 010](/content/2013/10/Image-010-300x97.png)](/content/2013/10/Image-010.png)[![](/content/2013/10/Image-009-300x95.png)](/content/2013/10/Image-009.png)[![](/content/2013/10/Image-008-300x94.png)](/content/2013/10/Image-008.png)
 
 А теперь как их сделать. 
 
 **Способ первый**: у вас есть комментарий. Вы просто нажимаете на этот комментарий (или на ссылку "Ответить") и сразу же появляется упоминание.
 
-[![](http://atnartur.ru/wp-content/uploads/2013/10/Image-011-300x137.png)](http://atnartur.ru/wp-content/uploads/2013/10/Image-011.png)
+[![](/content/2013/10/Image-011-300x137.png)](/content/2013/10/Image-011.png)
 
 **Способ второй**: через звездочку. В процессе набирания сообщения ставим символ звездочки и начинаем набирать имя (или адрес странички) человека или группы. Под полем ввода сообщения появится список друзей / групп. Выбираем того, на кого хотим сослаться пишем название ссылки (где подчеркнуто). Готово!
 
-[![Image 012](http://atnartur.ru/wp-content/uploads/2013/10/Image-012-300x154.png)](http://atnartur.ru/wp-content/uploads/2013/10/Image-012.png)[![Image 013](http://atnartur.ru/wp-content/uploads/2013/10/Image-013-300x45.png)](http://atnartur.ru/wp-content/uploads/2013/10/Image-013.png)
+[![Image 012](/content/2013/10/Image-012-300x154.png)](/content/2013/10/Image-012.png)[![Image 013](/content/2013/10/Image-013-300x45.png)](/content/2013/10/Image-013.png)
 
 **Способ третий**: просто прокомментировать чью-то запись. У автора записи ваш комментарий появится в новостях.
 

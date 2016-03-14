@@ -30,24 +30,24 @@ date: 2013-09-14 22:00:00
 
 1.  Открываем Mozilla Firefox (установить можно [здесь](https://play.google.com/store/apps/details?id=org.mozilla.firefox))
 2.  Устанавливаем расширение ProxyMob [отсюда](http://yadi.sk/d/2P3p7tpU9GS6r)
-[![](http://atnartur.ru/wp-content/uploads/2013/09/Screenshot_2013-09-14-22-03-22-150x150.png)](http://atnartur.ru/wp-content/uploads/2013/09/Screenshot_2013-09-14-22-03-22.png)
+[![](/content/2013/09/Screenshot_2013-09-14-22-03-22-150x150.png)](/content/2013/09/Screenshot_2013-09-14-22-03-22.png)
 3.  Нажимаем "Перезапустить"
-[![](http://atnartur.ru/wp-content/uploads/2013/09/Screenshot_2013-09-14-22-08-18-150x150.png)](http://atnartur.ru/wp-content/uploads/2013/09/Screenshot_2013-09-14-22-08-18.png)
+[![](/content/2013/09/Screenshot_2013-09-14-22-08-18-150x150.png)](/content/2013/09/Screenshot_2013-09-14-22-08-18.png)
 4.  После перезапуска открываем "Меню" -> "Инструменты" и выбираем "Дополнения"
-[![](http://atnartur.ru/wp-content/uploads/2013/09/Screenshot_2013-09-14-22-09-41-150x150.png)](http://atnartur.ru/wp-content/uploads/2013/09/Screenshot_2013-09-14-22-09-41.png)
+[![](/content/2013/09/Screenshot_2013-09-14-22-09-41-150x150.png)](/content/2013/09/Screenshot_2013-09-14-22-09-41.png)
 5.  Нажимаем на "ProxyMob"
-[![](http://atnartur.ru/wp-content/uploads/2013/09/Screenshot_2013-09-14-22-10-18-150x150.png)](http://atnartur.ru/wp-content/uploads/2013/09/Screenshot_2013-09-14-22-10-18.png)
+[![](/content/2013/09/Screenshot_2013-09-14-22-10-18-150x150.png)](/content/2013/09/Screenshot_2013-09-14-22-10-18.png)
 6.  Открывается страница настроек. Там заполняем:
 HTTP Proxy Host - proxy.school.tatar.ru
 HTTP Proxy Port - 8080
 Все остальные поля оставляем пустыми.
 Снимаем галочку (если стоит) с SOCKS Remote DNS и с Use Proxy
-[![](http://atnartur.ru/wp-content/uploads/2013/09/Screenshot_2013-09-14-22-15-12-150x150.png)](http://atnartur.ru/wp-content/uploads/2013/09/Screenshot_2013-09-14-22-15-12.png)
+[![](/content/2013/09/Screenshot_2013-09-14-22-15-12-150x150.png)](/content/2013/09/Screenshot_2013-09-14-22-15-12.png)
 
 7.  Приходим в школу и заходим в Меню/Инструменты/Дополнения/ProxyMod и ставим галочку рядом с "Use Proxy" (что означает "использовать прокси"
 8.  Переходим на **https://edu.tatar.ru** (В ТОЧНОСТИ ТАКОЙ АДРЕС) и входим под своим логином и паролем.
 9.  Нажимаем на кнопку "Выйти в интернет"
-[![](http://atnartur.ru/wp-content/uploads/2013/09/Image-000.png)](http://atnartur.ru/wp-content/uploads/2013/09/Image-000.png)
+[![](/content/2013/09/Image-000.png)](/content/2013/09/Image-000.png)
 
 10.  Появится окно авторизации. Вводим свои логин и пароль от edu.tatar.ru
 11.  И вот он Яндекс!:)

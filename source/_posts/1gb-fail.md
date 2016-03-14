@@ -12,11 +12,11 @@ date: 2013-08-15 19:00:00
 
 Сегодня примерно в полвторого дня по Москве перестал отвечать на запросы сайт проекта Cafe4me [cafe4me.ru](http://cafe4me.ru "Cafe4me"). Что было потом, читайте дальше. <!--more-->
 
-[![logo_cub](http://atnartur.ru/wp-content/uploads/2013/08/logo_cub.png)](http://atnartur.ru/wp-content/uploads/2013/08/logo_cub.png)
+[![logo_cub](/content/2013/08/logo_cub.png)](/content/2013/08/logo_cub.png)
 
 Буквально вчера в 7 часов вечера на Хабре была опубликована [статья о нас](http://habrahabr.ru/company/bi_kazan/blog/190076). И пошел так называемый "Хабраэффект". Весь этот народ шел с поиска (т. к. в самом посте ссылки на нас не было). В среду 218 человек, а сегодня 705 (в 18.31).
 
-[![](http://atnartur.ru/wp-content/uploads/2013/08/Image-012.png)](http://atnartur.ru/wp-content/uploads/2013/08/Image-012.png)[![](http://atnartur.ru/wp-content/uploads/2013/08/Image-013.png)](http://atnartur.ru/wp-content/uploads/2013/08/Image-013.png)
+[![](/content/2013/08/Image-012.png)](/content/2013/08/Image-012.png)[![](/content/2013/08/Image-013.png)](/content/2013/08/Image-013.png)
 
 Сначала я связывал сбой именно с этим, но как оказалось это было просто совпадение. Сайт упал из-за сбоя в магистральных сетях Рослетекома. И не только наш. Также были недоступны 1gb.ru, [mubinov.com](http://mubinov.com) и другие сайты, которые хостились у 1GB.
 
@@ -76,7 +76,7 @@ date: 2013-08-15 19:00:00
 
 Есть одна странность. Сайт недоступен примерно с полвторого. НО! Все это время хотя бы один человек в 5 минут был на сайте. Но как? Если все сайты этого хостера лежат. Это очень странно.
 
-[![](http://atnartur.ru/wp-content/uploads/2013/08/Image-014.png)](http://atnartur.ru/wp-content/uploads/2013/08/Image-014.png)
+[![](/content/2013/08/Image-014.png)](/content/2013/08/Image-014.png)
 
 И при этом 
 

@@ -33,7 +33,7 @@ date: 2013-06-15 00:00:00
 
 музыка останется на месте. Пусть часть, но останется. Вот официальное тому подтверждение:
 
-[![51Xv1FNPt_Y](http://atnartur.ru/wp-content/uploads/2013/06/51Xv1FNPt_Y-300x167.jpg)](http://atnartur.ru/wp-content/uploads/2013/06/51Xv1FNPt_Y.jpg)
+[![51Xv1FNPt_Y](/content/2013/06/51Xv1FNPt_Y-300x167.jpg)](/content/2013/06/51Xv1FNPt_Y.jpg)
 
 Так же есть множество групп радиостанций, которые выкладывают новую музыку в социальную сеть без всяких опасений ([Record](http://vk.com/record), [DFM](http://vk.com/dfm), [EuropaPlus](http://vk.com/europaplus))! В этих группах и до сегодняшнего дня можно было увидеть сообщения об удалении той или иной песни.
 

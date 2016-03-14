@@ -12,17 +12,17 @@ date: 2013-06-27 17:00:00
 
 К примеру, на Windows 7 Максимальная это окно выглядит вот так: 
 
-[![](http://atnartur.ru/wp-content/uploads/2013/06/20-300x207.jpg)](http://atnartur.ru/wp-content/uploads/2013/06/20.jpg)
+[![](/content/2013/06/20-300x207.jpg)](/content/2013/06/20.jpg)
 
 Если вам эта картинка уже надоела, то вы можете её поменять следующим образом.
 
 Первым делом идем в **реестр** (чтобы запустить его, зайдите в Пуск, потом Выполнить и наберите "regedit").
 
 В реестре находим путь 
-[![путь в реестре](http://atnartur.ru/wp-content/uploads/2013/06/Image-002-300x24.png)](http://atnartur.ru/wp-content/uploads/2013/06/Image-002.png) 
+[![путь в реестре](/content/2013/06/Image-002-300x24.png)](/content/2013/06/Image-002.png) 
 и изеняем значение параметра "OEMBackground" на 1.
 
-[![Изменяем значение реестра](http://atnartur.ru/wp-content/uploads/2013/06/Image-004-300x161.png)](http://atnartur.ru/wp-content/uploads/2013/06/Image-004.png)
+[![Изменяем значение реестра](/content/2013/06/Image-004-300x161.png)](/content/2013/06/Image-004.png)
 
 Если в реестре нет такого параметра, создаем.
 
@@ -30,7 +30,7 @@ date: 2013-06-27 17:00:00
 
 Затем идем в папку "%windir%\system32\oobe\info\backgrounds" (просто вставьте это значение без кавычек в адресную строку проводника)
 
-[![Адресная строка проводника](http://atnartur.ru/wp-content/uploads/2013/06/Image-005-300x59.png)](http://atnartur.ru/wp-content/uploads/2013/06/Image-005.png)
+[![Адресная строка проводника](/content/2013/06/Image-005-300x59.png)](/content/2013/06/Image-005.png)
 
 Там будет лежать несколько картинок. Создаем для них специальную папку и перемещаем их туда. Затем ищем любимую картинку (желательно, чтобы она имела такое же разрешение, как и монитор) и копируем в эту папку.
 
@@ -38,13 +38,13 @@ date: 2013-06-27 17:00:00
 
 Затем изменяем название картинки на "backgroundDefault.jpg" и ВСЕ! 
 
-[![Папка](http://atnartur.ru/wp-content/uploads/2013/06/Image-006-300x173.png)](http://atnartur.ru/wp-content/uploads/2013/06/Image-006.png)
+[![Папка](/content/2013/06/Image-006-300x173.png)](/content/2013/06/Image-006.png)
 
 Проверить, установилась ли картинка, можно нажатием на Windows+L.
 
 Теперь мой экран блокировки выглядит так:)
 
-[![Мой экран блокировки](http://atnartur.ru/wp-content/uploads/2013/06/xwjh1ii7QYA-300x195.jpg)](http://atnartur.ru/wp-content/uploads/2013/06/xwjh1ii7QYA.jpg)
+[![Мой экран блокировки](/content/2013/06/xwjh1ii7QYA-300x195.jpg)](/content/2013/06/xwjh1ii7QYA.jpg)
 (ну не работает там Print Screen!)
 
 Если вам что-то тут не понятно, пишите в комментарии! Все получилось и вы поменяли фоновую картинку - делись с друзьями!

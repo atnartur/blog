@@ -15,19 +15,19 @@ date: 2013-04-07 16:00:00
 
 И так. Не будем тянуть. Первым делом идем [сюда](https://chrome.google.com/webstore/detail/music-player-for-google-d/hnfeekfpnjbdmelcapngdgkjnhgijjkh?hl=ru&utm_source=chrome-ntp-launcher) и устанавливаем это расширение. Оно позволит нам открыть MP3 файл в Google Диске.
 
-[![Установка расширения](http://atnartur.ru/wp-content/uploads/2013/04/Image-010-300x129.png)](http://atnartur.ru/wp-content/uploads/2013/04/Image-010.png)
+[![Установка расширения](/content/2013/04/Image-010-300x129.png)](/content/2013/04/Image-010.png)
 
 Жмем "Добавить"
-[![Добавление расширения](http://atnartur.ru/wp-content/uploads/2013/04/Image-011-300x152.png)](http://atnartur.ru/wp-content/uploads/2013/04/Image-011.png)
+[![Добавление расширения](/content/2013/04/Image-011-300x152.png)](/content/2013/04/Image-011.png)
 
 Расширение установлено! Теперь переходим в Google Диск и пробуем открыть аудиофайл через Music Player for Google Drive.
-[![Открытие файла](http://atnartur.ru/wp-content/uploads/2013/04/Image-012-300x76.png)](http://atnartur.ru/wp-content/uploads/2013/04/Image-012.png)
+[![Открытие файла](/content/2013/04/Image-012-300x76.png)](/content/2013/04/Image-012.png)
 
 Открывается новая вкладка. После полной загрузки страницы выходит такое окно. Жмем "Разрешить"
-[![Предоставление доступа](http://atnartur.ru/wp-content/uploads/2013/04/Image-013-300x105.png)](http://atnartur.ru/wp-content/uploads/2013/04/Image-013.png)
+[![Предоставление доступа](/content/2013/04/Image-013-300x105.png)](/content/2013/04/Image-013.png)
 
 Дальше страничка перезагружается и появляется плеер, в котором начинает играть музыка.
-[![Плеер](http://atnartur.ru/wp-content/uploads/2013/04/Image-015-300x160.png)](http://atnartur.ru/wp-content/uploads/2013/04/Image-015.png)
+[![Плеер](/content/2013/04/Image-015-300x160.png)](/content/2013/04/Image-015.png)
 
 В дальнейшем открывайте аудиофайлы через Music player for Google Drive. 
 

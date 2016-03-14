@@ -20,7 +20,7 @@ date: 2013-10-28 19:00:00
 
 ### NetVibes
 
-[![](http://atnartur.ru/wp-content/uploads/2013/10/Image-0001.png)](http://atnartur.ru/wp-content/uploads/2013/10/Image-0001.png)
+[![](/content/2013/10/Image-0001.png)](/content/2013/10/Image-0001.png)
 
 Это первый сервис такого рода, на который мы посмотрим. Имеет 2 режима: режим виджетов и режим reader. Второй режим появился после закрытия Google Reader. Именно NetVibes я сейчас использую как RSS-reader.
 
@@ -28,7 +28,7 @@ date: 2013-10-28 19:00:00
 
 [Перейти](http://netvibes.com)
 
-[![Режим reader](http://atnartur.ru/wp-content/uploads/2013/10/Image-0011-300x230.png)](http://atnartur.ru/wp-content/uploads/2013/10/Image-0011.png)[![Режим виджетов](http://atnartur.ru/wp-content/uploads/2013/10/19561v1-300x227.png)](http://atnartur.ru/wp-content/uploads/2013/10/19561v1.png)
+[![Режим reader](/content/2013/10/Image-0011-300x230.png)](/content/2013/10/Image-0011.png)[![Режим виджетов](/content/2013/10/19561v1-300x227.png)](/content/2013/10/19561v1.png)
 
 ### Главная страница Яндекса
 
@@ -38,7 +38,7 @@ date: 2013-10-28 19:00:00
 
 [Перейти](http://yandex.ru)
 
-[![](http://atnartur.ru/wp-content/uploads/2013/10/Image-002-300x165.png)](http://atnartur.ru/wp-content/uploads/2013/10/Image-002.png)
+[![](/content/2013/10/Image-002-300x165.png)](/content/2013/10/Image-002.png)
 
 ### Hojoki
 
@@ -48,17 +48,17 @@ date: 2013-10-28 19:00:00
 
 [Перейти](http://hojoki.com)
 
-[![Image 004](http://atnartur.ru/wp-content/uploads/2013/10/Image-0041-300x135.png)](http://atnartur.ru/wp-content/uploads/2013/10/Image-0041.png)
+[![Image 004](/content/2013/10/Image-0041-300x135.png)](/content/2013/10/Image-0041.png)
 
-[![Image 005](http://atnartur.ru/wp-content/uploads/2013/10/Image-005-300x105.png)](http://atnartur.ru/wp-content/uploads/2013/10/Image-005.png)
+[![Image 005](/content/2013/10/Image-005-300x105.png)](/content/2013/10/Image-005.png)
 
 ### iGoogle
 
 К сожалению, iGoogle закрывается. Было немало виджетов. RSS, погода, соц. сети, даже закладки. Но он закрывается.
 
-[![Image 006](http://atnartur.ru/wp-content/uploads/2013/10/Image-006-300x153.png)](http://atnartur.ru/wp-content/uploads/2013/10/Image-006.png)
+[![Image 006](/content/2013/10/Image-006-300x153.png)](/content/2013/10/Image-006.png)
 
-[![Image 007](http://atnartur.ru/wp-content/uploads/2013/10/Image-007-300x133.png)](http://atnartur.ru/wp-content/uploads/2013/10/Image-007.png)
+[![Image 007](/content/2013/10/Image-007-300x133.png)](/content/2013/10/Image-007.png)
 
 <a name="socity"></a>
 
@@ -68,8 +68,8 @@ date: 2013-10-28 19:00:00
 
 Сейчас Илья ищет PHP, JavaScript (JQuery) разработчиков в свою команду. Если вы хотите участвовать в разработке этого сервиса, напишите Илье на [iliadementiev@ro.ru](mailto:iliadementiev@ro.ru)
 
-[![](http://atnartur.ru/wp-content/uploads/2013/10/Bez_imeni-1-300x144.png)](http://atnartur.ru/wp-content/uploads/2013/10/Bez_imeni-1.png)
+[![](/content/2013/10/Bez_imeni-1-300x144.png)](/content/2013/10/Bez_imeni-1.png)
 
-[![Первый эскиз](http://atnartur.ru/wp-content/uploads/2013/10/socity2-300x148.png)](http://atnartur.ru/wp-content/uploads/2013/10/socity2.png)
+[![Первый эскиз](/content/2013/10/socity2-300x148.png)](/content/2013/10/socity2.png)
 
 Понравился обзор сервисов для экономии времени или вы хотите помочь проекту Socity? Делитесь этой записью с друзьями!

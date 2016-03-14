@@ -15,11 +15,11 @@ date: 2013-05-30 11:00:00
 
 Вот так выглядит информация о браузере. Видите подчеркнутое?
 
-[![О браузере](http://atnartur.ru/wp-content/uploads/2013/05/Image-0002-300x136.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0002.png)
+[![О браузере](/content/2013/05/Image-0002-300x136.png)](/content/2013/05/Image-0002.png)
 
 Ну а так выглядит сам браузер и его Экспресс панель:
 
-[![Браузер и экспресс панель](http://atnartur.ru/wp-content/uploads/2013/05/Image-0014-300x162.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0014.png)
+[![Браузер и экспресс панель](/content/2013/05/Image-0014-300x162.png)](/content/2013/05/Image-0014.png)
 
 ### Экспресс панель
 
@@ -27,51 +27,51 @@ date: 2013-05-30 11:00:00
 
 Добавились папки. Тоже долгожданная функция.
 
-[![папка](http://atnartur.ru/wp-content/uploads/2013/05/Image-0033-300x207.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0033.png)[![Открытая папка](http://atnartur.ru/wp-content/uploads/2013/05/Image-0043-300x151.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0043.png)
+[![папка](/content/2013/05/Image-0033-300x207.png)](/content/2013/05/Image-0033.png)[![Открытая папка](/content/2013/05/Image-0043-300x151.png)](/content/2013/05/Image-0043.png)
 
 Также есть поиск по папке:
 
-[![Поиск по папке](http://atnartur.ru/wp-content/uploads/2013/05/Image-0052-300x107.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0052.png)
+[![Поиск по папке](/content/2013/05/Image-0052-300x107.png)](/content/2013/05/Image-0052.png)
 
 Поиск теперь есть не только по Интернету (тут Яндекс), но и по сайтам в экспресс панели!
 
-[![Поиск по сайтам в экспресс панели](http://atnartur.ru/wp-content/uploads/2013/05/Image-0062-300x82.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0062.png)
+[![Поиск по сайтам в экспресс панели](/content/2013/05/Image-0062-300x82.png)](/content/2013/05/Image-0062.png)
 
 ### Копилка
 
 Еще одна новая функция и тоже долгожданная. Ставил кучу расширений, пробовал, но все равно они были как-то не на своем месте. А эта - на своем. Вот так выглядит вкладка на экспресс панели в начале:
 
-[![Копилка](http://atnartur.ru/wp-content/uploads/2013/05/Image-0072-300x110.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0072.png)
+[![Копилка](/content/2013/05/Image-0072-300x110.png)](/content/2013/05/Image-0072.png)
 
 Теперь откроем какой-нибудь сайт. И тут появляется такая кнопочка. Нажимаем на неё. И сердечко становится красненьким.
 
-[![Добавить в копилку](http://atnartur.ru/wp-content/uploads/2013/05/Image-0081-300x133.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0081.png)
+[![Добавить в копилку](/content/2013/05/Image-0081-300x133.png)](/content/2013/05/Image-0081.png)
 
 Добавил еще один сайт и теперь "копилка" выглядит так:
 
-[![Копилка](http://atnartur.ru/wp-content/uploads/2013/05/Image-009-300x165.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-009.png)
+[![Копилка](/content/2013/05/Image-009-300x165.png)](/content/2013/05/Image-009.png)
 
 Видите справа ползунок? Если поднять его максимально вверх, то сайты выглядят вот так:
 
-[![Копилка](http://atnartur.ru/wp-content/uploads/2013/05/Image-0101-300x86.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0101.png)
+[![Копилка](/content/2013/05/Image-0101-300x86.png)](/content/2013/05/Image-0101.png)
 
 Если опускать, то скриншоты сайтов будут увеличиваться.
 
 ### Рекомендации
 
-[![Рекомендации](http://atnartur.ru/wp-content/uploads/2013/05/Image-0111-300x171.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0111.png)
+[![Рекомендации](/content/2013/05/Image-0111-300x171.png)](/content/2013/05/Image-0111.png)
 
 Лента новостей, которая очень удобно организована. Здесь показаны мировые новости. Список новостных каналов можно настраивать в специальном окне по странам и по разделам:
 
-[![Рекомендации по странам](http://atnartur.ru/wp-content/uploads/2013/05/Image-0121-200x300.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-0121.png)[![Рекомендации по разделам](http://atnartur.ru/wp-content/uploads/2013/05/Image-013-212x300.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-013.png)
+[![Рекомендации по странам](/content/2013/05/Image-0121-200x300.png)](/content/2013/05/Image-0121.png)[![Рекомендации по разделам](/content/2013/05/Image-013-212x300.png)](/content/2013/05/Image-013.png)
 
 Рекомендации - тоже хорошо, но RSS для меня лучше. И его здесь убрали:( При открытии [RSS ленты моего сайта](http://feeds.feedburner.com/atnartur "RSS лента atnartur.ru") выходит такое: 
 
-[![RSS](http://atnartur.ru/wp-content/uploads/2013/05/Image-014-300x172.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-014.png)
+[![RSS](/content/2013/05/Image-014-300x172.png)](/content/2013/05/Image-014.png)
 
 ### Адресная строка
 
-[![Адресная строка](http://atnartur.ru/wp-content/uploads/2013/05/Image-015-300x68.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-015.png)
+[![Адресная строка](/content/2013/05/Image-015-300x68.png)](/content/2013/05/Image-015.png)
 
 При наборе адреса вылезают поисковые подсказки. Все это происходит очень и очень красиво. Снизу справа можно выбрать поисковую систему. 
 
@@ -87,15 +87,15 @@ date: 2013-05-30 11:00:00
 
 Синхронизацию не увидел. Настройки выглядят так же, как и в Хроме (ну вглядитесь!). 
 
-[![Настройки](http://atnartur.ru/wp-content/uploads/2013/05/Image-018-300x148.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-018.png)
+[![Настройки](/content/2013/05/Image-018-300x148.png)](/content/2013/05/Image-018.png)
 
 Оказывается, свою допиливают.
 
-[![Image 021](http://atnartur.ru/wp-content/uploads/2013/05/Image-021-300x107.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-021.png)
+[![Image 021](/content/2013/05/Image-021-300x107.png)](/content/2013/05/Image-021.png)
 
 Баллы HTML5:
 
-[![HTML5](http://atnartur.ru/wp-content/uploads/2013/05/Image-020-300x270.png)](http://atnartur.ru/wp-content/uploads/2013/05/Image-020.png)
+[![HTML5](/content/2013/05/Image-020-300x270.png)](/content/2013/05/Image-020.png)
 
 ### Вывод
 

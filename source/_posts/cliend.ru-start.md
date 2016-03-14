@@ -11,17 +11,17 @@ date: 2013-09-01 23:00:00
 
 В ночь с первого на второе сентября состоялся запуск проекта ClienD for edu.tatar.ru! Это веб-приложение, адаптированное под мобильные устройства, для удобного доступа к порталу "Электронное образование в Республике Татарстан" или просто edu.tatar.ru. Подробности далее. <!--more-->
 
-[![](http://atnartur.ru/wp-content/uploads/2013/09/logo-+link-150x150.jpg)](http://atnartur.ru/wp-content/uploads/2013/09/logo-+link.jpg)
+[![](/content/2013/09/logo-+link-150x150.jpg)](/content/2013/09/logo-+link.jpg)
 
 В Татарстане живет и почти не развивается портал "Электронное образование в Республике Татарстан", который находится на [edu.tatar.ru](http://edu.tatar.ru). Как и все государственные порталы (за редким исключением), он имеет плохой дизайн и плохо отображается на мобильных устройствах. 
 
 Чтобы исправить все это мы написали веб-приложение ClienD for edu.tatar.ru. Оно имеет приятный дизайн, быстрее работает и хорошо отображается на всех мобильных устройствах! 
 
-[![Android4_v1 (7)](http://atnartur.ru/wp-content/uploads/2013/09/Android4_v1-7-150x150.png)](http://atnartur.ru/wp-content/uploads/2013/09/Android4_v1-7.png)[![Android4_v1 (3)](http://atnartur.ru/wp-content/uploads/2013/09/Android4_v1-3-150x150.png)](http://atnartur.ru/wp-content/uploads/2013/09/Android4_v1-3.png)
+[![Android4_v1 (7)](/content/2013/09/Android4_v1-7-150x150.png)](/content/2013/09/Android4_v1-7.png)[![Android4_v1 (3)](/content/2013/09/Android4_v1-3-150x150.png)](/content/2013/09/Android4_v1-3.png)
 
 На iPad и iPhone вы также можете добавить иконку нашего приложения на главный экран.
 
-[![](http://atnartur.ru/wp-content/uploads/2013/09/iPhone5_iOS6-150x150.jpg)](http://atnartur.ru/wp-content/uploads/2013/09/iPhone5_iOS6.jpg)
+[![](/content/2013/09/iPhone5_iOS6-150x150.jpg)](/content/2013/09/iPhone5_iOS6.jpg)
 
 Сайт проекта - [cliend.ru](http://cliend.ru)
 Группа [ВКонтакте](http://vk.com/cliend) и наш [Твиттер](http://twitter.com/cliend4edu)
