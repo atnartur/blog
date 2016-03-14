@@ -1,6 +1,7 @@
 ---
 title: Проекты
 date: 2016-03-14 14:42:01
+comments: false
 ---
 
 ## [ClienDDev team](http://clienddev.ru)

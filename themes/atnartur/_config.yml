@@ -12,6 +12,7 @@ fancybox: true
 sidebar: right
 widgets:
 - search
+- twitter
 - category
 - tagcloud
 - recent_posts
