@@ -18,9 +18,9 @@ alias: /kak-snyaty-atribut-skrty-i-sistemny-s-faylov-i-papok/
 
 Сначала я удалил все лишние ярлыки. Но все файлы и папки были все еще скрыты. И выделенный атрибут у них был заблокирован: 
 
-[![](/content/2013/04/Image-0011-300x93.png)](http://atnartur.ru/wp-content/uploads/2013/04/Image-0011.png) 
+[![](/content/2013/04/Image-0011-300x93.png)](/content/2013/04/Image-0011.png) 
 
-Чтобы исправить эту проблему, нужно запустить командную строку (Пуск/Выполнить/cmd.exe) и набрать там следующее: [![Командная строка](http://atnartur.ru/wp-content/uploads/2013/04/Image-0002.png)](http://atnartur.ru/wp-content/uploads/2013/04/Image-0002.png) 
+Чтобы исправить эту проблему, нужно запустить командную строку (Пуск/Выполнить/cmd.exe) и набрать там следующее: [![Командная строка](/content/2013/04/Image-0002.png)](/content/2013/04/Image-0002.png) 
 
 ```
 cd /d G:\ 
