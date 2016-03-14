@@ -22,7 +22,7 @@ alias: /kak-snyaty-atribut-skrty-i-sistemny-s-faylov-i-papok/
 
 Чтобы исправить эту проблему, нужно запустить командную строку (Пуск/Выполнить/cmd.exe) и набрать там следующее: [![Командная строка](/content/2013/04/Image-0002.png)](/content/2013/04/Image-0002.png) 
 
-```
+```bash
 cd /d G:\ 
 attrib -S -H /S /D
 ```
