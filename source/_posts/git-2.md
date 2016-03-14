@@ -6,6 +6,7 @@ id: 321
 categories:
   - О разработке
 date: 2013-07-02 14:00:00
+alias: /git-tchasty-vtoraya-registratsiya-i-ustanovka/
 ---
 
 В статье показано, как работать с GIT на практике, используя [BitBucket](http://bitbucket.org) и GIT Bash. <!--more-->

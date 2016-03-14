@@ -7,6 +7,7 @@ id: 792
 categories:
   - Софт
 date: 2014-08-26 19:00:00
+alias: /otpravka-pisem-tcherez-smtp-v-wordpress/
 ---
 
 Недавно я заметил, что сайты на WordPress не отправляют мне письма о новых комментариях. Скоро я узнал, что вся проблема в sendmail. <!--more-->

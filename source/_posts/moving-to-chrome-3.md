@@ -8,6 +8,7 @@ id: 178
 categories:
   - Софт
 date: 2013-05-10 19:00:00
+alias: /eshte-odin-deny-s-hromom-perehod-na-hrom-tchasty-tretyya/
 ---
 
 Еще одна запись про мой переход на хром. Продожение [этого](http://atnartur.ru/dopilivaem-hrom-perehod-na-hrom-tchasty-pervaya/ "Допиливаем хром — Переход на хром, часть первая") и [этого](http://atnartur.ru/perve-vpetchatleniya-perehod-na-hrom-tchasty-vtoraya/ "Первые впечатления — Переход на хром, часть вторая"). Все по порядку можно посмотреть [здесь](http://atnartur.ru/tag/na-hrom/ "На хром (метка)"). <!--more-->

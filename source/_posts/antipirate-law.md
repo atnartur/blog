@@ -7,6 +7,7 @@ id: 289
 categories:
   - Жизнь
 date: 2013-06-21 22:00:00
+alias: /prodolzhenie-ob-antipiratskom-zakone/
 ---
 
 Продолжение истории о нашумевшем законопроекте. <!--more-->

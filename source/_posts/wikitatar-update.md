@@ -7,6 +7,7 @@ id: 85
 categories:
   - Новости проектов
 date: 2013-04-07 22:00:00
+alias: /wikitatar-obnovlenie-5-aprelya-2013/
 ---
 
 Информация об обновлении на сайте wikitatar.ru 5 апреля 2013 года <!--more-->

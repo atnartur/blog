@@ -7,6 +7,7 @@ id: 805
 categories:
   - Жизнь
 date: 2014-09-25 21:00:00
+alias: /natchalo-utchebnogo-goda-v-lektronnom-obrazovanii-rt/
 ---
 
 Год начался очень "весело" для системных администраторов школ Республики Татарстан. <!--more-->

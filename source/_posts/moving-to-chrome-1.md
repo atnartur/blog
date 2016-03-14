@@ -9,6 +9,7 @@ id: 146
 categories:
   - Софт
 date: 2013-05-09 00:00:00
+alias: /dopilivaem-hrom-perehod-na-hrom-tchasty-pervaya/
 ---
 
 Всем привет! Недавно я на [своей стене ВКонтакте](http://vk.com/atnartur?w=wall69498414_2163 "Атнагулов Артур - ВКонтакте") опубликовал опрос. Ну так вот. Зрелище начинается! :) <!--more-->

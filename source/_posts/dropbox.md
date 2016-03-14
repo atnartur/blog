@@ -8,6 +8,7 @@ id: 492
 categories:
   - Софт
 date: 2013-07-30 22:00:00
+alias: /dropbox-registratsiya-osnov/
 ---
 
 Сегодня я выкладываю свой первый обучающий видеоурок на тему регистрации и работы с Dropbox. 

@@ -8,6 +8,7 @@ id: 371
 categories:
   - Софт
 date: 2013-07-25 13:00:00
+alias: /evernote-obzor-osnov-ispolyzovaniya/
 ---
 
 Evernote - очень удобный сервис заметок с онлайн синхронизацией, клиентами для Windows, Android и многое другое... Подробнее ниже. <!--more-->

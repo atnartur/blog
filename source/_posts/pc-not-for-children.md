@@ -4,7 +4,7 @@ id: 517
 categories:
   - Жизнь
 date: 2013-08-11 23:00:00
-tags:
+alias: /deti-ne-umeyut-polyzovatysya-kompyyuteramiv-i-vot-potchemu-to-dolzhno-vas-bespokoity/
 ---
 
 Только что я прочитал одноименную статью на сайте habrahabr.ru. [Вот она](http://habrahabr.ru/post/189706/). Это мой небольшой ответ на эту публикацию. <!--more-->

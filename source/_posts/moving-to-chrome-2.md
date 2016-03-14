@@ -9,6 +9,7 @@ id: 155
 categories:
   - Софт
 date: 2013-05-09 16:00:00
+alias: /perve-vpetchatleniya-perehod-na-hrom-tchasty-vtoraya/
 ---
 
 Первые впечатления после перехода на хром. Продолжение [вчерашней](http://atnartur.ru/dopilivaem-hrom-perehod-na-hrom-tchasty-pervaya/ "Допиливаем хром — Переход на хром, часть первая") статьи. <!--more-->

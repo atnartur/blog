@@ -9,6 +9,7 @@ id: 277
 categories:
   - Софт
 date: 2013-06-10 14:00:00
+alias: /virus-v-skaype-prodolzhenie/
 ---
 
 Как вы помните, я писал про [спам-вирус в скайпе](http://atnartur.ru/spam-virus-v-skaype/). Эта история получила продолжение.<!--more-->

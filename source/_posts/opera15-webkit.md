@@ -7,6 +7,7 @@ id: 235
 categories:
   - Софт
 date: 2013-05-30 11:00:00
+alias: /opera-next-15-opera-na-webkit/
 ---
 
 Сегодня утром на Хабре увидел [статью](http://habrahabr.ru/company/opera/blog/181400/ "Возможности Opera и частота релизов"), в которой говорилось о новом релизе. Как оказалось, это релиз новой [Opera Next 15](http://www.opera.com/ru/developer/next "Скачать"), в которой наконец-то появился WebKit! 

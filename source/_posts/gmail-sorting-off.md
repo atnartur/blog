@@ -7,6 +7,7 @@ id: 416
 categories:
   - Другое
 date: 2013-07-23 19:00:00
+alias: /kak-otklyutchity-novuyu-sortirovku-pisem-v-gmail/
 ---
 
 Недавно в GMail появилась новая сортировка писем по соцсетям, промоакциям.... Как выключить её написано далее.<!--more-->
