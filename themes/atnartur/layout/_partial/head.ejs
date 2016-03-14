@@ -19,9 +19,13 @@
 			title = __('tag') + ': ' + page.tag;
 		}
 	%>
+
 	<title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
 	<%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+
 	<% if (theme.rss){ %>			
 		<link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
 	<% } %>
@@ -32,7 +36,14 @@
 	<% if (config.highlight.enable){ %>
 		<link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
 	<% } %>
+
+	<meta name="description"  content="atnartur.ru - Блог веб-разработчика" />
+
+	<meta name="keywords"  ontent="atnartur.ru, Блог веб-разработчика, веб-разработка, викитатар, wikitatar, cafe4me, ClienDDev, создание сайта, ит-чемпион, web-разработка, web, Атнагулов Артур, atnartur" />
+
 	<link rel="stylesheet" href="/styles/main.min.css">
 	<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-	<%- partial('google-analytics') %>
+
+	<meta name='yandex-verification' content='4cef18e7b73150a8' />
+    <meta name="google-site-verification" content="qAxWEQPavOYoENugvm5uJblx9ZIKvUZUq7nRhovUvjc" />
 </head>
