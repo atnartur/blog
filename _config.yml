@@ -76,8 +76,8 @@ deploy:
   message: hexo deploy
 
 alias:
-  r/drop: http://db.tt/QQZoNRiG
-  r/ydisk: https://disk.yandex.ru/invite/?hash=SPF5MREM
+  r/drop/: http://db.tt/QQZoNRiG
+  r/ydisk/: https://disk.yandex.ru/invite/?hash=SPF5MREM
   r/soft/: https://yadi.sk/d/25_b5E68aYSVB
   r/bookstorage/: http://dev.atnartur.ru/projects/bookstorage
   r/zastavki/: https://yadi.sk/d/WUa-plPqmBHWg
