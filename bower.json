@@ -18,6 +18,7 @@
   ],
   "dependencies": {
     "font-awesome": "^4.5.0",
-    "bootstrap3-typeahead": "bassjobsen/Bootstrap-3-Typeahead#4.0.0"
+    "bootstrap3-typeahead": "bassjobsen/Bootstrap-3-Typeahead#4.0.0",
+    "highlightjs": "^9.2.0"
   }
 }

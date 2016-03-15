@@ -45,4 +45,8 @@ $(document).ready(function(){
 			location.href = row.url;
 		}
 	});
+
+	$('.highlight').each(function(i, block) {
+    	hljs.highlightBlock(block);
+  	});
 });
