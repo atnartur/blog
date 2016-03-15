@@ -1,6 +1,9 @@
 User-agent:*
 Disallow: /r/
 Disallow: /search.xml
+Disallow: /tags/
+Disallow: /categories/
+Disallow: /page/
 Allow:*
 
 Host: atnartur.ru
