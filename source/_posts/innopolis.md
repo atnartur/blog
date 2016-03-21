@@ -31,6 +31,9 @@ category:
 
 Затем прошло закрытие отбора, часть участников уехала вечером 19 числа, оставшиеся - утром 20 марта.
 
+<blockquote class="instagram-media" data-instgrm-version="6" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"> <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:28.1481481481% 0; text-align:center; width:100%;"> <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAGFBMVEUiIiI9PT0eHh4gIB4hIBkcHBwcHBwcHBydr+JQAAAACHRSTlMABA4YHyQsM5jtaMwAAADfSURBVDjL7ZVBEgMhCAQBAf//42xcNbpAqakcM0ftUmFAAIBE81IqBJdS3lS6zs3bIpB9WED3YYXFPmHRfT8sgyrCP1x8uEUxLMzNWElFOYCV6mHWWwMzdPEKHlhLw7NWJqkHc4uIZphavDzA2JPzUDsBZziNae2S6owH8xPmX8G7zzgKEOPUoYHvGz1TBCxMkd3kwNVbU0gKHkx+iZILf77IofhrY1nYFnB/lQPb79drWOyJVa/DAvg9B/rLB4cC+Nqgdz/TvBbBnr6GBReqn/nRmDgaQEej7WhonozjF+Y2I/fZou/qAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/p/BDIxn9pLqRy/" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">Фото опубликовано Артур (@atnartur)</a> <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2016-03-19T13:57:59+00:00">Мар 19 2016 в 6:57 PDT</time></p></div></blockquote>
+<script async defer src="//platform.instagram.com/en_US/embeds.js"></script>
+
 Желающих поступить в Иннополис было очень много. География не ограничивалась Казанью: Москва, Новосибирск, Вологда, Екатеринбург, Альметьевск... Даже Казахстан и Молдова! Сказать, что это удивляет - ничего не сказать!
 
 ## Город
@@ -41,14 +44,17 @@ category:
 
 Недалеко от Университета построен спорткомлекс, в котором есть все необходимое для занятий спортом. Посещение для сотрудников и студентов бесплатное. На вопрос о том, какова стоимость для не студентов и не сотрудников, вожатая ответила, что цены не такие уж и высокие: чуть-чуть выше, чем в Казани.
 
-<blockquote class="instagram-media" data-instgrm-version="6" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:8px;"> <div style=" background:#F8F8F8; line-height:0; margin-top:40px; padding:28.1481481481% 0; text-align:center; width:100%;"> <div style=" background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAGFBMVEUiIiI9PT0eHh4gIB4hIBkcHBwcHBwcHBydr+JQAAAACHRSTlMABA4YHyQsM5jtaMwAAADfSURBVDjL7ZVBEgMhCAQBAf//42xcNbpAqakcM0ftUmFAAIBE81IqBJdS3lS6zs3bIpB9WED3YYXFPmHRfT8sgyrCP1x8uEUxLMzNWElFOYCV6mHWWwMzdPEKHlhLw7NWJqkHc4uIZphavDzA2JPzUDsBZziNae2S6owH8xPmX8G7zzgKEOPUoYHvGz1TBCxMkd3kwNVbU0gKHkx+iZILf77IofhrY1nYFnB/lQPb79drWOyJVa/DAvg9B/rLB4cC+Nqgdz/TvBbBnr6GBReqn/nRmDgaQEej7WhonozjF+Y2I/fZou/qAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;"></div></div><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/p/BDIxn9pLqRy/" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">Фото опубликовано Артур (@atnartur)</a> <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;" datetime="2016-03-19T13:57:59+00:00">Мар 19 2016 в 6:57 PDT</time></p></div></blockquote>
-<script async defer src="//platform.instagram.com/en_US/embeds.js"></script>
+Здания строились по сингапурским проектам, поэтому здесь очень много окон и много естественного света. Очень круто смотрится.
+
+![Университет](/content/2016/03/innopolis/2016-03-20 08-10-07.JPG)
 
 В номерах студенческого общежития очень красиво и уютно. Есть небольшая кухня (плита, кран), много шкафов, розеток (в том числе Ethernet), отдельный санузел с душем, холодильник. 
 
 Есть бесплатный WiFi не только на территории Университета и общежитий, но и в спорткомплексе, и даже на улице. Наличие интернета в Ethernet-розетках проверить не удалось, так как кабель я не взял и у организаторов его тоже не нашлось.
 
 ## Мнение
+
+![](/content/2016/03/innopolis/2016-03-19 17-07-48.JPG)
 
 Жить в Иннополисе можно, но немного напрягает то, что крайне не развита инфраструктура. Один магазин, и тот продуктовый. Из развлечения: спорткомплекс. И все. По словам организаторов отбора, студенческая ассоциация проводит много интересных мероприятий. Но если ты не студент и не сотрудник Университета? Чем тут еще можно заняться? 
 
