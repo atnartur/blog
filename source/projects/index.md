@@ -16,3 +16,7 @@ comments: false
 
 Класс для работы с платежным API от [QIWI](http://qiwi.com). [Статья в блоге с описанием функций](/posts/2014/php-qiwi/), [исходный код проекта](https://github.com/atnartur/php-qiwi)
 
+## [Phalcon-datatable](https://github.com/atnartur/Phalcon-datatable)
+
+Класс для работы с [Datatables.js](https://www.datatables.net/) на сервере. Написан с использованием PHP-фреймворка [Phalcon 2](http://phalconphp.com).
+
