@@ -3,6 +3,7 @@
 */
 
 $(document).ready(function(){
+	
 	var xml;
 	$('#search').typeahead({
 		source: function(query, callback){
