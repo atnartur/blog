@@ -65,7 +65,7 @@ category:
 ```
 
 - [FileHeader](https://packagecontrol.io/packages/FileHeader) - в начало файла добавляет информацию об авторе, дате создания и изменения файла
-- [Git](https://packagecontrol.io/packages/Git) - добавляет в Command palette команды git
+- [Git](https://packagecontrol.io/packages/Git) - добавляет в Command palette команды [git](http://atnartur.ru/posts/2013/git-1/)
 - [GitGutter](https://packagecontrol.io/packages/GitGutter) - в начале строки добавляет символы, информирующие об удалении, добавлении или изменении строки. Информацию предоставляет git
 ![](/content/2016/07/sublime/gitgutter.png)
 - [Gulp](https://packagecontrol.io/packages/Gulp) - запускает gulp-задачи прямо в Sublime Text
@@ -86,7 +86,7 @@ category:
 - [apiDoc Autocompletion](https://packagecontrol.io/packages/apiDoc%20Autocompletion) - автодополнения для [apidoc](http://apidocjs.com/), инструмента для генерации документации по API
 - [PHP Companion](https://packagecontrol.io/packages/PHP%20Companion)
 - [TodoReview](https://packagecontrol.io/packages/TodoReview) - собирает информацию обо всех блоках `@TODO`
-- [WakaTime](https://packagecontrol.io/packages/WakaTime) - "фитнес-трекер" для программиста. Подробнее
+- [WakaTime](https://packagecontrol.io/packages/WakaTime) - "фитнес-трекер" для программиста. [Подробнее про этот сервис](/posts/2016/wakatime/)
 
 ### Поддержка синтаксиса 
 
