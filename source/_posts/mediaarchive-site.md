@@ -10,3 +10,5 @@ category:
 ---
 
 Сегодня состоялся запуск [сайта проекта Медиаархив](http://ma.atnartur.ru). Он, [как и мой блог](http://atnartur.ru/posts/2016/static-blog/), создан с помощью генератора Hexo и [размещен на Github](https://github.com/MediaArchive/mediaarchive.github.io), а значит Вы можете помочь проекту, дополнив сайт полезной информацией.
+
+<!-- more -->
