@@ -1,6 +1,6 @@
 ---
 title: Мой Sublime Text
-date: 2016-07-18 12:45:31
+date: 2016-07-20 12:45:31
 tags:
 - IDE
 - Sublime Text
