@@ -1,6 +1,6 @@
 # [atnartur.ru](http://atnartur.ru)
 
-Блог Атнагулова Артура. Сделан с помощью на [Hexo](https://hexo.io/) после переезда с [Wordpress](http://wordpress.org/).
+Блог Атнагулова Артура. Сделан на [Hexo](https://hexo.io/) после переезда с [Wordpress](http://wordpress.org/).
 
 ## License
 
