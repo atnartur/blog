@@ -8,3 +8,4 @@ public/
 *.min.css
 *.cache
 themes/atnartur/source/libs
+.idea
