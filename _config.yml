@@ -81,6 +81,7 @@ deploy:
   message: hexo deploy
 
 alias:
+  projects/: http://i.atnartur.ru#projects
   r/drop/: http://db.tt/QQZoNRiG
   r/ydisk/: https://disk.yandex.ru/invite/?hash=SPF5MREM
   r/soft/: https://yadi.sk/d/25_b5E68aYSVB
