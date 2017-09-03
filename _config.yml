@@ -76,7 +76,7 @@ theme: atnartur
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: ssh://git@github.com/atnartur/blog.git
+  repo: https://github.com/atnartur/blog
   branch: gh-pages
   message: hexo deploy
 

@@ -5,6 +5,10 @@
   "hexo": {
     "version": "3.3.8"
   },
+  "scripts":{
+    "server": "./node_modules/hexo-cli/bin/hexo server",
+    "deploy": "./node_modules/hexo-cli/bin/hexo generate -d"
+  },
   "dependencies": {
     "hexo": "^3.2.0",
     "hexo-deployer-git": "^0.3.1",
@@ -25,6 +29,7 @@
     "gulp": "^3.9.1",
     "gulp-cssnano": "^2.1.1",
     "gulp-less": "^3.0.5",
-    "gulp-rename": "^1.2.2"
+    "gulp-rename": "^1.2.2",
+    "hexo-cli": "^1.0.3"
   }
 }
