@@ -5,7 +5,7 @@
   "hexo": {
     "version": "3.3.8"
   },
-  "scripts":{
+  "scripts": {
     "server": "./node_modules/hexo-cli/bin/hexo server",
     "deploy": "./node_modules/hexo-cli/bin/hexo generate -d"
   },
@@ -26,10 +26,13 @@
     "hexo-server": "^0.2.0"
   },
   "devDependencies": {
+    "bootstrap-3-typeahead": "^4.0.2",
+    "font-awesome": "^4.7.0",
     "gulp": "^3.9.1",
     "gulp-cssnano": "^2.1.1",
     "gulp-less": "^3.0.5",
     "gulp-rename": "^1.2.2",
-    "hexo-cli": "^1.0.3"
+    "hexo-cli": "^1.0.3",
+    "highlightjs": "^9.10.0"
   }
 }
