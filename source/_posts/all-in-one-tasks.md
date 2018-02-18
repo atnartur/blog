@@ -54,7 +54,7 @@ category:
 3. Далее "Параметры учетной записи"
 4. Чуть ниже будет поле "Канал календаря" со ссылкой. Добавляем ссылку указанным выше способом, и задачи из Wunderlist появляются в Google Calendar!
 
-### [Trelo](http://trello.com), [Todoist](http://todoist.com)
+### [Trello](http://trello.com), [Todoist](http://todoist.com)
 
 Для настройки нужно зарегистрироваться на [IFTTT](http://ifttt.com), подключить аккаунты Trello и Google Calendar и настроить соответствующую автоматизацию с помощью ссылок ниже. Частично процесс работы с этим сервисом описан [здесь](/posts/2017/univer-ifttt/).
 
