@@ -3,6 +3,7 @@ title: Wunderlist - обзор
 tags:
   - todo
   - синхронизация
+  - Задачи
 id: 217
 categories:
   - Софт
