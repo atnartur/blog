@@ -23,6 +23,6 @@ const css = () => gulp.src('themes/atnartur/source/styles/_main.less')
 	.pipe(rename('main.min.css'))
 	.pipe(gulp.dest('themes/atnartur/source/styles/'));
 
-module.exports.watch = () => gulp.watch('themes/atnartur/source/styles/*', [css]);
+module.exports.watch = () => gulp.watch('themes/atnartur/source/styles/*.less', gulp.parallel([css]));
 
 module.exports.default = gulp.parallel([css, copy]);

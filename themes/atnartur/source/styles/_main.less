@@ -15,7 +15,7 @@ body{
 
 header{
     @height: 100px;
-    background:@main-color;
+    background: #000;
     overflow: hidden;
     .shadow();
     margin-bottom:15px;
@@ -24,12 +24,12 @@ header{
         text-align:center;
         
         h1{
-            font-weight: 100;
+            font-weight: 700;
             margin:0;
             margin-top:5px;
             padding:0;
             font-size:4em;
-            line-height: 1;
+            line-height: 1.5;
             font-family: Roboto, Helvetica Neue, Segoe UI Light;
             
             a{
@@ -43,7 +43,8 @@ header{
         h2{
             font-size: 1.2em;
             margin:0;
-            font-weight: 300;
+            margin-bottom: 10px;
+            font-weight: 400;
             color:#fff;
         }
     }
@@ -54,12 +55,13 @@ header{
         .nav{
             li{        
                 a{
-                    color: #fff;
+                    color: #00BFFF;
                     font-size:17px;
-                    font-weight:300;
+                    font-weight:400;
                     
                     &:hover, &:active, &:focus{
                         background: darken(@main-color, 6.5%);
+                        color: #fff;
                         .hover_transition();
                     }
                 }

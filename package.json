@@ -7,6 +7,7 @@
   },
   "scripts": {
     "gulp": "./node_modules/gulp/bin/gulp.js",
+    "watch": "./node_modules/gulp/bin/gulp.js watch",
     "server": "./node_modules/hexo-cli/bin/hexo server",
     "deploy": "./node_modules/hexo-cli/bin/hexo generate -d"
   },
