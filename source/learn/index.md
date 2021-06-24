@@ -30,9 +30,9 @@ date: 2021-06-24 20:07:56
 Презентации для WebLab про технологии без привязки к конкретным языкам программирования.
 
 - [Docker basics](https://docs.google.com/presentation/d/1N_2E8eYw2GXxrdkmEcyIZk5l9q7VP80fzK2B--RjVxA/edit)
-- [Введение в Open Source проекты](https://docs.google.com/presentation/d/1eycMnUHwbiPBi7j9SSLIhcr69F5c7zV1-EnqIU9lNE/edit?usp=sharing)
+- [Введение в Open Source проекты](https://docs.google.com/presentation/d/1eycMnUHwbiPBiu7j9SSLIhcr69F5c7zV1-EnqIU9lNE/edit)
 - [Инфраструктура проекта](https://docs.google.com/presentation/d/1Gs2a9eeo9bqyUNYe6WBBDhbMhiKk1nxHEIcVjRuNUe4/edit?usp=sharing)
-- [Крутая презентация](https://docs.google.com/presentation/d/14J3uH3jvvGKSMrTgb1ieqK91aIqHJV9AQJvm4YfxYEc/edit?usp=sharing)
+- [Крутая презентация (v1)](https://docs.google.com/presentation/d/14J3uH3jvvGKSMrTgb1ieqK91aIqHJV9AQJvm4YfxYEc/edit?usp=sharing)
 - [Оформление документов](https://docs.google.com/presentation/d/1D1pu-lxlKh1J4KJAvNY-iMRfcRbErO1U67l6E7EJMYw/edit?usp=sharing)
 
 ## С# (осень 2019)
@@ -48,14 +48,14 @@ date: 2021-06-24 20:07:56
 1. [SOLID](https://docs.google.com/presentation/d/1iRIvMJHWyFgsvLx0JTPHhR6IAYsNrwV00kCViJKZqDY/edit?usp=sharing)
 1. [Backend & Frontend](https://docs.google.com/presentation/d/1cjEGxmx_dxeIX4k6Ow6wkz3DIzktUlIzU01evwWe1Fg/edit?usp=sharing)
 
-## Проектная школа ИТИС 2021
+## Проектная школа ИТИС (2021)
 Быстрый старт в разработку ИТ-проектов за неделю.
 
 - [Формирование требований к ПО (v2)](https://docs.google.com/presentation/d/1VxidttBbwVWJVhpvnQzpSLw8o7CpYPCToK3mrpy1Nrk/edit)
 - [Быстрый старт в верстку](https://docs.google.com/presentation/d/1-R_iD921VpDSoeMwlkrJMErhD1MsShMC4GTe0y4Z6cA/edit)
 - [Бот для Tелеграм на Python (telebot)](https://docs.google.com/presentation/d/1F5TWPbNi_x8eXujhB7KSZXqE6gUzgLzGvfQHnf9NLpY/edit#slide=id.gb93c88049a_0_190)
 - [Базы данных - Реляционная модель](https://docs.google.com/presentation/d/1QtNV4YQPs0NOIbMoJyA7zhQAzaxi5a4d8XBUVcR9zkI/edit?usp=sharing)
-- [Крутая презентация](https://docs.google.com/presentation/d/1dNyykzaUjAsPYuroDz-qB_aHXJojBhKn54p0SoxlUkA/edit?usp=sharing)
+- [Крутая презентация (v2)](https://docs.google.com/presentation/d/1dNyykzaUjAsPYuroDz-qB_aHXJojBhKn54p0SoxlUkA/edit?usp=sharing)
 
 ## Docker
 Презентации про работу Docker с примерами на разных технологиях
