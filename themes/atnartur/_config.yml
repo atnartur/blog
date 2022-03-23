@@ -12,10 +12,8 @@ fancybox: true
 sidebar: right
 widgets:
 - search
-- twitter
-- ads
 - category
-- tagcloud
+- ads
 
 # display widgets at the bottom of index pages (pagination == 2)
 index_widgets:
