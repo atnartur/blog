@@ -1,14 +1,9 @@
-/**
- * @author Artur Atnagulov (atnartur), ClienDDev team (clienddev.ru)
-*/
-
 $(document).ready(function(){
 	
 	var xml;
 	$('#search').typeahead({
 		source: function(query, callback){
 			function search(query, callback){
-				console.log(xml);
 				var datas = $("entry", xml).map(function() {
 	                return {
 	                    title: $( "title", this ).text(),
@@ -17,15 +12,12 @@ $(document).ready(function(){
 	                };
 	            }).get();
 
-				var res = [];
-
-				datas.forEach(function(row){
-					if(
-						row.title.indexOf(query) != -1 ||
-						row.content.indexOf(query) != -1 ||
-						row.url.indexOf(query) != -1
+				var res = datas.filter(function(row){
+					return (
+						row.title.toLowerCase().indexOf(query) != -1 ||
+						row.content.toLowerCase().indexOf(query) != -1 ||
+						row.url.toLowerCase().indexOf(query) != -1
 					)
-						res.push(row);
 				});
 
 				callback(res)
