@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>http://atnartur.ru/posts/2016/innopolis/</loc>
+        <lastmod>2022-03-30T16:12:23.122Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://atnartur.ru/posts/2013/yandex-islands-beta/</loc>
         <lastmod>2021-06-24T17:01:33.662Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -323,14 +331,6 @@
     <url>
         <loc>http://atnartur.ru/posts/2013/itjump-2013/</loc>
         <lastmod>2021-06-24T17:01:33.653Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2016/innopolis/</loc>
-        <lastmod>2021-06-24T17:01:33.652Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
