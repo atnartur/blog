@@ -7,8 +7,8 @@ date: 2021-06-24 20:07:56
 
 Если нашли ошибку, пишите на i@atnartur.ru.
 
-## Python + Django (2020/2021)
-Презентации курса по Python и Django с небольшими отступлениями в развертывание и Frontend.
+## Django + Vue (2020-2022)
+Презентации курса по Django + Vue с небольшими отступлениями в развертывание.
 
 **Python**
 - [Многопоточность и сокеты](https://docs.google.com/presentation/d/1OhmNXfe9chRqMJkFmtuP9AJ1ZTcWFw3l4ImJIbwNbME/edit)
@@ -17,14 +17,33 @@ date: 2021-06-24 20:07:56
 - [path, git, f-strings, sessions](https://docs.google.com/presentation/d/1uiHhbiDH-PlwhaIo9qkDFPRSMmn0qqN3WZOM1v_fFQc/edit?usp=sharing)
 
 **Django**
-- [Миграции](https://docs.google.com/presentation/d/1vWnTRkgAUBx_s5n7DN5wIOxAZ8UKakX-dLiqpYP1lzo/edit?usp=sharing)
+- [Django architecture](https://docs.google.com/presentation/d/1n_5AWjz0WstqIEA9LxmT9bVCNIvBzSm5mh6AG89Ns8s/edit?usp=sharing)
+- [Миграции (v2)](https://docs.google.com/presentation/d/1KwYMt-SMhiNUcq8trCnFzCyFKSvyIbvKMyhZzFh8YDA/edit)
 - [Django urls & views](https://docs.google.com/presentation/d/1pPmaJOY7tN0l0z4p0y_jCNhWlGsS_7hOc9ThCfXyxHE/edit?usp=sharing)
-- [Верстка](https://docs.google.com/presentation/d/1z5HS47xJ73tZqP6DwvQ9bGpSXaLfCvDf44AHu3bvUOM/edit)
+- [Telegram bot in Django](https://docs.google.com/presentation/d/1FeC0N-cg4LCQ8J9fVMHX7VUi4KmYloNKtES4E2R22-Y/edit?usp=sharing)
 - [конфигурирование, backend & frontend](https://docs.google.com/presentation/d/1s4Ll_-DYn-6UhpVMiOBYKBtHYLhudWZQxEnAfMB0BCQ/edit?usp=sharing)
+- [REST API](https://docs.google.com/presentation/d/1gGj8An7sKRz3sszeGdgZ4RB9WmGmgstVn98iQXGuQaE/edit?usp=sharing)
 - [Письма и celery](https://docs.google.com/presentation/d/1nVgtEmp48V9C07J7x2Vnke9bZ51EeUmCX9ekUBOozHY/edit?usp=drivesdk)
+
+**Deploy**
+- [Poetry & Lint](https://docs.google.com/presentation/d/1BX1kioxskb3FaKDCst5QXdaxddXpZxjUmT4BBxYWxMY/edit?usp=sharing)
+- [Deploy to Heroku & UniEnv](https://docs.google.com/presentation/d/1pjdO89K-qEf5qILW66ELk5g_PA_LO7Jy8_e013ewwEk/edit?usp=sharing)
 - [Docker basics](https://docs.google.com/presentation/d/1l3wWKsL5A8yJVY2Q8cw8xX99Qg3yX3o3f4zj47ULX0w/edit?usp=sharing)
 - [Deploy on linux with docker](https://docs.google.com/presentation/d/1nXJBjEBPdKwymeRwk44MFdhUsKNn1-yUy-uPhKwQAoc/edit?usp=sharing)
-- [Frontend](https://docs.google.com/presentation/d/1JD4myCzPHK-3EgN0W4alQjO63ZgzXI8HS9XWlFEh-88/edit)
+- [Gitlab CI](https://docs.google.com/presentation/d/1-OKTrFx3QS4532Sshf4dnddJrH8FQfo149b7zSJ_SzQ/edit?usp=sharing)
+
+**Frontend**
+- [Верстка](https://docs.google.com/presentation/d/1z5HS47xJ73tZqP6DwvQ9bGpSXaLfCvDf44AHu3bvUOM/edit)
+- [backend & frontend (v2)](https://docs.google.com/presentation/d/17C56HBgaLDBbOTgtIGANYbAJOzaw_gdDbgLEB9PNteE/edit)
+- [Работа браузера](https://docs.google.com/presentation/d/1Id_HTKMFx8vVLmjj6-qVfQzemMGru3-9IGC3fQupbHs/edit?usp=sharing)
+- [EcmaScript standards](https://docs.google.com/presentation/d/1RMC6PMMOywAjsSrssAPFZoKwLqbcgPUIAeo8--kGamo/edit?usp=sharing)
+- [State management](https://docs.google.com/presentation/d/1hH1d2sjYlWojSdfs-72sWH5rHuVZlhcloUJmaWh1Oh8/edit?usp=sharing)
+
+**Общие моменты**
+- [git - выходим из трех сосен](https://docs.google.com/presentation/d/1MV7RaV76_mJavE83RSL89mMtsuRUjc2M4Gs71nSOV7o/edit)
+- [микросервисы](https://docs.google.com/presentation/d/1SunauK2sO4AWPKTV8FvfTACQEkL1n5sJ-Fd36-gIwAA/edit)
+- [enums](https://docs.google.com/presentation/d/1I4b0GLtoiHwuRr1voWQ0vIbj3HOiU5iV1oEokqm4S5k/edit?usp=sharing)
+- [code review](https://docs.google.com/presentation/d/1GUF1sekrFMNoIXVm6klt62u-MpipCk8IUK0IPMO2YeI/edit?usp=sharing)
 
 ## WebLab (2020/2021)
 Презентации для WebLab про технологии без привязки к конкретным языкам программирования.

@@ -82,12 +82,6 @@ deploy:
   message: hexo deploy
 
 alias:
-  projects/: http://i.atnartur.ru#projects
-  r/drop/: http://db.tt/QQZoNRiG
   r/ydisk/: https://disk.yandex.ru/invite/?hash=SPF5MREM
-  r/soft/: https://yadi.sk/d/25_b5E68aYSVB
-  r/hr/: https://docs.google.com/forms/d/1HRJ2C_xoZQoQHaiKvSpSHk6tEbhuolCSB2C5ygXxDjM/edit?usp=sharing
-  r/wakatime/: https://wakatime.com/i/atnartur
-  r/ticktick/: https://ticktick.com/zFVY6?u=9995092d19e648fe9090d7f657a85bbc
   r/ihc/: https://www.ihc.ru/?ref=68933
   r/firstvds/: https://firstvds.ru/?from=628284
