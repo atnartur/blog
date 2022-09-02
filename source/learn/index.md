@@ -88,4 +88,5 @@ date: 2021-06-24 20:07:56
 ## Другое
 
 - [Git (для конкурса Юный программист 2016)](https://docs.google.com/presentation/d/1BIpeJf14iSeG3EL8mYtsvDEUeNU2yWVJ440rNWH51o8/edit#slide=id.g30b23e86d856f497_0)
+- [Ansible](https://docs.google.com/presentation/d/1qnkENdXuPA-O5LN65Q8WY2G9_WEmzfbP2DDAp4m3Eq8/edit)
 
