@@ -17,10 +17,6 @@ alias: /yandex-podarok/
 
 [![IMGA0440](/content/2013/12/IMGA0440-300x168.jpg)](/content/2013/12/IMGA0440.jpg). 
 
-Немного скринов из переписки с службой поддержки Яндекса.
-
-[![Image_008](/content/2013/12/Image_008-150x150.png)](/content/2013/12/Image_008.png)[![Image_009](/content/2013/12/Image_009-150x150.png)](/content/2013/12/Image_009.png)[![Image_010](/content/2013/12/Image_010-150x150.png)](/content/2013/12/Image_010.png)[![Image_011](/content/2013/12/Image_011-150x150.png)](/content/2013/12/Image_011.png)[![Image_012](/content/2013/12/Image_012-150x150.png)](/content/2013/12/Image_012.png)[![Image_013](/content/2013/12/Image_013-150x150.png)](/content/2013/12/Image_013.png)[![Image_014](/content/2013/12/Image_014-150x150.png)](/content/2013/12/Image_014.png)[![Image_015](/content/2013/12/Image_015-150x150.png)](/content/2013/12/Image_015.png)[![Image_016](/content/2013/12/Image_016-150x150.png)](/content/2013/12/Image_016.png)[![Image_017](/content/2013/12/Image_017-150x150.png)](/content/2013/12/Image_017.png)[![Image_018](/content/2013/12/Image_018-150x150.png)](/content/2013/12/Image_018.png)[![Image_019](/content/2013/12/Image_019-150x150.png)](/content/2013/12/Image_019.png)
-
 Было еще несколько писем. Но эти обращения были не такими большими. Вышестоящие скрины переписки на тему бага в трехколоночном интерфейсе Яндекс.почты, который в то время еще только запускался. В один прекрасный момент он перестал грузиться СОВСЕМ! В результате через несколько часов у меня уже все заработало:)
 
 Ну и теперь фоточки подарка:

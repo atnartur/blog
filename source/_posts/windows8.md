@@ -37,9 +37,3 @@ alias: /o-windows-8-i-operatsionnh-sistemah-v-tselom/
 
 Только что настроенная и новая Windows 7
 [![Image_001](/content/2013/11/Image_001-300x168.png)](/content/2013/11/Image_001.png)
-
-P. S.
-
-> - Пошел 8 сносить&#10;- Нет, оставь&#10;- И ЧТО Я ТУТ ДЕЛАТЬ БУДУ? В ИГРЫ ИГРАТЬ?&#10;- А у меня и игры не работают XD&#10;&#10;Мдаааа.... Все НАСТОЛЬКО ПЛОХО
-> &mdash; atnartur (@atnartur) [November 6, 2013](https://twitter.com/atnartur/statuses/398014804931407872)
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
