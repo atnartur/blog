@@ -10,7 +10,6 @@ const copyFaFonts = () => gulp.src('./node_modules/font-awesome/fonts/*')
     .pipe(gulp.dest('./themes/atnartur/source/libs/font-awesome/fonts/'));
 
 const copyFromNpm = () => gulp.src([
-        './node_modules/highlightjs/highlight.pack.min.js',
         './node_modules/highlightjs/styles/github.css',
         './node_modules/bootstrap-3-typeahead/bootstrap3-typeahead.min.js'
     ]).pipe(gulp.dest('./themes/atnartur/source/libs/'));
