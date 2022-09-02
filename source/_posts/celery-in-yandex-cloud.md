@@ -196,7 +196,11 @@ SQS_REGION={REGION}  # например, ru-central1
 Вместо `TASK` выше будет что-то типа `appname.tasks.function_name` (т. е. путь до функции-обработчика задачи). `BODY2` - это опять json в base64 с аргументами команды:
 
 ```json
-[["value1", "value2"], {}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]
+[
+    ["value1", "value2"], 
+    {}, 
+    {"callbacks": null, "errbacks": null, "chain": null, "chord": null}
+]
 ```
 
 В нем - tuple с тремя аргументами: `args, kwargs, options`. Эта информация должна быть передана в таск для того, чтобы вызвать его с правильными параметрами.
