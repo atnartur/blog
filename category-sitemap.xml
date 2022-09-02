@@ -9,22 +9,29 @@
 
 
     <url>
-        <loc>http://atnartur.ru/categories/%25D0%259E-%25D1%2580%25D0%25B0%25D0%25B7%25D1%2580%25D0%25B0%25D0%25B1%25D0%25BE%25D1%2582%25D0%25BA%25D0%25B5/</loc>
-        <lastmod>2022-09-02T14:40:29.940Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/categories/%25D0%2596%25D0%25B8%25D0%25B7%25D0%25BD%25D1%258C/</loc>
-        <lastmod>2022-03-30T16:12:23.122Z</lastmod>
+        <loc>http://atnartur.ru/categories/%25D0%259D%25D0%25BE%25D0%25B2%25D0%25BE%25D1%2581%25D1%2582%25D0%25B8-%25D0%25BF%25D1%2580%25D0%25BE%25D0%25B5%25D0%25BA%25D1%2582%25D0%25BE%25D0%25B2/</loc>
+        <lastmod>2022-09-02T15:04:41.273Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://atnartur.ru/categories/%25D0%25A1%25D0%25BE%25D1%2584%25D1%2582/</loc>
-        <lastmod>2021-06-24T17:01:33.662Z</lastmod>
+        <lastmod>2022-09-02T15:00:24.009Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://atnartur.ru/categories/%25D0%2596%25D0%25B8%25D0%25B7%25D0%25BD%25D1%258C/</loc>
+        <lastmod>2022-09-02T14:57:50.903Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://atnartur.ru/categories/%25D0%259E-%25D1%2580%25D0%25B0%25D0%25B7%25D1%2580%25D0%25B0%25D0%25B1%25D0%25BE%25D1%2582%25D0%25BA%25D0%25B5/</loc>
+        <lastmod>2022-09-02T14:55:17.750Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -32,13 +39,6 @@
     <url>
         <loc>http://atnartur.ru/categories/%25D0%2594%25D1%2580%25D1%2583%25D0%25B3%25D0%25BE%25D0%25B5/</loc>
         <lastmod>2021-06-24T17:01:33.661Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/categories/%25D0%259D%25D0%25BE%25D0%25B2%25D0%25BE%25D1%2581%25D1%2582%25D0%25B8-%25D0%25BF%25D1%2580%25D0%25BE%25D0%25B5%25D0%25BA%25D1%2582%25D0%25BE%25D0%25B2/</loc>
-        <lastmod>2021-06-24T17:01:33.660Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

@@ -15,15 +15,15 @@
 <meta property="og:site_name" content="atnartur.ru">
 <meta property="og:description" content="Недавно я писал в своем твиттере о том, что некоторые мои сайты переезжали на новый сервер. На этом новом сервере стоит nginx, который работает намного быстрее, чем Apache, но зато имеет небольшие зат">
 <meta property="og:locale" content="ru_RU">
-<meta property="og:image" content="http://atnartur.ru/content/2014/08/NGINX1-300x240.jpg">
+<meta property="og:image" content="http://atnartur.ru/content/2014/08/NGINX1.jpg">
 <meta property="article:published_time" content="2014-08-05T19:00:00.000Z">
-<meta property="article:modified_time" content="2021-06-24T17:01:33.661Z">
+<meta property="article:modified_time" content="2022-09-02T14:55:17.750Z">
 <meta property="article:author" content="Артур Атнагулов">
 <meta property="article:tag" content="Проекты">
 <meta property="article:tag" content="wordpress">
 <meta property="article:tag" content="nginx">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://atnartur.ru/content/2014/08/NGINX1-300x240.jpg">
+<meta name="twitter:image" content="http://atnartur.ru/content/2014/08/NGINX1.jpg">
 
 				
 		<link rel="alternate" href="/atom.xml" title="atnartur.ru" type="application/atom+xml">
@@ -135,18 +135,18 @@
 	
 	<div class="post_content">
 		
-			<p>Недавно я писал в своем <a href="http://twitter.com/atnartur" target="_blank" rel="noopener">твиттере</a> о том, что некоторые мои сайты переезжали на новый сервер. На этом новом сервере стоит nginx, который работает намного быстрее, чем Apache, но зато имеет небольшие затруднения с написанием конфигурационных файлов. <a id="more"></a></p>
-<p>[<img src="/content/2014/08/NGINX1-300x240.jpg" alt="NGINX[1]">)](/content/2014/08/NGINX1.jpg)</p>
+			<p>Недавно я писал в своем <a target="_blank" rel="noopener" href="http://twitter.com/atnartur">твиттере</a> о том, что некоторые мои сайты переезжали на новый сервер. На этом новом сервере стоит nginx, который работает намного быстрее, чем Apache, но зато имеет небольшие затруднения с написанием конфигурационных файлов. <span id="more"></span></p>
+<p><img src="/content/2014/08/NGINX1.jpg"></p>
 <p>Где-то в интернете я читал миф о том, что Wordpress вообще никак не получается развернуть на nginx, и многие ставят Apache специально для него. Но, как оказалось, ничего сложного на самом деле и нет.</p>
-<p>Примерную конфигурацию wordpress сайта можно посмотреть <a href="https://gist.github.com/atnartur/f065cc2befaacabb2cd7" target="_blank" rel="noopener">здесь</a>.</p>
-<p>Если при попытке обновить плагины/темы/самого себя Wordpress спросил FTP данные от вашего сервера, пропишите в файл <em>wp-config.php</em> следующую строку:</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="string">'FS_METHOD'</span>, <span class="string">'direct'</span>);</span><br></pre></td></tr></table></figure>
+<p>Примерную конфигурацию wordpress сайта можно посмотреть <a target="_blank" rel="noopener" href="https://gist.github.com/atnartur/f065cc2befaacabb2cd7">здесь</a>.</p>
+<p>Если при попытке обновить плагины&#x2F;темы&#x2F;самого себя Wordpress спросил FTP данные от вашего сервера, пропишите в файл <em>wp-config.php</em> следующую строку:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-title function_ invoke__">define</span>(<span class="hljs-string">&#x27;FS_METHOD&#x27;</span>, <span class="hljs-string">&#x27;direct&#x27;</span>);<br></code></pre></td></tr></table></figure>
 
 <p>Если обновление завершается ошибкой “не удалось создать директорию”, попробуйте повысить права на папки <code>wp-content/upgrade</code>, <code>wp-content/themes</code> и <code>wp-content/plugins</code>. Но до 777 доводить не надо.</p>
 <p>Если у Вас стоит (или стоял) какой-нибудь кеширующий плагин (например WP-Super-Cache), нужно проверить, очищен ли кеш в директории <code>wp-content/cache</code> (если она есть), на всякий случай проставить на нее права 777 (опять же, если она есть) и убрать константу <code>WPCACHEHOME</code> и <code>WP_CACHE</code> из <code>wp-config.php</code>.</p>
-<p>Теперь <a href="http://atnartur.ru">atnartur.ru</a>, <a href="http://wikitatar.ru" target="_blank" rel="noopener">wikitatar.ru</a>, <a href="http://old.atnartur.ru" target="_blank" rel="noopener">old.atnartur.ru</a> работают быстрее:)</p>
+<p>Теперь <a href="http://atnartur.ru/">atnartur.ru</a>, <a target="_blank" rel="noopener" href="http://wikitatar.ru/">wikitatar.ru</a>, <a target="_blank" rel="noopener" href="http://old.atnartur.ru/">old.atnartur.ru</a> работают быстрее:)</p>
 <p>Задавайте вопросы в комментариях и делитесь с записью, если информация из этой статьи помогла Вам.</p>
-<p>P. S. Скорость отдачи Wordpress страниц на <a href="http://atnartur.ru">atnartur.ru</a> увеличилась в 5 раз (на старом была 500 мс, на новом 130 мс)</p>
+<p>P. S. Скорость отдачи Wordpress страниц на <a href="http://atnartur.ru/">atnartur.ru</a> увеличилась в 5 раз (на старом была 500 мс, на новом 130 мс)</p>
 
 	  	
 	</div>
@@ -229,15 +229,15 @@
 	<h2>Категории</h2>
 	<div class="list-group">
 		
-			<a href="/categories/Другое/" class="list-group-item">Другое <small>6</small></a>
+			<a href="/categories/Другое/" class="list-group-item">Другое <small>4</small></a>
 		
-			<a href="/categories/Жизнь/" class="list-group-item">Жизнь <small>19</small></a>
+			<a href="/categories/Жизнь/" class="list-group-item">Жизнь <small>9</small></a>
 		
-			<a href="/categories/Новости-проектов/" class="list-group-item">Новости проектов <small>9</small></a>
+			<a href="/categories/Новости-проектов/" class="list-group-item">Новости проектов <small>3</small></a>
 		
-			<a href="/categories/О-разработке/" class="list-group-item">О разработке <small>16</small></a>
+			<a href="/categories/О-разработке/" class="list-group-item">О разработке <small>15</small></a>
 		
-			<a href="/categories/Софт/" class="list-group-item">Софт <small>26</small></a>
+			<a href="/categories/Софт/" class="list-group-item">Софт <small>16</small></a>
 		
 	</div>    
 

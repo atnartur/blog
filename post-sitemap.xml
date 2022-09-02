@@ -9,6 +9,54 @@
 
 
     <url>
+        <loc>http://atnartur.ru/posts/2013/1gb-fail/</loc>
+        <lastmod>2022-09-02T15:04:41.273Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://atnartur.ru/posts/2013/saving-of-time-services/</loc>
+        <lastmod>2022-09-02T15:00:24.009Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://atnartur.ru/posts/2013/windows8/</loc>
+        <lastmod>2022-09-02T14:58:29.839Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://atnartur.ru/posts/2013/yandex-gift/</loc>
+        <lastmod>2022-09-02T14:57:50.903Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://atnartur.ru/posts/2014/wordpress-nginx/</loc>
+        <lastmod>2022-09-02T14:55:17.750Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://atnartur.ru/posts/2016/phalcon-magic/</loc>
+        <lastmod>2022-09-02T14:46:39.589Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://atnartur.ru/posts/2022/celery-in-yandex-cloud/</loc>
         <lastmod>2022-09-02T14:40:29.940Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -35,54 +83,6 @@
     <url>
         <loc>http://atnartur.ru/posts/2016/innopolis/</loc>
         <lastmod>2022-03-30T16:12:23.122Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2013/yandex-islands-beta/</loc>
-        <lastmod>2021-06-24T17:01:33.662Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2013/yandex-gift/</loc>
-        <lastmod>2021-06-24T17:01:33.662Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2013/yandex-disk-32gb/</loc>
-        <lastmod>2021-06-24T17:01:33.662Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2013/young-programmer-rayon/</loc>
-        <lastmod>2021-06-24T17:01:33.662Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2014/wordpress-nginx/</loc>
-        <lastmod>2021-06-24T17:01:33.661Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2013/windows8/</loc>
-        <lastmod>2021-06-24T17:01:33.661Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -129,22 +129,6 @@
     </url>
 
     <url>
-        <loc>http://atnartur.ru/posts/2013/vk-music/</loc>
-        <lastmod>2021-06-24T17:01:33.660Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2013/wikitatar-update/</loc>
-        <lastmod>2021-06-24T17:01:33.660Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://atnartur.ru/posts/2016/win7-time/</loc>
         <lastmod>2021-06-24T17:01:33.660Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -177,38 +161,6 @@
     </url>
 
     <url>
-        <loc>http://atnartur.ru/posts/2013/universiade2013-open/</loc>
-        <lastmod>2021-06-24T17:01:33.659Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2013/saving-of-time-services/</loc>
-        <lastmod>2021-06-24T17:01:33.658Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2013/skype-spam-virus/</loc>
-        <lastmod>2021-06-24T17:01:33.658Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2013/skype-virus-2/</loc>
-        <lastmod>2021-06-24T17:01:33.658Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://atnartur.ru/posts/2016/static-blog/</loc>
         <lastmod>2021-06-24T17:01:33.658Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -225,39 +177,7 @@
     </url>
 
     <url>
-        <loc>http://atnartur.ru/posts/2013/pc-local-drive-not-open/</loc>
-        <lastmod>2021-06-24T17:01:33.657Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2013/pc-not-for-children/</loc>
-        <lastmod>2021-06-24T17:01:33.657Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://atnartur.ru/posts/2014/php-qiwi/</loc>
-        <lastmod>2021-06-24T17:01:33.657Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2016/phalcon-magic/</loc>
-        <lastmod>2021-06-24T17:01:33.657Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2016/reshuege-ext/</loc>
         <lastmod>2021-06-24T17:01:33.657Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -273,22 +193,6 @@
     </url>
 
     <url>
-        <loc>http://atnartur.ru/posts/2013/moving-to-chrome-2/</loc>
-        <lastmod>2021-06-24T17:01:33.655Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2013/moving-to-chrome-3/</loc>
-        <lastmod>2021-06-24T17:01:33.655Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://atnartur.ru/posts/2017/my-skills/</loc>
         <lastmod>2021-06-24T17:01:33.655Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -297,48 +201,8 @@
     </url>
 
     <url>
-        <loc>http://atnartur.ru/posts/2016/mediaarchive-site/</loc>
-        <lastmod>2021-06-24T17:01:33.654Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2016/mediaarchive/</loc>
-        <lastmod>2021-06-24T17:01:33.654Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://atnartur.ru/posts/2013/itjump-post/</loc>
         <lastmod>2021-06-24T17:01:33.654Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2013/moving-to-chrome-1/</loc>
-        <lastmod>2021-06-24T17:01:33.654Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2014/ipad-books/</loc>
-        <lastmod>2021-06-24T17:01:33.653Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2013/it-champion/</loc>
-        <lastmod>2021-06-24T17:01:33.653Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -377,14 +241,6 @@
     </url>
 
     <url>
-        <loc>http://atnartur.ru/posts/2013/google-drive-mp3/</loc>
-        <lastmod>2021-06-24T17:01:33.651Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://atnartur.ru/posts/2016/innohack/</loc>
         <lastmod>2021-06-24T17:01:33.651Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -394,14 +250,6 @@
 
     <url>
         <loc>http://atnartur.ru/posts/2016/filemanager-sort-dir-with-files/</loc>
-        <lastmod>2021-06-24T17:01:33.650Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2013/first/</loc>
         <lastmod>2021-06-24T17:01:33.650Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -441,14 +289,6 @@
     </url>
 
     <url>
-        <loc>http://atnartur.ru/posts/2014/edu.tatar.ru-2014/</loc>
-        <lastmod>2021-06-24T17:01:33.649Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://atnartur.ru/posts/2013/evernote/</loc>
         <lastmod>2021-06-24T17:01:33.649Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -458,14 +298,6 @@
 
     <url>
         <loc>http://atnartur.ru/posts/2016/ege-inform/</loc>
-        <lastmod>2021-06-24T17:01:33.649Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2013/edu.tatar.ru-wifi/</loc>
         <lastmod>2021-06-24T17:01:33.649Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -497,14 +329,6 @@
     </url>
 
     <url>
-        <loc>http://atnartur.ru/posts/2013/denwer-without-internet-not-working/</loc>
-        <lastmod>2021-06-24T17:01:33.648Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://atnartur.ru/posts/2016/docker-house/</loc>
         <lastmod>2021-06-24T17:01:33.648Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -513,23 +337,7 @@
     </url>
 
     <url>
-        <loc>http://atnartur.ru/posts/2013/dropbox/</loc>
-        <lastmod>2021-06-24T17:01:33.648Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://atnartur.ru/posts/2013/cliend.ru-start/</loc>
-        <lastmod>2021-06-24T17:01:33.647Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2013/chrome-in-my-case/</loc>
         <lastmod>2021-06-24T17:01:33.647Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -553,22 +361,6 @@
     </url>
 
     <url>
-        <loc>http://atnartur.ru/posts/2013/cafe4me-update-12/</loc>
-        <lastmod>2021-06-24T17:01:33.646Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2013/cafe4me-release/</loc>
-        <lastmod>2021-06-24T17:01:33.646Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://atnartur.ru/posts/2014/cd-drives-to-trash/</loc>
         <lastmod>2021-06-24T17:01:33.646Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -585,32 +377,8 @@
     </url>
 
     <url>
-        <loc>http://atnartur.ru/posts/2013/1gb-fail/</loc>
-        <lastmod>2021-06-24T17:01:33.645Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2013/antipirate-law/</loc>
-        <lastmod>2021-06-24T17:01:33.645Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>http://atnartur.ru/posts/2018/all-in-one-tasks/</loc>
         <lastmod>2021-06-24T17:01:33.645Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2013/1-apr/</loc>
-        <lastmod>2021-06-24T17:01:33.644Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

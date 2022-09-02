@@ -423,7 +423,7 @@
       <link href="/posts/2016/phalcon-magic/"/>
       <url>/posts/2016/phalcon-magic/</url>
       
-        <content type="html"><![CDATA[<p>Phalcon - молодой PHP-фреймворк, выполненный в виде PHP-расширения. Он работает намного быстрее из-за того, что все основные операции выполняются на системном уровне. Однако, из-за того, что он молодой, иногда встречаются странные вещи. Вот об одном таком баге я сегодня расскажу.</p><a id="more"></a><h2 id="Предыстория"><a href="#Предыстория" class="headerlink" title="Предыстория"></a>Предыстория</h2><p>Летом мы в команде начали разрабатывать проект на Phalcon 2. В этом проекте установка даты рождения пользователя реализована следующим образом: в браузере работает плагин календаря, который в результате вписывал в поле ввода дату в формате <code>ДД.ММ.ГГГГ</code>. </p><p><img src="/content/2016/09/phalcon_magic/calendar.png" alt=""></p><p>После отправки формы контроллер отправляет дату в вышеуказанном формате в специальный метод в модели, который превращает строковую дату в timestamp. </p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* ClientsController */</span></span><br><span class="line">$info = <span class="keyword">new</span> Clients();</span><br><span class="line">$info-&gt;setBirthday(<span class="keyword">$this</span>-&gt;request-&gt;getPost(<span class="string">"birthday"</span>));</span><br><span class="line"><span class="comment">/* Clients model */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Clients</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setBirthday</span><span class="params">($birthday)</span></span>&#123;</span><br><span class="line">        $res = strtotime($birthday);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;birthday = $res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Работает этот код хорошо на следующей конфигурации на PHP5.4 и Phalcon 2.0.3. Однако на PHP5.6 и Phalcon 2.0.13 начинаются проблемы. В результате выполнения функции <code>setBirthday()</code>, в поле <code>birthday</code> записывалось значение <code>false</code>. </p><p>В первый раз это произошло у моего коллеги на Fedora с PHP5.6 и Phalcon 2.0.13. Я пытался помочь ему разобраться, но, честно сказать, списывал это на локальные баги окружения, потому что у меня все работало хорошо (Windows 10, OpenServer5.2.2, PHP5.6 и Phalcon 2.0.3). На production сервере все тоже работало хорошо (Phalcon 2.0.3). </p><p><em>Интересная особенность, правда? На 2.0.3 работает нормально, а на 2.0.13 нет. Но об этом далее.</em></p><h2 id="Выявление-проблемы"><a href="#Выявление-проблемы" class="headerlink" title="Выявление проблемы"></a>Выявление проблемы</h2><p>Когда проблема проявилась у меня на машине (PHP5.6, Phalcon 2.0.13) я все-таки решил разобраться в ней. И вот что получилось.</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Clients</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setBirthday</span><span class="params">($birthday)</span></span>&#123;</span><br><span class="line">        var_dump(<span class="string">'---'</span>);</span><br><span class="line">        var_dump(<span class="string">'before strtotime'</span>);</span><br><span class="line">        var_dump($birthday); </span><br><span class="line">        var_dump(<span class="keyword">$this</span>-&gt;birthday); </span><br><span class="line">        $res = strtotime($birthday);</span><br><span class="line">        var_dump($res);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;birthday = $res;</span><br><span class="line">        var_dump(<span class="string">'after strtotime'</span>);</span><br><span class="line">        var_dump(<span class="keyword">$this</span>-&gt;birthday);</span><br><span class="line">        var_dump(<span class="string">'///'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Расставил отладочные выводы на каждый чих и посмотрел, что происходит в процессе выполнения функции:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Начинается выполнение ClientsController-&gt;editAction(). </span><br><span class="line">&#x2F;&#x2F; Доходит до выполнения $info-&gt;setBirthday(). </span><br><span class="line">string(18) &quot;before bithday set&quot; </span><br><span class="line">string(3) &quot;—&quot; &#x2F;&#x2F; начало выполнения функции</span><br><span class="line">string(16) &quot;before strtotime&quot; &#x2F;&#x2F; вывод перед вызовом функции приведения строки к числу</span><br><span class="line">string(10) &quot;09.09.2016&quot; &#x2F;&#x2F; вывод из аргумента функции setBirthday</span><br><span class="line">string(0) &quot;&quot; &#x2F;&#x2F; вывод текущего знаения дня рождения ($this-&gt;birthday) </span><br><span class="line">int(1473368400) &#x2F;&#x2F; результат работы функции приведения строки к числу</span><br><span class="line">string(3) &quot;—&quot; СНОВА начало выполнения функции</span><br><span class="line">string(16) &quot;before strtotime&quot; опять все то же самое</span><br><span class="line">int(1473368400) &#x2F;&#x2F; приняли уже значение числовое, которое до этого получилось</span><br><span class="line">string(0) &quot;&quot; дата по прежнему пустая </span><br><span class="line">bool(false) &#x2F;&#x2F; результат работы функции есесьно false,</span><br><span class="line">&#x2F;&#x2F; потому что число к числу привести не возможно</span><br><span class="line">string(15) &quot;after strtotime&quot;</span><br><span class="line">bool(false) &#x2F;&#x2F;после выполнения всего такой результат</span><br><span class="line">string(3) &quot;&#x2F;&#x2F;&#x2F;&quot; &#x2F;&#x2F; завершилась первая</span><br><span class="line">string(15) &quot;after strtotime&quot; &#x2F;&#x2F; </span><br><span class="line">bool(false) </span><br><span class="line">string(3) &quot;&#x2F;&#x2F;&#x2F;&quot; &#x2F;&#x2F; завершилась вторая</span><br></pre></td></tr></table></figure><p>Таким образом, видно, что идет вложенный вызов функции. Контроллер вызывает <code>setBirthday()</code>, она начинает выполняться, потом доходит до установки значения в свойство <code>$this-&gt;birthday = $res;</code> и функция начинает выполняться заново, принимает уже числовое значение из strtotime, а потом не может это числовое значение опять привести к числу, потому что <code>strtotime</code> требует строку. Очевидно, что идет какая-то магия, вызов магического метода <code>setBirthday()</code>.</p><h2 id="Документация-Phalcon"><a href="#Документация-Phalcon" class="headerlink" title="Документация Phalcon"></a>Документация Phalcon</h2><p>В <a href="http://docs.phalconphp.ru/ru/latest/reference/models.html#id3" target="_blank" rel="noopener">документации Phalcon 3</a> уже есть блок, описывающий работу магических методов в модели. Но в Phalcon 2 его еще не было. </p><p>Не так давно в версии 2.0.11 был закрыт <a href="https://github.com/phalcon/cphalcon/issues/11286" target="_blank" rel="noopener">issue</a>, который решает проблему с getters &amp; setters. Таким образом, с версии 2.0.11 они начинают нормально работать, и поэтому на версии 2.0.13 проявлялся баг. </p><p><img src="/content/2016/09/phalcon_magic/issue.png" alt=""></p><p>Ну а решение есть в документации: свойства, которые мы меняем через getters/setters должны быть <code>protected</code>.</p>]]></content>
+        <content type="html"><![CDATA[<p>Phalcon - молодой PHP-фреймворк, выполненный в виде PHP-расширения. Он работает намного быстрее из-за того, что все основные операции выполняются на системном уровне. Однако, из-за того, что он молодой, иногда встречаются странные вещи. Вот об одном таком баге я сегодня расскажу.</p><span id="more"></span><h2 id="Предыстория"><a href="#Предыстория" class="headerlink" title="Предыстория"></a>Предыстория</h2><p>Летом мы в команде начали разрабатывать проект на Phalcon 2. В этом проекте установка даты рождения пользователя реализована следующим образом: в браузере работает плагин календаря, который в результате вписывал в поле ввода дату в формате <code>ДД.ММ.ГГГГ</code>. </p><p><img src="/content/2016/09/phalcon_magic/calendar.png"></p><p>После отправки формы контроллер отправляет дату в вышеуказанном формате в специальный метод в модели, который превращает строковую дату в timestamp. </p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">/* ClientsController */</span><br><span class="hljs-variable">$info</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Clients</span>();<br><span class="hljs-variable">$info</span>-&gt;<span class="hljs-title function_ invoke__">setBirthday</span>(<span class="hljs-variable">$this</span>-&gt;request-&gt;<span class="hljs-title function_ invoke__">getPost</span>(<span class="hljs-string">&quot;birthday&quot;</span>));<br><span class="hljs-comment">/* Clients model */</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Clients</span></span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setBirthday</span>(<span class="hljs-params"><span class="hljs-variable">$birthday</span></span>)</span>&#123;<br>        <span class="hljs-variable">$res</span> = <span class="hljs-title function_ invoke__">strtotime</span>(<span class="hljs-variable">$birthday</span>);<br>        <span class="hljs-variable language_">$this</span>-&gt;birthday = <span class="hljs-variable">$res</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>Работает этот код хорошо на следующей конфигурации на PHP5.4 и Phalcon 2.0.3. Однако на PHP5.6 и Phalcon 2.0.13 начинаются проблемы. В результате выполнения функции <code>setBirthday()</code>, в поле <code>birthday</code> записывалось значение <code>false</code>. </p><p>В первый раз это произошло у моего коллеги на Fedora с PHP5.6 и Phalcon 2.0.13. Я пытался помочь ему разобраться, но, честно сказать, списывал это на локальные баги окружения, потому что у меня все работало хорошо (Windows 10, OpenServer5.2.2, PHP5.6 и Phalcon 2.0.3). На production сервере все тоже работало хорошо (Phalcon 2.0.3). </p><p><em>Интересная особенность, правда? На 2.0.3 работает нормально, а на 2.0.13 нет. Но об этом далее.</em></p><h2 id="Выявление-проблемы"><a href="#Выявление-проблемы" class="headerlink" title="Выявление проблемы"></a>Выявление проблемы</h2><p>Когда проблема проявилась у меня на машине (PHP5.6, Phalcon 2.0.13) я все-таки решил разобраться в ней. И вот что получилось.</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Clients</span></span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setBirthday</span>(<span class="hljs-params"><span class="hljs-variable">$birthday</span></span>)</span>&#123;<br>        <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-string">&#x27;---&#x27;</span>);<br>        <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-string">&#x27;before strtotime&#x27;</span>);<br>        <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$birthday</span>); <br>        <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$this</span>-&gt;birthday); <br>        <span class="hljs-variable">$res</span> = <span class="hljs-title function_ invoke__">strtotime</span>(<span class="hljs-variable">$birthday</span>);<br>        <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$res</span>);<br>        <span class="hljs-variable language_">$this</span>-&gt;birthday = <span class="hljs-variable">$res</span>;<br>        <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-string">&#x27;after strtotime&#x27;</span>);<br>        <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$this</span>-&gt;birthday);<br>        <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-string">&#x27;///&#x27;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>Расставил отладочные выводы на каждый чих и посмотрел, что происходит в процессе выполнения функции:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">// Начинается выполнение ClientsController-&gt;editAction(). <br>// Доходит до выполнения $info-&gt;setBirthday(). <br>string(18) &quot;before bithday set&quot; <br>string(3) &quot;—&quot; // начало выполнения функции<br>string(16) &quot;before strtotime&quot; // вывод перед вызовом функции приведения строки к числу<br>string(10) &quot;09.09.2016&quot; // вывод из аргумента функции setBirthday<br>string(0) &quot;&quot; // вывод текущего знаения дня рождения ($this-&gt;birthday) <br>int(1473368400) // результат работы функции приведения строки к числу<br>string(3) &quot;—&quot; СНОВА начало выполнения функции<br>string(16) &quot;before strtotime&quot; опять все то же самое<br>int(1473368400) // приняли уже значение числовое, которое до этого получилось<br>string(0) &quot;&quot; дата по прежнему пустая <br>bool(false) // результат работы функции есесьно false,<br>// потому что число к числу привести не возможно<br>string(15) &quot;after strtotime&quot;<br>bool(false) //после выполнения всего такой результат<br>string(3) &quot;///&quot; // завершилась первая<br>string(15) &quot;after strtotime&quot; // <br>bool(false) <br>string(3) &quot;///&quot; // завершилась вторая<br></code></pre></td></tr></table></figure><p>Таким образом, видно, что идет вложенный вызов функции. Контроллер вызывает <code>setBirthday()</code>, она начинает выполняться, потом доходит до установки значения в свойство <code>$this-&gt;birthday = $res;</code> и функция начинает выполняться заново, принимает уже числовое значение из strtotime, а потом не может это числовое значение опять привести к числу, потому что <code>strtotime</code> требует строку. Очевидно, что идет какая-то магия, вызов магического метода <code>setBirthday()</code>.</p><h2 id="Документация-Phalcon"><a href="#Документация-Phalcon" class="headerlink" title="Документация Phalcon"></a>Документация Phalcon</h2><p>В <a href="http://docs.phalconphp.ru/ru/latest/reference/models.html#id3">документации Phalcon 3</a> уже есть блок, описывающий работу магических методов в модели. Но в Phalcon 2 его еще не было. </p><p>Не так давно в версии 2.0.11 был закрыт <a href="https://github.com/phalcon/cphalcon/issues/11286">issue</a>, который решает проблему с getters &amp; setters. Таким образом, с версии 2.0.11 они начинают нормально работать, и поэтому на версии 2.0.13 проявлялся баг. </p><p><img src="/content/2016/09/phalcon_magic/issue.png"></p><p>Ну а решение есть в документации: свойства, которые мы меняем через getters&#x2F;setters должны быть <code>protected</code>.</p>]]></content>
       
       
       <categories>
@@ -492,37 +492,6 @@
         <tags>
             
             <tag> IDE </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Расширение для РешуЕГЭ</title>
-      <link href="/posts/2016/reshuege-ext/"/>
-      <url>/posts/2016/reshuege-ext/</url>
-      
-        <content type="html"><![CDATA[<p>Не так давно я разработал расширение для портала РешуЕГЭ, которое убирает назойливые уведомления с предложением регистрации из правого нижнего угла экрана. <a id="more"></a></p><p><img src="/content/2016/06/reshuege-ext/notify.png" alt=""></p><p>Безусловно, регистрация - нужная и важная вещь на портале, которая предоставляет множество удобств. Но иногда случается так, что авторизацию человек пройти забыл и уже начал решать пробный вариант. А уведомления все лезут и лезут, лезут и лезут…</p><p><strong><a href="/r/re">Установить расширение можно здесь</a></strong>. Благодарю команду <a href="http://clienddev.ru" target="_blank" rel="noopener">ClienDDev</a> за предоставление аккаунта для размещения расширения.</p><p>Кстати, совсем недавно <a href="https://vk.com/wall-71801221_137" target="_blank" rel="noopener">запустился</a> новый проект от ClienDDev под названием КвантRoom, который поможет подготовиться к ЕГЭ! <a href="http://quantroom.ru" target="_blank" rel="noopener">Добро пожаловать - quantroom.ru</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Новости проектов </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Проекты </tag>
-            
-            <tag> Школа </tag>
-            
-            <tag> ЕГЭ </tag>
-            
-            <tag> РешуЕГЭ </tag>
             
         </tags>
       
@@ -645,64 +614,6 @@
     
     
     <entry>
-      <title>Запуск сайта Медиаархива</title>
-      <link href="/posts/2016/mediaarchive-site/"/>
-      <url>/posts/2016/mediaarchive-site/</url>
-      
-        <content type="html"><![CDATA[<p>Сегодня состоялся запуск <a href="http://ma.atnartur.ru" target="_blank" rel="noopener">сайта проекта Медиаархив</a>. Он, <a href="http://atnartur.ru/posts/2016/static-blog/">как и мой блог</a>, создан с помощью генератора Hexo и <a href="https://github.com/MediaArchive/mediaarchive.github.io" target="_blank" rel="noopener">размещен на Github</a>, а значит Вы можете помочь проекту, дополнив сайт полезной информацией.</p><a id="more"></a>]]></content>
-      
-      
-      <categories>
-          
-          <category> Новости проектов </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> школа </tag>
-            
-            <tag> проекты </tag>
-            
-            <tag> медиаархив </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Медиаархив</title>
-      <link href="/posts/2016/mediaarchive/"/>
-      <url>/posts/2016/mediaarchive/</url>
-      
-        <content type="html"><![CDATA[<p>Трудно сказать, когда начался этот проект. Однако, запуск произошел не так давно. Опять решение своих проблем вырисовывается в что-то стоящее. Я очень постараюсь рассказывать, не углубляясь в технические термины для того, чтобы как можно большему количеству людей был понятен смысл и цели проекта. А для тех, кому интересны технические подробности, будет отдельная статья и сайт с документацией. <a id="more"></a></p><p>И так…</p><h2 id="О-проекте"><a href="#О-проекте" class="headerlink" title="О проекте"></a>О проекте</h2><p>Проект <strong>Медиаархив</strong> создан для того, чтобы решить проблемы с</p><ul><li>хранением большого количества фотографий со школьных мероприятий;</li><li>процессом выкладывания новостей на сайт школы;</li><li>составлением отчетов о проделанной работе.</li></ul><p>Сейчас проект запущен и успешно работает на базе моей школы (Школа №42, Казань). Им пользуюсь я (как администратор <a href="http://vk.com/school42_kazan" target="_blank" rel="noopener">школьной группы ВК</a> и <a href="http://edu.tatar.ru/priv/school42" target="_blank" rel="noopener">сайта школы на edu.tatar.ru</a>), заместитель директора по воспитательной работе и педагог организатор (во время составления отчетов о проделанной работе) и все те, кто делают фотографии мероприятий (ученики, педагоги…).</p><h2 id="Как-это-работает"><a href="#Как-это-работает" class="headerlink" title="Как это работает?"></a>Как это работает?</h2><h3 id="Для-учителей-и-учеников"><a href="#Для-учителей-и-учеников" class="headerlink" title="Для учителей и учеников"></a>Для учителей и учеников</h3><p>После того, как были сделаны фотографии и подготовлен текст для новости, учитель/ученик/… оправляет его на специальный адрес электронной почты и через некоторое время видит свои снимки на страницах сайта или группы школы.</p><h3 id="Для-заместителей-директора-и-педагога-организатора"><a href="#Для-заместителей-директора-и-педагога-организатора" class="headerlink" title="Для заместителей директора и педагога организатора"></a>Для заместителей директора и педагога организатора</h3><p>В программе есть возможность искать по всему списку событий. Это нужно, например, для того, чтобы составлять отчеты о проделанной работе.</p><h3 id="Для-администратора-системы"><a href="#Для-администратора-системы" class="headerlink" title="Для администратора системы"></a>Для администратора системы</h3><p>После того, как на специальном электронном ящике появляется новое письмо, администратор открывает программу, нажимает одну кнопку для того, чтобы скачать письма с почты и загрузить их в базу. Предварительно исправив возможные ошибки по тексту и выбрав основную фотографию новости, администратор с помощью всего лишь одной кнопки выкладывает новость на стену группы ВКонтакте. После этого есть возможность нажатием еще одной кнопки перенести новость на edu.tatar.ru. </p><h2 id="Скриншоты"><a href="#Скриншоты" class="headerlink" title="Скриншоты"></a>Скриншоты</h2><p><strong>Главное окно программы</strong><br><img src="/content/2016/04/mediaarchive/2016-04-06_21-19-07.png" alt=""></p><p><strong>Окно мероприятия</strong><br><img src="/content/2016/04/mediaarchive/2016-04-06_23-32-08.png" alt=""></p><p><strong>Опубликованный пост в группе ВКонтакте</strong> (<a href="https://vk.com/wall-413099_1956" target="_blank" rel="noopener">посмотреть</a>)<br><img src="/content/2016/04/mediaarchive/2016-04-06_23-37-30.png" alt=""></p><p><strong>Новость на сайте школы</strong><br><img src="/content/2016/04/mediaarchive/2016-04-06_23-39-16.png" alt=""></p><h2 id="На-данный-момент"><a href="#На-данный-момент" class="headerlink" title="На данный момент"></a>На данный момент</h2><ul><li>В моей школе в Медиаархиве хранится около 600 мероприятий</li><li>Все новости выкладываются и собираются автоматически</li><li>Отчеты о проделанной работе составляются с помощью Медиаархива</li></ul><p>Также идет активная разработка проекта. </p><p><strong>Желающие запустить Медиаархив в своей школе или помочь в разработке, пишите на <a href="mailto:&#105;&#64;&#97;&#116;&#110;&#x61;&#x72;&#116;&#x75;&#x72;&#x2e;&#114;&#x75;">&#105;&#64;&#97;&#116;&#110;&#x61;&#x72;&#116;&#x75;&#x72;&#x2e;&#114;&#x75;</a></strong></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Новости проектов </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> школа </tag>
-            
-            <tag> проекты </tag>
-            
-            <tag> медиаархив </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Windows 7, Мегаплан и перевод времени</title>
       <link href="/posts/2016/win7-time/"/>
       <url>/posts/2016/win7-time/</url>
@@ -817,33 +728,6 @@
     
     
     <entry>
-      <title>Начало учебного года в Электронном образовании РТ</title>
-      <link href="/posts/2014/edu.tatar.ru-2014/"/>
-      <url>/posts/2014/edu.tatar.ru-2014/</url>
-      
-        <content type="html"><![CDATA[<p>Год начался очень “весело” для системных администраторов школ Республики Татарстан. <a id="more"></a></p><p>В этом году разработчики системы edu.tatar.ru решили немного навести порядок. А именно - объединить дублирующихся пользователей в один личный кабинет. То есть раньше (рассказываю про себя), кроме аккаунта в общеобразовательной школе у меня был еще аккаунт в Детской школе искусств, которую я закончил год назад. Пароль от электронного дневника в ДШИ мне не дали, потому что там в тот год почти никто нормально ничего не заполнял, потому что система неудобна для учителей в организациях дополнительного образования.</p><p>В результате получилось следующее: ученики автоматически перемещаются между совершенно разными школами, не могут войти по своему паролю, и показаны как заблокированные в списке пользователей в личном кабинете директора учреждения.</p><p>Но пароль ученика в таком случае все же можно достать: он хранится в личном кабинете классного руководителя в списке личных дел! </p><p>Самое интересное, что эту находку системные администраторы должны искать сами, потому что все звонки в тех. поддержку системы завершаются фразой: “Наши специалисты знают о проблеме. Проблема решается.” </p><p>Еще один интересный момент: пароль мне дали из личного кабинета классного руководителя общеобразовательной школы, но в карточке, в графе “Школа”, написано: “ДШИ…”.</p><p>И так, еще раз: если ты не можешь войти в edu.tatar.ru c помощью привычного логина и пароля, нужно попробовать:</p><ol><li>Достать пароль из личного кабинета директора учреждения</li><li>В случае неудачи, достать пароль из личного кабинета классного руководителя (Мой класс/Личное дело/Скачать карточку)</li><li>В случае неудачи, ждать и надеяться…</li></ol><p>“Спасибо за понимание!”</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Жизнь </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Школа </tag>
-            
-            <tag> edu.tatar.ru </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Выкидывайте диски!</title>
       <link href="/posts/2014/cd-drives-to-trash/"/>
       <url>/posts/2014/cd-drives-to-trash/</url>
@@ -865,33 +749,6 @@
             <tag> флешка </tag>
             
             <tag> Школа </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Чтение книг на iPad</title>
-      <link href="/posts/2014/ipad-books/"/>
-      <url>/posts/2014/ipad-books/</url>
-      
-        <content type="html"><![CDATA[<p>Близится начало нового учебного года, и многие зададутся вопросом: “Могу ли я носить iPad вместо кучи учебников?” Конечно, можешь (если найдешь, где скачать их)! В этой статье расскажу, какими программами для открытия учебников пользуюсь я на своем планшете. <a id="more"></a></p><p>Чаще всего школьные учебники в электронном виде сканируются в формат PDF, который можно открыть с помощью <a href="https://itunes.apple.com/ru/app/foxit-mobile-pdf/id507040546?mt=8" target="_blank" rel="noopener">Foxit Mobile PDF</a> и <a href="https://itunes.apple.com/ru/app/adobe-reader/id469337564?mt=8" target="_blank" rel="noopener">Adobe Reader</a>. </p><p><a href="https://itunes.apple.com/ru/app/foxit-mobile-pdf/id507040546?mt=8" target="_blank" rel="noopener"><img src="/content/2014/08/mzl.ybabuyqp.175x175-75.jpg" alt="Foxit Mobile PDF" title="Foxit Mobile PDF"></a><a href="https://itunes.apple.com/ru/app/adobe-reader/id469337564?mt=8" target="_blank" rel="noopener"><img src="/content/2014/08/mzl.gwitmlel.175x175-75.jpg" alt="Adobe Reader" title="Adobe Reader"></a></p><p>Но не все учебники можно скачать в формате PDF. Некоторые из них запакованы в DJVU, который с легкостью открывается через <a href="https://itunes.apple.com/ru/app/tireader-lite/id688254749?mt=8" target="_blank" rel="noopener">tiReader Lite</a></p><p><a href="https://itunes.apple.com/ru/app/tireader-lite/id688254749?mt=8" target="_blank" rel="noopener"><img src="/content/2014/08/mzl.tjiflpja.175x175-75.jpg" alt="tiReader Lite" title="tiReader Lite"></a></p><p>Художественная литература находится обычно в формате FB2 или EPUB. <a href="https://itunes.apple.com/ru/app/kybook-citalka/id673027171?mt=8" target="_blank" rel="noopener">KyBook</a> прекрасно справляется с открытием этих форматов.</p><p><a href="https://itunes.apple.com/ru/app/kybook-citalka/id673027171?mt=8" target="_blank" rel="noopener"><img src="/content/2014/08/mzl.vwidoype.175x175-75.jpg" alt="KyBook" title="KyBook"></a></p><p>Все программы из этого списка далеко не единственные, которые умеют справляться с этими задачами. Но именно этими пользуюсь я сам, и они все прекрасно справляются со своими задачами. Если какая-то из них вам не понравилась, с легкостью можно найти аналоги в App Store.</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Софт </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Школа </tag>
-            
-            <tag> iPad </tag>
             
         </tags>
       
@@ -931,7 +788,7 @@
       <link href="/posts/2014/wordpress-nginx/"/>
       <url>/posts/2014/wordpress-nginx/</url>
       
-        <content type="html"><![CDATA[<p>Недавно я писал в своем <a href="http://twitter.com/atnartur" target="_blank" rel="noopener">твиттере</a> о том, что некоторые мои сайты переезжали на новый сервер. На этом новом сервере стоит nginx, который работает намного быстрее, чем Apache, но зато имеет небольшие затруднения с написанием конфигурационных файлов. <a id="more"></a></p><p>[<img src="/content/2014/08/NGINX1-300x240.jpg" alt="NGINX[1]">)](/content/2014/08/NGINX1.jpg)</p><p>Где-то в интернете я читал миф о том, что Wordpress вообще никак не получается развернуть на nginx, и многие ставят Apache специально для него. Но, как оказалось, ничего сложного на самом деле и нет.</p><p>Примерную конфигурацию wordpress сайта можно посмотреть <a href="https://gist.github.com/atnartur/f065cc2befaacabb2cd7" target="_blank" rel="noopener">здесь</a>.</p><p>Если при попытке обновить плагины/темы/самого себя Wordpress спросил FTP данные от вашего сервера, пропишите в файл <em>wp-config.php</em> следующую строку:</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="string">'FS_METHOD'</span>, <span class="string">'direct'</span>);</span><br></pre></td></tr></table></figure><p>Если обновление завершается ошибкой “не удалось создать директорию”, попробуйте повысить права на папки <code>wp-content/upgrade</code>, <code>wp-content/themes</code> и <code>wp-content/plugins</code>. Но до 777 доводить не надо.</p><p>Если у Вас стоит (или стоял) какой-нибудь кеширующий плагин (например WP-Super-Cache), нужно проверить, очищен ли кеш в директории <code>wp-content/cache</code> (если она есть), на всякий случай проставить на нее права 777 (опять же, если она есть) и убрать константу <code>WPCACHEHOME</code> и <code>WP_CACHE</code> из <code>wp-config.php</code>.</p><p>Теперь <a href="http://atnartur.ru">atnartur.ru</a>, <a href="http://wikitatar.ru" target="_blank" rel="noopener">wikitatar.ru</a>, <a href="http://old.atnartur.ru" target="_blank" rel="noopener">old.atnartur.ru</a> работают быстрее:)</p><p>Задавайте вопросы в комментариях и делитесь с записью, если информация из этой статьи помогла Вам.</p><p>P. S. Скорость отдачи Wordpress страниц на <a href="http://atnartur.ru">atnartur.ru</a> увеличилась в 5 раз (на старом была 500 мс, на новом 130 мс)</p>]]></content>
+        <content type="html"><![CDATA[<p>Недавно я писал в своем <a href="http://twitter.com/atnartur">твиттере</a> о том, что некоторые мои сайты переезжали на новый сервер. На этом новом сервере стоит nginx, который работает намного быстрее, чем Apache, но зато имеет небольшие затруднения с написанием конфигурационных файлов. <span id="more"></span></p><p><img src="/content/2014/08/NGINX1.jpg"></p><p>Где-то в интернете я читал миф о том, что Wordpress вообще никак не получается развернуть на nginx, и многие ставят Apache специально для него. Но, как оказалось, ничего сложного на самом деле и нет.</p><p>Примерную конфигурацию wordpress сайта можно посмотреть <a href="https://gist.github.com/atnartur/f065cc2befaacabb2cd7">здесь</a>.</p><p>Если при попытке обновить плагины&#x2F;темы&#x2F;самого себя Wordpress спросил FTP данные от вашего сервера, пропишите в файл <em>wp-config.php</em> следующую строку:</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-title function_ invoke__">define</span>(<span class="hljs-string">&#x27;FS_METHOD&#x27;</span>, <span class="hljs-string">&#x27;direct&#x27;</span>);<br></code></pre></td></tr></table></figure><p>Если обновление завершается ошибкой “не удалось создать директорию”, попробуйте повысить права на папки <code>wp-content/upgrade</code>, <code>wp-content/themes</code> и <code>wp-content/plugins</code>. Но до 777 доводить не надо.</p><p>Если у Вас стоит (или стоял) какой-нибудь кеширующий плагин (например WP-Super-Cache), нужно проверить, очищен ли кеш в директории <code>wp-content/cache</code> (если она есть), на всякий случай проставить на нее права 777 (опять же, если она есть) и убрать константу <code>WPCACHEHOME</code> и <code>WP_CACHE</code> из <code>wp-config.php</code>.</p><p>Теперь <a href="http://atnartur.ru/">atnartur.ru</a>, <a href="http://wikitatar.ru/">wikitatar.ru</a>, <a href="http://old.atnartur.ru/">old.atnartur.ru</a> работают быстрее:)</p><p>Задавайте вопросы в комментариях и делитесь с записью, если информация из этой статьи помогла Вам.</p><p>P. S. Скорость отдачи Wordpress страниц на <a href="http://atnartur.ru/">atnartur.ru</a> увеличилась в 5 раз (на старом была 500 мс, на новом 130 мс)</p>]]></content>
       
       
       <categories>
@@ -993,7 +850,7 @@
       <link href="/posts/2013/yandex-gift/"/>
       <url>/posts/2013/yandex-gift/</url>
       
-        <content type="html"><![CDATA[<p>В течение всего года я писал в службу поддержки Яндекса. Т. к. сам являюсь веб-разработчиком, обычно, найдя ошибку или уязвимость сразу же пишу в техническую поддержку сервиса. Яндекс не стал исключением. <a id="more"></a></p><p>(рад буду услышать сообщения об ошибках, предложения или отзывы о работе моих проектов на <a href="mailto:i@atnartur.ru">i@atnartur.ru</a>)</p><p><a href="/content/2013/12/IMGA0440.jpg"><img src="/content/2013/12/IMGA0440-300x168.jpg" alt="IMGA0440"></a>. </p><p>Немного скринов из переписки с службой поддержки Яндекса.</p><p><a href="/content/2013/12/Image_008.png"><img src="/content/2013/12/Image_008-150x150.png" alt="Image_008"></a><a href="/content/2013/12/Image_009.png"><img src="/content/2013/12/Image_009-150x150.png" alt="Image_009"></a><a href="/content/2013/12/Image_010.png"><img src="/content/2013/12/Image_010-150x150.png" alt="Image_010"></a><a href="/content/2013/12/Image_011.png"><img src="/content/2013/12/Image_011-150x150.png" alt="Image_011"></a><a href="/content/2013/12/Image_012.png"><img src="/content/2013/12/Image_012-150x150.png" alt="Image_012"></a><a href="/content/2013/12/Image_013.png"><img src="/content/2013/12/Image_013-150x150.png" alt="Image_013"></a><a href="/content/2013/12/Image_014.png"><img src="/content/2013/12/Image_014-150x150.png" alt="Image_014"></a><a href="/content/2013/12/Image_015.png"><img src="/content/2013/12/Image_015-150x150.png" alt="Image_015"></a><a href="/content/2013/12/Image_016.png"><img src="/content/2013/12/Image_016-150x150.png" alt="Image_016"></a><a href="/content/2013/12/Image_017.png"><img src="/content/2013/12/Image_017-150x150.png" alt="Image_017"></a><a href="/content/2013/12/Image_018.png"><img src="/content/2013/12/Image_018-150x150.png" alt="Image_018"></a><a href="/content/2013/12/Image_019.png"><img src="/content/2013/12/Image_019-150x150.png" alt="Image_019"></a></p><p>Было еще несколько писем. Но эти обращения были не такими большими. Вышестоящие скрины переписки на тему бага в трехколоночном интерфейсе Яндекс.почты, который в то время еще только запускался. В один прекрасный момент он перестал грузиться СОВСЕМ! В результате через несколько часов у меня уже все заработало:)</p><p>Ну и теперь фоточки подарка:</p><p><a href="/content/2013/12/IMGA0437.jpg"><img src="/content/2013/12/IMGA0437-150x150.jpg" alt="IMGA0437"></a><a href="/content/2013/12/IMGA0438.jpg"><img src="/content/2013/12/IMGA0438-150x150.jpg" alt="IMGA0438"></a><a href="/content/2013/12/IMGA0439.jpg"><img src="/content/2013/12/IMGA0439-150x150.jpg" alt="IMGA0439"></a><a href="/content/2013/12/IMGA0441.jpg"><img src="/content/2013/12/IMGA0441-150x150.jpg" alt="IMGA0441"></a><a href="/content/2013/12/IMGA0442.jpg"><img src="/content/2013/12/IMGA0442-150x150.jpg" alt="IMGA0442"></a><a href="/content/2013/12/IMGA0443.jpg"><img src="/content/2013/12/IMGA0443-150x150.jpg" alt="IMGA0443"></a><a href="/content/2013/12/IMGA0445.jpg"><img src="/content/2013/12/IMGA0445-150x150.jpg" alt="IMGA0445"></a><a href="/content/2013/12/IMGA0446.jpg"><img src="/content/2013/12/IMGA0446-150x150.jpg" alt="IMGA0446"></a><a href="/content/2013/12/IMGA0447.jpg"><img src="/content/2013/12/IMGA0447-150x150.jpg" alt="IMGA0447"></a><a href="/content/2013/12/IMGA0448.jpg"><img src="/content/2013/12/IMGA0448-150x150.jpg" alt="IMGA0448"></a><a href="/content/2013/12/IMGA0449.jpg"><img src="/content/2013/12/IMGA0449-150x150.jpg" alt="IMGA0449"></a><a href="/content/2013/12/IMGA0450.jpg"><img src="/content/2013/12/IMGA0450-150x150.jpg" alt="IMGA0450"></a><a href="/content/2013/12/IMGA0451.jpg"><img src="/content/2013/12/IMGA0451-150x150.jpg" alt="IMGA0451"></a><a href="/content/2013/12/IMGA0452.jpg"><img src="/content/2013/12/IMGA0452-150x150.jpg" alt="IMGA0452"></a></p><p>Прошу прощения за плохое качество. Короче говоря это - календарик. 12 карточек по месяцам и одна карточка с человечками. Человечек ставится на специальные рельсы (прорези в карточках с месяцами) и “едет” по дням. Календарь дошел курьерской доставкой. Очень приятно:3</p><p>Ну и еще раз: адрес службы поддержки Яндекса <a href="mailto:support@yandex.ru">support@yandex.ru</a>.</p>]]></content>
+        <content type="html"><![CDATA[<p>В течение всего года я писал в службу поддержки Яндекса. Т. к. сам являюсь веб-разработчиком, обычно, найдя ошибку или уязвимость сразу же пишу в техническую поддержку сервиса. Яндекс не стал исключением. <span id="more"></span></p><p>(рад буду услышать сообщения об ошибках, предложения или отзывы о работе моих проектов на <a href="mailto:i@atnartur.ru">i@atnartur.ru</a>)</p><p><a href="/content/2013/12/IMGA0440.jpg"><img src="/content/2013/12/IMGA0440-300x168.jpg" alt="IMGA0440"></a>. </p><p>Было еще несколько писем. Но эти обращения были не такими большими. Вышестоящие скрины переписки на тему бага в трехколоночном интерфейсе Яндекс.почты, который в то время еще только запускался. В один прекрасный момент он перестал грузиться СОВСЕМ! В результате через несколько часов у меня уже все заработало:)</p><p>Ну и теперь фоточки подарка:</p><p><a href="/content/2013/12/IMGA0437.jpg"><img src="/content/2013/12/IMGA0437-150x150.jpg" alt="IMGA0437"></a><a href="/content/2013/12/IMGA0438.jpg"><img src="/content/2013/12/IMGA0438-150x150.jpg" alt="IMGA0438"></a><a href="/content/2013/12/IMGA0439.jpg"><img src="/content/2013/12/IMGA0439-150x150.jpg" alt="IMGA0439"></a><a href="/content/2013/12/IMGA0441.jpg"><img src="/content/2013/12/IMGA0441-150x150.jpg" alt="IMGA0441"></a><a href="/content/2013/12/IMGA0442.jpg"><img src="/content/2013/12/IMGA0442-150x150.jpg" alt="IMGA0442"></a><a href="/content/2013/12/IMGA0443.jpg"><img src="/content/2013/12/IMGA0443-150x150.jpg" alt="IMGA0443"></a><a href="/content/2013/12/IMGA0445.jpg"><img src="/content/2013/12/IMGA0445-150x150.jpg" alt="IMGA0445"></a><a href="/content/2013/12/IMGA0446.jpg"><img src="/content/2013/12/IMGA0446-150x150.jpg" alt="IMGA0446"></a><a href="/content/2013/12/IMGA0447.jpg"><img src="/content/2013/12/IMGA0447-150x150.jpg" alt="IMGA0447"></a><a href="/content/2013/12/IMGA0448.jpg"><img src="/content/2013/12/IMGA0448-150x150.jpg" alt="IMGA0448"></a><a href="/content/2013/12/IMGA0449.jpg"><img src="/content/2013/12/IMGA0449-150x150.jpg" alt="IMGA0449"></a><a href="/content/2013/12/IMGA0450.jpg"><img src="/content/2013/12/IMGA0450-150x150.jpg" alt="IMGA0450"></a><a href="/content/2013/12/IMGA0451.jpg"><img src="/content/2013/12/IMGA0451-150x150.jpg" alt="IMGA0451"></a><a href="/content/2013/12/IMGA0452.jpg"><img src="/content/2013/12/IMGA0452-150x150.jpg" alt="IMGA0452"></a></p><p>Прошу прощения за плохое качество. Короче говоря это - календарик. 12 карточек по месяцам и одна карточка с человечками. Человечек ставится на специальные рельсы (прорези в карточках с месяцами) и “едет” по дням. Календарь дошел курьерской доставкой. Очень приятно:3</p><p>Ну и еще раз: адрес службы поддержки Яндекса <a href="mailto:support@yandex.ru">support@yandex.ru</a>.</p>]]></content>
       
       
       <categories>
@@ -1022,7 +879,7 @@
       <link href="/posts/2013/windows8/"/>
       <url>/posts/2013/windows8/</url>
       
-        <content type="html"><![CDATA[<p>Вчера я поставил Windows 8 и сегодня снес ее.  Все потому что там не работали некоторые любимые программы. Я бы мог обойтись без плеера, браузера или панели быстрого запуска. Но без этих программ я обойтись не могу никак. <a id="more"></a></p><p><a href="/content/2013/11/Image-5.png"><img src="/content/2013/11/Image-5-300x168.png" alt=""></a></p><p>Еше одна обидная вещь - семерка была гибридом винды и линукса. А после установки восьмерки все программы слетели и остались только данные… Сегодня мне пришлось настраивать все заново…</p><p><a href="/content/2013/11/1irOxtVVvx4.jpg"><img src="/content/2013/11/1irOxtVVvx4-300x168.jpg" alt="Старая Win7"></a></p><p>Почему я сделал гибрид? Я работал и на винде, и на линуксе, и пришел к выводу, что линукс не способен покрыть все возможности винды. А винда способна. Иногда мне нужно чуть ли не одновременно делать презентацию и кодить. У меня стояла кроссплатформенная среда разработки Komodo Edit (на Win8 она не работает), программа для создания нескольких рабочих столов windows pager, единственная программа такого рода похожая по дизайну на линуксовый аналог, и консоль git bash, которая в первую очередь предназначена для git, но также умеет исполнять многие линуксовые команды.</p><p><a href="/content/2013/11/Image_002.png"><img src="/content/2013/11/Image_002-300x168.png" alt=""></a></p><p><a href="/content/2013/07/Image-012.png"><img src="/content/2013/07/Image-012.png" alt=""></a><a href="/content/2013/07/Image-013.png"><img src="/content/2013/07/Image-013-300x82.png" alt=""></a></p><p>Безусловно создание и управление веб  сервером на линуксе проще, но и на винде оно терпимое. На крайний случай можно развернуть виртуальную машину с сетевым мостом.</p><p>Почему мне так нужен windows pager я уже объяснил. Но почему именно Komodo Edit? В ней именно те подсказки по коду, которые мне нравятся и тут есть встроенный FTP, встроенная проверка ошибок, отличная скорость работы и она не на Java.</p><p>К вечеру вчерашнего дня перестали открываться всплывающие панели восьмерки.</p><p>Многие живут с восьмеркой спокойно, и пусть живут. Я по вышеописанным причинам не могу. Половина приложений не работают, да и баги остались. Производительность увеличилась незначительно. На старых компах это улучшение все равно погоды не сделает.</p><p>Жалко ключ. Пусть халявный, но лицензионный. И жалко зря потерянное время. Лучшее - враг хорошего.</p><p>Только что настроенная и новая Windows 7<br><a href="/content/2013/11/Image_001.png"><img src="/content/2013/11/Image_001-300x168.png" alt="Image_001"></a></p><p>P. S.</p><blockquote><ul><li>Пошел 8 сносить&#10;- Нет, оставь&#10;- И ЧТО Я ТУТ ДЕЛАТЬ БУДУ? В ИГРЫ ИГРАТЬ?&#10;- А у меня и игры не работают XD&#10;&#10;Мдаааа…. Все НАСТОЛЬКО ПЛОХО<br>&mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/statuses/398014804931407872" target="_blank" rel="noopener">November 6, 2013</a></li></ul></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>]]></content>
+        <content type="html"><![CDATA[<p>Вчера я поставил Windows 8 и сегодня снес ее.  Все потому что там не работали некоторые любимые программы. Я бы мог обойтись без плеера, браузера или панели быстрого запуска. Но без этих программ я обойтись не могу никак. <span id="more"></span></p><p><a href="/content/2013/11/Image-5.png"><img src="/content/2013/11/Image-5-300x168.png"></a></p><p>Еше одна обидная вещь - семерка была гибридом винды и линукса. А после установки восьмерки все программы слетели и остались только данные… Сегодня мне пришлось настраивать все заново…</p><p><a href="/content/2013/11/1irOxtVVvx4.jpg"><img src="/content/2013/11/1irOxtVVvx4-300x168.jpg" alt="Старая Win7"></a></p><p>Почему я сделал гибрид? Я работал и на винде, и на линуксе, и пришел к выводу, что линукс не способен покрыть все возможности винды. А винда способна. Иногда мне нужно чуть ли не одновременно делать презентацию и кодить. У меня стояла кроссплатформенная среда разработки Komodo Edit (на Win8 она не работает), программа для создания нескольких рабочих столов windows pager, единственная программа такого рода похожая по дизайну на линуксовый аналог, и консоль git bash, которая в первую очередь предназначена для git, но также умеет исполнять многие линуксовые команды.</p><p><a href="/content/2013/11/Image_002.png"><img src="/content/2013/11/Image_002-300x168.png"></a></p><p><a href="/content/2013/07/Image-012.png"><img src="/content/2013/07/Image-012.png"></a><a href="/content/2013/07/Image-013.png"><img src="/content/2013/07/Image-013-300x82.png"></a></p><p>Безусловно создание и управление веб  сервером на линуксе проще, но и на винде оно терпимое. На крайний случай можно развернуть виртуальную машину с сетевым мостом.</p><p>Почему мне так нужен windows pager я уже объяснил. Но почему именно Komodo Edit? В ней именно те подсказки по коду, которые мне нравятся и тут есть встроенный FTP, встроенная проверка ошибок, отличная скорость работы и она не на Java.</p><p>К вечеру вчерашнего дня перестали открываться всплывающие панели восьмерки.</p><p>Многие живут с восьмеркой спокойно, и пусть живут. Я по вышеописанным причинам не могу. Половина приложений не работают, да и баги остались. Производительность увеличилась незначительно. На старых компах это улучшение все равно погоды не сделает.</p><p>Жалко ключ. Пусть халявный, но лицензионный. И жалко зря потерянное время. Лучшее - враг хорошего.</p><p>Только что настроенная и новая Windows 7<br><a href="/content/2013/11/Image_001.png"><img src="/content/2013/11/Image_001-300x168.png" alt="Image_001"></a></p>]]></content>
       
       
       <categories>
@@ -1047,11 +904,11 @@
     
     
     <entry>
-      <title>Сервисы для экономии времени в сети (+1 новый)</title>
+      <title>Сервисы для экономии времени в сети</title>
       <link href="/posts/2013/saving-of-time-services/"/>
       <url>/posts/2013/saving-of-time-services/</url>
       
-        <content type="html"><![CDATA[<p>В наше время бурного развития современных технологий встает проблема организации потоков информации, поступающий к нам из интернета. Это могут быть как новостные ленты в социальных сетях, так и уведомления о приходящей почте. Также интересно следить за парой-тройкой новостных сайтов.  И это все заставляет нас открывать целую кучу вкладок. А следить за кучей как-то не очень уж приятно. Чтобы узнать, какие сервисы существуют для исправления такого рода ситуаций, читайте далее! <a id="more"></a></p><p>В интернете появилось несколько сервисов, которые позволяют организовать информацию с нескольких сайтов на одной странице. В основном там имеется какой-то каталог виджетов, которые могут установить пользователи. И не всегда туда можно добавить свой виджет. Информация располагается блоками.</p><p>Для меня идеалом такого приложения будет сервис, содержащий социальные виджеты, проверку почты, RSS виджет… И все это будет в одной ленте. Не плохой функцией была бы отправка сообщения сразу в несколько социальных сетей. </p><h3 id="NetVibes"><a href="#NetVibes" class="headerlink" title="NetVibes"></a>NetVibes</h3><p><a href="/content/2013/10/Image-0001.png"><img src="/content/2013/10/Image-0001.png" alt=""></a></p><p>Это первый сервис такого рода, на который мы посмотрим. Имеет 2 режима: режим виджетов и режим reader. Второй режим появился после закрытия Google Reader. Именно NetVibes я сейчас использую как RSS-reader.</p><p>Из минусов могу отметить, что нет виджетов российских сервисов и нет возможности проверять почту прямо оттуда.</p><p><a href="http://netvibes.com" target="_blank" rel="noopener">Перейти</a></p><p><a href="/content/2013/10/Image-0011.png"><img src="/content/2013/10/Image-0011-300x230.png" alt="Режим reader"></a><a href="/content/2013/10/19561v1.png"><img src="/content/2013/10/19561v1-300x227.png" alt="Режим виджетов"></a></p><h3 id="Главная-страница-Яндекса"><a href="#Главная-страница-Яндекса" class="headerlink" title="Главная страница Яндекса"></a>Главная страница Яндекса</h3><p>Яндекс стоит у меня главной страницей. Тут уже все намного лучше. Есть виджет RSS reader`а. Можно проверять почту. Есть виджеты социальных сетей. Также можно написать и свой виджет. Целая куча виджетов от самого Яндекса, будь то погода, метрика или деньги. </p><p>Тут не хватает только возможности организовать все это в единую ленту. </p><p><a href="http://yandex.ru" target="_blank" rel="noopener">Перейти</a></p><p><a href="/content/2013/10/Image-002.png"><img src="/content/2013/10/Image-002-300x165.png" alt=""></a></p><h3 id="Hojoki"><a href="#Hojoki" class="headerlink" title="Hojoki"></a>Hojoki</h3><p>Наткнулся на этот сервис случайно. Ориентирован он в основном на команды, которые хотят слить информацию с нескольких сервисов в одну ленту. В основном иностранные виджеты. Hojoki не только соберет всю информацию в отдельную ленту, но еще и будет высылать вам ежедневные и еженедельные отчеты об изменениях.</p><p>Минус очевиден: нет ничего русского. </p><p><a href="http://hojoki.com" target="_blank" rel="noopener">Перейти</a></p><p><a href="/content/2013/10/Image-0041.png"><img src="/content/2013/10/Image-0041-300x135.png" alt="Image 004"></a></p><p><a href="/content/2013/10/Image-005.png"><img src="/content/2013/10/Image-005-300x105.png" alt="Image 005"></a></p><h3 id="iGoogle"><a href="#iGoogle" class="headerlink" title="iGoogle"></a>iGoogle</h3><p>К сожалению, iGoogle закрывается. Было немало виджетов. RSS, погода, соц. сети, даже закладки. Но он закрывается.</p><p><a href="/content/2013/10/Image-006.png"><img src="/content/2013/10/Image-006-300x153.png" alt="Image 006"></a></p><p><a href="/content/2013/10/Image-007.png"><img src="/content/2013/10/Image-007-300x133.png" alt="Image 007"></a></p><p><a name="socity"></a></p><h3 id="Socity"><a href="#Socity" class="headerlink" title="Socity"></a>Socity</h3><p>А этот проект наоборот еще только в разработке. Идея пришла в голову <a href="mailto:iliadementiev@ro.ru" title="Написать ему">Илье Дементьеву</a> на прошедшей смене IT-Jump по веб-программированию (статья <a href="http://atnartur.ru/veb-programmirovanie-v-baytike/" title="Веб-программирование в Байтике">раз</a>, <a href="http://atnartur.ru/t-bl-na-itjump-i-ne-tchital-togo-kak-tak-mozhno/" title="Ты был на ITJump и не читал этого? Как так можно!">два</a>). Сервис разрабатывается как агрегатор социальных сетей, блогов и почтовых сервисов. То есть там будут: виджеты социальных сетей, возможность чтения RSS лент, уведомления почтовых сервисов и много другое!</p><p>Сейчас Илья ищет PHP, JavaScript (JQuery) разработчиков в свою команду. Если вы хотите участвовать в разработке этого сервиса, напишите Илье на <a href="mailto:iliadementiev@ro.ru">iliadementiev@ro.ru</a></p><p><a href="/content/2013/10/Bez_imeni-1.png"><img src="/content/2013/10/Bez_imeni-1-300x144.png" alt=""></a></p><p><a href="/content/2013/10/socity2.png"><img src="/content/2013/10/socity2-300x148.png" alt="Первый эскиз"></a></p><p>Понравился обзор сервисов для экономии времени или вы хотите помочь проекту Socity? Делитесь этой записью с друзьями!</p>]]></content>
+        <content type="html"><![CDATA[<p>В наше время бурного развития современных технологий встает проблема организации потоков информации, поступающий к нам из интернета. Это могут быть как новостные ленты в социальных сетях, так и уведомления о приходящей почте. Также интересно следить за парой-тройкой новостных сайтов.  И это все заставляет нас открывать целую кучу вкладок. А следить за кучей как-то не очень уж приятно. Чтобы узнать, какие сервисы существуют для исправления такого рода ситуаций, читайте далее! <span id="more"></span></p><p>В интернете появилось несколько сервисов, которые позволяют организовать информацию с нескольких сайтов на одной странице. В основном там имеется какой-то каталог виджетов, которые могут установить пользователи. И не всегда туда можно добавить свой виджет. Информация располагается блоками.</p><p>Для меня идеалом такого приложения будет сервис, содержащий социальные виджеты, проверку почты, RSS виджет… И все это будет в одной ленте. Не плохой функцией была бы отправка сообщения сразу в несколько социальных сетей. </p><h3 id="NetVibes"><a href="#NetVibes" class="headerlink" title="NetVibes"></a>NetVibes</h3><p><a href="/content/2013/10/Image-0001.png"><img src="/content/2013/10/Image-0001.png"></a></p><p>Это первый сервис такого рода, на который мы посмотрим. Имеет 2 режима: режим виджетов и режим reader. Второй режим появился после закрытия Google Reader. Именно NetVibes я сейчас использую как RSS-reader.</p><p>Из минусов могу отметить, что нет виджетов российских сервисов и нет возможности проверять почту прямо оттуда.</p><p><a href="http://netvibes.com/">Перейти</a></p><p><a href="/content/2013/10/Image-0011.png"><img src="/content/2013/10/Image-0011-300x230.png" alt="Режим reader"></a><a href="/content/2013/10/19561v1.png"><img src="/content/2013/10/19561v1-300x227.png" alt="Режим виджетов"></a></p><h3 id="Главная-страница-Яндекса"><a href="#Главная-страница-Яндекса" class="headerlink" title="Главная страница Яндекса"></a>Главная страница Яндекса</h3><p>Яндекс стоит у меня главной страницей. Тут уже все намного лучше. Есть виджет RSS reader&#96;а. Можно проверять почту. Есть виджеты социальных сетей. Также можно написать и свой виджет. Целая куча виджетов от самого Яндекса, будь то погода, метрика или деньги. </p><p>Тут не хватает только возможности организовать все это в единую ленту. </p><p><a href="http://yandex.ru/">Перейти</a></p><p><a href="/content/2013/10/Image-002.png"><img src="/content/2013/10/Image-002-300x165.png"></a></p><h3 id="Hojoki"><a href="#Hojoki" class="headerlink" title="Hojoki"></a>Hojoki</h3><p>Наткнулся на этот сервис случайно. Ориентирован он в основном на команды, которые хотят слить информацию с нескольких сервисов в одну ленту. В основном иностранные виджеты. Hojoki не только соберет всю информацию в отдельную ленту, но еще и будет высылать вам ежедневные и еженедельные отчеты об изменениях.</p><p>Минус очевиден: нет ничего русского. </p><p><a href="http://hojoki.com/">Перейти</a></p><p><a href="/content/2013/10/Image-0041.png"><img src="/content/2013/10/Image-0041-300x135.png" alt="Image 004"></a></p><p><a href="/content/2013/10/Image-005.png"><img src="/content/2013/10/Image-005-300x105.png" alt="Image 005"></a></p><h3 id="iGoogle"><a href="#iGoogle" class="headerlink" title="iGoogle"></a>iGoogle</h3><p>К сожалению, iGoogle закрывается. Было немало виджетов. RSS, погода, соц. сети, даже закладки. Но он закрывается.</p><p><a href="/content/2013/10/Image-006.png"><img src="/content/2013/10/Image-006-300x153.png" alt="Image 006"></a></p><p><a href="/content/2013/10/Image-007.png"><img src="/content/2013/10/Image-007-300x133.png" alt="Image 007"></a></p>]]></content>
       
       
       <categories>
@@ -1070,8 +927,6 @@
             <tag> Яндекс </tag>
             
             <tag> синхронизация </tag>
-            
-            <tag> Socity </tag>
             
         </tags>
       
@@ -1177,33 +1032,6 @@
     
     
     <entry>
-      <title>Школьный WiFi разблокирован!</title>
-      <link href="/posts/2013/edu.tatar.ru-wifi/"/>
-      <url>/posts/2013/edu.tatar.ru-wifi/</url>
-      
-        <content type="html"><![CDATA[<p>Во всех школах Татарстана действует сеть Wireless@school. Она пускает только избранных. Всегда доступен только <a href="http://edu.tatar.ru" target="_blank" rel="noopener">edu.tatar.ru</a>. В этой статье - как подключиться к WiFi и пользоваться интернетом через школьный WiFi с Андроид устройства!</p><a id="more"></a><h2 id="Как-вообще-устроена-система"><a href="#Как-вообще-устроена-система" class="headerlink" title="Как вообще устроена система"></a>Как вообще устроена система</h2><p>Если вам не интересно знать, как устроена она, пролистывайте ниже, там будет инструкция по установке.</p><p>Во всех школах страны стоит WiFi с настройками прокси сервера. На каждом из устройств в локальной сети (а она получается развернута на всю республику) тоже должны быть установлены настройки прокси. В противном случае вы получаете доступ только к edu.tatar.ru</p><p>Также для входа в интернет из школы нужен логин и пароль он этого же портала. Иначе - опять никуда зайти не удастся. </p><p>Получается вся проблема в установке настроек прокси. Opera Mobile настраивала, но не выходило окно авторизации. Еще есть куча программ для установки системных прокси, но все они требуют root-права. В моем решении root-права не требуются:)</p><h2 id="Установка"><a href="#Установка" class="headerlink" title="Установка"></a>Установка</h2><p><strong>Root-права не требуются!</strong></p><p>Для начала нам нужен нормальный интернет на устройстве. Находим, подключаемся и действуем:</p><ol><li><p>Открываем Mozilla Firefox (установить можно <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox" target="_blank" rel="noopener">здесь</a>)</p></li><li><p>Устанавливаем расширение ProxyMob <a href="http://yadi.sk/d/2P3p7tpU9GS6r" target="_blank" rel="noopener">отсюда</a><br><a href="/content/2013/09/Screenshot_2013-09-14-22-03-22.png"><img src="/content/2013/09/Screenshot_2013-09-14-22-03-22-150x150.png" alt=""></a></p></li><li><p>Нажимаем “Перезапустить”<br><a href="/content/2013/09/Screenshot_2013-09-14-22-08-18.png"><img src="/content/2013/09/Screenshot_2013-09-14-22-08-18-150x150.png" alt=""></a></p></li><li><p>После перезапуска открываем “Меню” -&gt; “Инструменты” и выбираем “Дополнения”<br><a href="/content/2013/09/Screenshot_2013-09-14-22-09-41.png"><img src="/content/2013/09/Screenshot_2013-09-14-22-09-41-150x150.png" alt=""></a></p></li><li><p>Нажимаем на “ProxyMob”<br><a href="/content/2013/09/Screenshot_2013-09-14-22-10-18.png"><img src="/content/2013/09/Screenshot_2013-09-14-22-10-18-150x150.png" alt=""></a></p></li><li><p>Открывается страница настроек. Там заполняем:<br>HTTP Proxy Host - proxy.school.tatar.ru<br>HTTP Proxy Port - 8080<br>Все остальные поля оставляем пустыми.<br>Снимаем галочку (если стоит) с SOCKS Remote DNS и с Use Proxy<br><a href="/content/2013/09/Screenshot_2013-09-14-22-15-12.png"><img src="/content/2013/09/Screenshot_2013-09-14-22-15-12-150x150.png" alt=""></a></p></li><li><p>Приходим в школу и заходим в Меню/Инструменты/Дополнения/ProxyMod и ставим галочку рядом с “Use Proxy” (что означает “использовать прокси”</p></li><li><p>Переходим на <strong><a href="https://edu.tatar.ru" target="_blank" rel="noopener">https://edu.tatar.ru</a></strong> (В ТОЧНОСТИ ТАКОЙ АДРЕС) и входим под своим логином и паролем.</p></li><li><p>Нажимаем на кнопку “Выйти в интернет”<br><a href="/content/2013/09/Image-000.png"><img src="/content/2013/09/Image-000.png" alt=""></a></p></li><li><p>Появится окно авторизации. Вводим свои логин и пароль от edu.tatar.ru</p></li><li><p>И вот он Яндекс!:)</p></li></ol><p>К сожалению пока у меня получилось открыть доступ только к Яндексу. Но это тоже неплохо!:) Ведь с Яндекса можно взять копию нужной вам страницы (нужно перейти на полную версию поиска)!</p><p>Ну а если у вас мобильный интернет, то для экономии трафика используйте <a href="http://atnartur.ru/start-proekta-cliend-ru/" title="Старт проекта Cliend.ru">ClienD</a>!</p><p>Продолжаю искать альтернативные способы доступа к интернету из школы… </p><p>Если что-то не получилось, напишите в комментариях! Если все получилось, делитесь статьей с друзьями!</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Жизнь </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Firefox </tag>
-            
-            <tag> Школа </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Старт проекта ClienD.ru</title>
       <link href="/posts/2013/cliend.ru-start/"/>
       <url>/posts/2013/cliend.ru-start/</url>
@@ -1231,38 +1059,11 @@
     
     
     <entry>
-      <title>Обновление № 12 на Cafe4me</title>
-      <link href="/posts/2013/cafe4me-update-12/"/>
-      <url>/posts/2013/cafe4me-update-12/</url>
-      
-        <content type="html"><![CDATA[<p>Всем привет! Сегодня примерно после 19.00 по Москве состоялось выкладывание нового функционала на сервер! Полный список изменений ниже! <a id="more"></a></p><p><a href="/content/2013/08/logo_cub.png"><img src="/content/2013/08/logo_cub.png" alt=""></a></p><p>Вы спросите: “Почему сразу 12?” А потому, что разработка проекта идет уже не первый месяц и релизы (обновления) делались до этого, но никак не документировались. <a href="http://atnartur.ru/cafe4me_release/" title="Релиз Cafe4me в IT-cafe казанского IT-парка">С запуском</a> мы решили это все записывать.</p><p>Полный список изменений будет публиковаться у меня на блоге, а самое важное - в <a href="http://vk.com/cafe4me" target="_blank" rel="noopener" title="Cafe4me ВКонтакте">группе Cafe4me</a>.</p><p>В скобках указывается тот, кто помог в исправлении этого бага или посоветовал сделать эту функциональность.</p><p>И так…</p><ul><li>Исправлено: при отстутствии английской версии строки выводилось undefined (языки)</li><li>Исправлено: текст в письме активации аккаунта</li><li>Исправлено: Сумма заказа не меняется, если удалить блюдо (<a href="http://roadar.net" target="_blank" rel="noopener">RoadAR</a>)</li><li>Исправлено: неправильное отображение кнопок на iPad (<a href="https://vk.com/tux_tux_tux" target="_blank" rel="noopener">Игорь Комаров</a>)</li><li>Исправлено: фон не на весь экран при всплывающих окнах на iPad (<a href="https://vk.com/tux_tux_tux" target="_blank" rel="noopener">Игорь Комаров</a>)</li><li>Исправлено: баги в автобэкапере</li><li>Исправлено: показывается пустая страница регистрации, когда пользователь уже вошел</li><li>Исправлено: показываются ссылки ВХОД и РЕГИСТРАЦИЯ на странице активации аккаунта</li><li>Добавлено: кнопка-виджет для сайта IT-cafe</li><li>Добавлено: редирект администраторов на административную панель</li><li>Добавлено: плагин подсветки полей ввода (cafe4me_highlight)</li><li>Добавлено: дополнения блюд</li><li>Добавлено: страница заглушка на случай поломки</li><li>Добавлено: root пользователи</li><li>Добавлено: ссылка в административной панели для смены кафе для тех, у кого несколько кафе</li><li>Добавлено: ссылка на администирование на странице кафе для root</li><li>Добавлено: система бэкапа БД</li><li>Добавлено: новая система отправки электронных писем (Mailer) (<a href="http://mubinov.com" target="_blank" rel="noopener">Алмаз Мубинов</a>)</li><li>Добавлено: автобэкапер</li><li>Улучшено: добавление блюда в административной панели перенесено на ООП</li><li>Улучшено: класс Dish (метод create())</li><li>Улучшено: скрипты доступа к админке</li><li>Улучшено: класс Mailer (добавлен контроллер debug mode)</li><li>Улучшено: ВСЯ отправка почты  пересена на Mailer (вся почта будет приходить НАМНОГО быстрее)</li></ul><p>Чтобы не пропускать новостей проекта, подписывайтесь на <a href="http://twitter.com/cafe4me_tweet" target="_blank" rel="noopener">Твиттер</a> и <a href="http://vk.com/cafe4me" target="_blank" rel="noopener">группу ВКонтакте</a>!<br>Сайт проекта: <a href="http://cafe4me.ru" target="_blank" rel="noopener">cafe4me.ru</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Новости проектов </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Проекты </tag>
-            
-            <tag> cafe4me </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>История одного сбоя</title>
       <link href="/posts/2013/1gb-fail/"/>
       <url>/posts/2013/1gb-fail/</url>
       
-        <content type="html"><![CDATA[<p>Сегодня примерно в полвторого дня по Москве перестал отвечать на запросы сайт проекта Cafe4me <a href="http://cafe4me.ru" target="_blank" rel="noopener" title="Cafe4me">cafe4me.ru</a>. Что было потом, читайте дальше. <a id="more"></a></p><p><a href="/content/2013/08/logo_cub.png"><img src="/content/2013/08/logo_cub.png" alt="logo_cub"></a></p><p>Буквально вчера в 7 часов вечера на Хабре была опубликована <a href="http://habrahabr.ru/company/bi_kazan/blog/190076" target="_blank" rel="noopener">статья о нас</a>. И пошел так называемый “Хабраэффект”. Весь этот народ шел с поиска (т. к. в самом посте ссылки на нас не было). В среду 218 человек, а сегодня 705 (в 18.31).</p><p><a href="/content/2013/08/Image-012.png"><img src="/content/2013/08/Image-012.png" alt=""></a><a href="/content/2013/08/Image-013.png"><img src="/content/2013/08/Image-013.png" alt=""></a></p><p>Сначала я связывал сбой именно с этим, но как оказалось это было просто совпадение. Сайт упал из-за сбоя в магистральных сетях Рослетекома. И не только наш. Также были недоступны 1gb.ru, <a href="http://mubinov.com" target="_blank" rel="noopener">mubinov.com</a> и другие сайты, которые хостились у 1GB.</p><p>Об этом заявили 1GB в своем Твиттере почти сразу же (13.48)</p><blockquote><p>Сетевая проблема, отвалилась вся сеть магистрального сетевого оператора, компании Ростелеком. Сроки восстановления работы пока не известны.<br>&mdash; 1Gb.ru hosting (@1gbru) <a href="https://twitter.com/1gbru/statuses/367945904201805825" target="_blank" rel="noopener">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Как видим, ссылка на Ростелеком. Нашел официальный Твиттер Ростелекома и подписался. Информации там немного и в основном просто посты с их блога. Был твит про экономику что-то, а потом про то, что они расширяются в Дагестане. </p><blockquote><p>В <a href="https://twitter.com/search?q=%23%D0%94%D0%B0%D0%B3%D0%B5%D1%81%D1%82%D0%B0%D0%BD&amp;src=hash" target="_blank" rel="noopener">#Дагестан</a> <a href="https://twitter.com/search?q=%23%D0%A0%D0%BE%D1%81%D1%82%D0%B5%D0%BB%D0%B5%D0%BA%D0%BE%D0%BC&amp;src=hash" target="_blank" rel="noopener">#Ростелеком</a> завершил проект «Расширение сети передачи данных» <a href="http://t.co/7kL18ZAJIO" target="_blank" rel="noopener">http://t.co/7kL18ZAJIO</a><br>&mdash; Rostelecom (@Rostelecom_News) <a href="https://twitter.com/Rostelecom_News/statuses/368005294854385664" target="_blank" rel="noopener">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Дальше была такая переписка:</p><blockquote><p><a href="https://twitter.com/Rostelecom_News" target="_blank" rel="noopener">@Rostelecom_News</a> По собственным наблюдениям и по словам <a href="https://twitter.com/1gbru" target="_blank" rel="noopener">@1gbru</a> у вас отвалилась магистральная сеть. Лучше бы этим занимались…<br>&mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/statuses/368005998499614720" target="_blank" rel="noopener">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><blockquote><p><a href="https://twitter.com/atnartur" target="_blank" rel="noopener">@atnartur</a> <a href="https://twitter.com/1gbru" target="_blank" rel="noopener">@1gbru</a> На магистральной сети и сети передачи данных <a href="https://twitter.com/search?q=%23%D0%A0%D0%BE%D1%81%D1%82%D0%B5%D0%BB%D0%B5%D0%BA%D0%BE%D0%BC&amp;src=hash" target="_blank" rel="noopener">#Ростелеком</a> проблем сегодня не зафиксировано.<br>&mdash; Rostelecom (@Rostelecom_News) <a href="https://twitter.com/Rostelecom_News/statuses/368009170047365121" target="_blank" rel="noopener">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><blockquote><p><a href="https://twitter.com/Rostelecom_News" target="_blank" rel="noopener">@Rostelecom_News</a> А последний твит <a href="https://twitter.com/1gbru" target="_blank" rel="noopener">@1gbru</a> говорит об обратном.<br>&mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/statuses/368009310737276928" target="_blank" rel="noopener">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><blockquote><p><a href="https://twitter.com/atnartur" target="_blank" rel="noopener">@atnartur</a> <a href="https://twitter.com/1gbru" target="_blank" rel="noopener">@1gbru</a> Какие доказательства? В Москве был поврежден кабель другого оператора.<br>&mdash; Rostelecom (@Rostelecom_News) <a href="https://twitter.com/Rostelecom_News/statuses/368009790233923584" target="_blank" rel="noopener">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><blockquote><p><a href="https://twitter.com/Rostelecom_News" target="_blank" rel="noopener">@Rostelecom_News</a> Но наверное не зря <a href="https://twitter.com/1gbru" target="_blank" rel="noopener">@1gbru</a> ссылается на вас)<br>&mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/statuses/368009914268282880" target="_blank" rel="noopener">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Были еще несколько твитов о том, что у них все в порядке. И дальше наконец Росстелеком пошел разбираться. </p><blockquote><p><a href="https://twitter.com/webnamesru" target="_blank" rel="noopener">@webnamesru</a> <a href="https://twitter.com/CISHostru" target="_blank" rel="noopener">@CISHostru</a> Нет, не у <a href="https://twitter.com/rtcomm_ru" target="_blank" rel="noopener">@rtcomm_ru</a>, а у оператора, у которого был арендованы емкости в кабеле на Б. Академической улице в Москве.<br>&mdash; Rostelecom (@Rostelecom_News) <a href="https://twitter.com/Rostelecom_News/statuses/368011415476371457" target="_blank" rel="noopener">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Дальше Твиттер РТКОММ</p><blockquote><p><a href="https://twitter.com/Rostelecom_News" target="_blank" rel="noopener">@Rostelecom_News</a> <a href="https://twitter.com/webnamesru" target="_blank" rel="noopener">@webnamesru</a> <a href="https://twitter.com/CISHostru" target="_blank" rel="noopener">@CISHostru</a> Коллеги, действительно произошел разрыв кабеля, вызванный городскими строительными работами. 1/2<br>&mdash; РТКОММ (@rtcomm_ru) <a href="https://twitter.com/rtcomm_ru/statuses/368013449315373056" target="_blank" rel="noopener">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><blockquote><p><a href="https://twitter.com/Rostelecom_News" target="_blank" rel="noopener">@Rostelecom_News</a> <a href="https://twitter.com/webnamesru" target="_blank" rel="noopener">@webnamesru</a> <a href="https://twitter.com/CISHostru" target="_blank" rel="noopener">@CISHostru</a> Восстановление сервиса ожидается к 18-30 МСК. Приносим извинения за доставленные неудобства.<br>&mdash; РТКОММ (@rtcomm_ru) <a href="https://twitter.com/rtcomm_ru/statuses/368013652277723137" target="_blank" rel="noopener">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Вот так вот. Большой Академической улице в Москве строители порвали кабель и поэтому крупнейший хостер сидит без инета. И у него даже нет резервной схемы подачи (об этом тоже народ возмущался). </p><p>Но сейчас уже 18.48 и поднялся сайт 1GB, что уже хорошо. Ждем…</p><p>Есть одна странность. Сайт недоступен примерно с полвторого. НО! Все это время хотя бы один человек в 5 минут был на сайте. Но как? Если все сайты этого хостера лежат. Это очень странно.</p><p><a href="/content/2013/08/Image-014.png"><img src="/content/2013/08/Image-014.png" alt=""></a></p><p>И при этом </p><blockquote><p>У тебя лежит сайт, а ты ничего не можешь сделать, кроме того, чтобы просто ждать. Блин это БЕСИТ!<br>&mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/statuses/368003649043435520" target="_blank" rel="noopener">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Вот так вот. Ну а мы продолжаем ждать…</p><p>Все это время обо всех новостях я сообщал в <a href="http://vk.com/cafe4me" target="_blank" rel="noopener">группу ВКонтакте</a> и <a href="http://twitter.com/cafe4me_tweet" target="_blank" rel="noopener">Твиттер Cafe4me</a> с ретвитами к себе. Так что если вам интересна судьба проекта Cafe4me, подписывайтесь! </p><p>Update 20.03:</p><blockquote><p>Сообщение с статус-сайта хостера <a href="http://t.co/ykr8EwGm7h" target="_blank" rel="noopener">pic.twitter.com/ykr8EwGm7h</a><br>&mdash; Cafe4me (@Cafe4me_tweet) <a href="https://twitter.com/Cafe4me_tweet/statuses/368038740129632256" target="_blank" rel="noopener">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Update 21.42:</p><blockquote><p>Доступ к сайту восстановлен! Всем спасибо за столь долгое ожидание! <a href="http://t.co/c31xbrK7EG" target="_blank" rel="noopener">pic.twitter.com/c31xbrK7EG</a><br>&mdash; Cafe4me (@Cafe4me_tweet) <a href="https://twitter.com/Cafe4me_tweet/statuses/368064373723389952" target="_blank" rel="noopener">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><blockquote><p>Если описать кратко причину сбоя: строители порвали кабель в Москве. Подробнее на <a href="http://t.co/ZGEpYJFzvo" target="_blank" rel="noopener">http://t.co/ZGEpYJFzvo</a><br>&mdash; Cafe4me (@Cafe4me_tweet) <a href="https://twitter.com/Cafe4me_tweet/statuses/368064903137230848" target="_blank" rel="noopener">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>]]></content>
+        <content type="html"><![CDATA[<p>Сегодня примерно в полвторого дня по Москве перестал отвечать на запросы сайт проекта Cafe4me <a href="http://cafe4me.ru/" title="Cafe4me">cafe4me.ru</a>. Что было потом, читайте дальше. <span id="more"></span></p><p>Буквально вчера в 7 часов вечера на Хабре была опубликована <a href="http://habrahabr.ru/company/bi_kazan/blog/190076">статья о нас</a>. И пошел так называемый “Хабраэффект”. Весь этот народ шел с поиска (т. к. в самом посте ссылки на нас не было). В среду 218 человек, а сегодня 705 (в 18.31).</p><p><a href="/content/2013/08/Image-012.png"><img src="/content/2013/08/Image-012.png"></a><a href="/content/2013/08/Image-013.png"><img src="/content/2013/08/Image-013.png"></a></p><p>Сначала я связывал сбой именно с этим, но как оказалось это было просто совпадение. Сайт упал из-за сбоя в магистральных сетях Рослетекома. И не только наш. Также были недоступны 1gb.ru, <a href="http://mubinov.com/">mubinov.com</a> и другие сайты, которые хостились у 1GB.</p><p>Об этом заявили 1GB в своем Твиттере почти сразу же (13.48)</p><blockquote><p>Сетевая проблема, отвалилась вся сеть магистрального сетевого оператора, компании Ростелеком. Сроки восстановления работы пока не известны.<br>&amp;mdash; 1Gb.ru hosting (@1gbru) <a href="https://twitter.com/1gbru/statuses/367945904201805825">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Как видим, ссылка на Ростелеком. Нашел официальный Твиттер Ростелекома и подписался. Информации там немного и в основном просто посты с их блога. Был твит про экономику что-то, а потом про то, что они расширяются в Дагестане. </p><blockquote><p>В <a href="https://twitter.com/search?q=%23%D0%94%D0%B0%D0%B3%D0%B5%D1%81%D1%82%D0%B0%D0%BD&amp;src=hash">#Дагестан</a> <a href="https://twitter.com/search?q=%23%D0%A0%D0%BE%D1%81%D1%82%D0%B5%D0%BB%D0%B5%D0%BA%D0%BE%D0%BC&amp;src=hash">#Ростелеком</a> завершил проект «Расширение сети передачи данных» <a href="http://t.co/7kL18ZAJIO">http://t.co/7kL18ZAJIO</a><br>&amp;mdash; Rostelecom (@Rostelecom_News) <a href="https://twitter.com/Rostelecom_News/statuses/368005294854385664">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Дальше была такая переписка:</p><blockquote><p><a href="https://twitter.com/Rostelecom_News">@Rostelecom_News</a> По собственным наблюдениям и по словам <a href="https://twitter.com/1gbru">@1gbru</a> у вас отвалилась магистральная сеть. Лучше бы этим занимались…<br>&amp;mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/statuses/368005998499614720">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><blockquote><p><a href="https://twitter.com/atnartur">@atnartur</a> <a href="https://twitter.com/1gbru">@1gbru</a> На магистральной сети и сети передачи данных <a href="https://twitter.com/search?q=%23%D0%A0%D0%BE%D1%81%D1%82%D0%B5%D0%BB%D0%B5%D0%BA%D0%BE%D0%BC&amp;src=hash">#Ростелеком</a> проблем сегодня не зафиксировано.<br>&amp;mdash; Rostelecom (@Rostelecom_News) <a href="https://twitter.com/Rostelecom_News/statuses/368009170047365121">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><blockquote><p><a href="https://twitter.com/Rostelecom_News">@Rostelecom_News</a> А последний твит <a href="https://twitter.com/1gbru">@1gbru</a> говорит об обратном.<br>&amp;mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/statuses/368009310737276928">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><blockquote><p><a href="https://twitter.com/atnartur">@atnartur</a> <a href="https://twitter.com/1gbru">@1gbru</a> Какие доказательства? В Москве был поврежден кабель другого оператора.<br>&amp;mdash; Rostelecom (@Rostelecom_News) <a href="https://twitter.com/Rostelecom_News/statuses/368009790233923584">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><blockquote><p><a href="https://twitter.com/Rostelecom_News">@Rostelecom_News</a> Но наверное не зря <a href="https://twitter.com/1gbru">@1gbru</a> ссылается на вас)<br>&amp;mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/statuses/368009914268282880">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Были еще несколько твитов о том, что у них все в порядке. И дальше наконец Росстелеком пошел разбираться. </p><blockquote><p><a href="https://twitter.com/webnamesru">@webnamesru</a> <a href="https://twitter.com/CISHostru">@CISHostru</a> Нет, не у <a href="https://twitter.com/rtcomm_ru">@rtcomm_ru</a>, а у оператора, у которого был арендованы емкости в кабеле на Б. Академической улице в Москве.<br>&amp;mdash; Rostelecom (@Rostelecom_News) <a href="https://twitter.com/Rostelecom_News/statuses/368011415476371457">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Дальше Твиттер РТКОММ</p><blockquote><p><a href="https://twitter.com/Rostelecom_News">@Rostelecom_News</a> <a href="https://twitter.com/webnamesru">@webnamesru</a> <a href="https://twitter.com/CISHostru">@CISHostru</a> Коллеги, действительно произошел разрыв кабеля, вызванный городскими строительными работами. 1&#x2F;2<br>&amp;mdash; РТКОММ (@rtcomm_ru) <a href="https://twitter.com/rtcomm_ru/statuses/368013449315373056">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><blockquote><p><a href="https://twitter.com/Rostelecom_News">@Rostelecom_News</a> <a href="https://twitter.com/webnamesru">@webnamesru</a> <a href="https://twitter.com/CISHostru">@CISHostru</a> Восстановление сервиса ожидается к 18-30 МСК. Приносим извинения за доставленные неудобства.<br>&amp;mdash; РТКОММ (@rtcomm_ru) <a href="https://twitter.com/rtcomm_ru/statuses/368013652277723137">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Вот так вот. Большой Академической улице в Москве строители порвали кабель и поэтому крупнейший хостер сидит без инета. И у него даже нет резервной схемы подачи (об этом тоже народ возмущался). </p><p>Но сейчас уже 18.48 и поднялся сайт 1GB, что уже хорошо. Ждем…</p><p>Есть одна странность. Сайт недоступен примерно с полвторого. НО! Все это время хотя бы один человек в 5 минут был на сайте. Но как? Если все сайты этого хостера лежат. Это очень странно.</p><p><a href="/content/2013/08/Image-014.png"><img src="/content/2013/08/Image-014.png"></a></p><p>И при этом </p><blockquote><p>У тебя лежит сайт, а ты ничего не можешь сделать, кроме того, чтобы просто ждать. Блин это БЕСИТ!<br>&amp;mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/statuses/368003649043435520">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Вот так вот. Ну а мы продолжаем ждать…</p><p>Все это время обо всех новостях я сообщал в <a href="http://vk.com/cafe4me">группу ВКонтакте</a> и <a href="http://twitter.com/cafe4me_tweet">Твиттер Cafe4me</a> с ретвитами к себе. Так что если вам интересна судьба проекта Cafe4me, подписывайтесь! </p><p>Update 20.03:</p><blockquote><p>Сообщение с статус-сайта хостера <a href="http://t.co/ykr8EwGm7h">pic.twitter.com&#x2F;ykr8EwGm7h</a><br>&amp;mdash; Cafe4me (@Cafe4me_tweet) <a href="https://twitter.com/Cafe4me_tweet/statuses/368038740129632256">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Update 21.42:</p><blockquote><p>Доступ к сайту восстановлен! Всем спасибо за столь долгое ожидание! <a href="http://t.co/c31xbrK7EG">pic.twitter.com&#x2F;c31xbrK7EG</a><br>&amp;mdash; Cafe4me (@Cafe4me_tweet) <a href="https://twitter.com/Cafe4me_tweet/statuses/368064373723389952">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><blockquote><p>Если описать кратко причину сбоя: строители порвали кабель в Москве. Подробнее на <a href="http://t.co/ZGEpYJFzvo">http://t.co/ZGEpYJFzvo</a><br>&amp;mdash; Cafe4me (@Cafe4me_tweet) <a href="https://twitter.com/Cafe4me_tweet/statuses/368064903137230848">August 15, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>]]></content>
       
       
       <categories>
@@ -1283,52 +1084,6 @@
             <tag> твиттер </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Релиз Cafe4me в IT-cafe казанского IT-парка</title>
-      <link href="/posts/2013/cafe4me-release/"/>
-      <url>/posts/2013/cafe4me-release/</url>
-      
-        <content type="html"><![CDATA[<p>Настал тот самый день и сегодня проект Cafe4me запускается в IT-cafe казанского ИТ-парка! Все подробности далее.</p><a id="more"></a><p>Cafe4me - Это веб-сервис для онлайн-предзаказа в кафе, кофейнях и пиццериях. Заказывайте с сайта и приходите к накрытому столу.</p><p>_И… <em>барабанная дробь</em> этот день настал!!!</p><p>Этого дня мы ждали долгие месяцы, и вот сегодня, дата, мы запускаем beta-тестирование Cafe4me в IT-café казанской площадки IT-парка. Пока что доступ будет только у наших коллег из Бизнес-инкубатора, а через некоторое время и у всех сотрудников IT-парка.<br>К сожалению, мы не можем пока поступить иначе. Но как только появится возможность подключить всех желающих, мы сразу вам сообщим.</p><p>А пока следите за дальнейшими новостями и пожелайте нам счастливого плавания</p><p>Приятного аппетита,</p><p>Ваши Cafe4me._</p><p><a href="/content/2013/08/logo_cub.png"><img src="/content/2013/08/logo_cub.png" alt="logo_cub"></a></p><iframe width="560" height="315" src="//www.youtube.com/embed/t9l4_zIQcHw" frameborder="0" allowfullscreen></iframe><p><a href="http://cafe4me.ru" target="_blank" rel="noopener">Сайт проекта - cafe4me.ru</a></p><p>Следить за новостями проекта вы можете через <a href="https://twitter.com/cafe4me_tweet" target="_blank" rel="noopener">Твиттер</a> проекта, а также через группу <a href="https://vk.com/cafe4me" target="_blank" rel="noopener">ВКонтакте</a>.</p><p>О найденных ошибках пишите на <a href="mailto:support@cafe4me.ru">support@cafe4me.ru</a>.</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Новости проектов </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Проекты </tag>
-            
-            <tag> cafe4me </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Дети не умеют пользоваться компьютерами… И вот почему это должно вас беспокоить</title>
-      <link href="/posts/2013/pc-not-for-children/"/>
-      <url>/posts/2013/pc-not-for-children/</url>
-      
-        <content type="html"><![CDATA[<p>Только что я прочитал одноименную статью на сайте habrahabr.ru. <a href="http://habrahabr.ru/post/189706/" target="_blank" rel="noopener">Вот она</a>. Это мой небольшой ответ на эту публикацию. <a id="more"></a></p><p><a href="/content/2013/08/Image-004.png"><img src="/content/2013/08/Image-004.png" alt=""></a></p><p>Автором этой статьи является некий Marc Scott. По тексту статьи там несколько раз упоминается Великобритания и можно предположить, что она там и была написана. Перевел её пользователь <a href="http://habrahabr.ru/users/guessss_who" target="_blank" rel="noopener">guessss_who</a>.</p><p>Статья очень объемная, но я все же попытаюсь кратко изложить её суть.</p><p>Многие говорят, что у нынешних детей есть всевозможные гаджеты, приставки, компьютеры, телефоны… и поэтому они разбираются во всем этом. Но практика показывает (и моя в том числе), что это заблуждение. Автор приводит несколько случаев из своей жизни, когда ему приходилось бороться с компьютерной безграмотностью. Там есть как и слишком сложные случаи (которые не обязан знать обычный пользователь), так и простые. </p><p>Например, сложный:</p><p><em>“Шестиклассник приносит мне свой ноутбук, объясняя, что тот работает очень медленно и отключается. Ноутбук буквально визжит, кулеры крутятся на всю катушку и корпус некомфортно горячий на ощупь. Запускаю Диспетчер задач и вижу, что CPU загружен на 100%, хотя запущен только uTorrent (у которого, внезапно, 200 торрент-файлов на раздаче). Осмотрелся, какие процессы запущены, и их было много, жрущих CPU и RAM. Более того, я не мог выключить ни одного из них. «Какой антивирус ты используешь?» — спросил я, чтобы услышать, что он не любит антивирусы, поскольку они замедляют работу компьютера. Я вернул ему ноутбук, и сказал, что тот заражен. Он спросил, что ему нужно сделать, и я предположил, что ему следует переустановить Windows. Он посмотрел на меня беспомощно. Он не умеет пользоваться компьютером.”</em></p><p>Тут очень много всяких специфических терминов и всего остального и разобраться простому человеку здесь будет очень сложно. </p><p>А вот пример простого:</p><p><em>“Девочка подняла руку на уроке. «Мой компьютер не включается», сказала она. С отчаянием в голосе, подразумевающим, что она испробовала все мыслимые способы заставить железяку работать. Я подошел, включил монитор, и экран ожил, отображая окно авторизации в Windows. Она не умеет пользоваться компьютером.”</em></p><p>И в этой ситуации человек должен понимать, что устройство работает от сети, и оно хотя бы должно быть туда подсоединено. Слишком примитивно.</p><p>И это безобразие повсюду. Как говорит автор:<br><em>“Если 20 лет назад 5% из нас имели дома компьютеры — то вы можете быть уверены, что 95% этих компьютеров были в руках у технически грамотных людей. Если допустить, что сегодня компьютеры дома у 95% из нас — то я предположу, что около 5% владельцев технически грамотны.”</em></p><p>И это все ведет к тому, что нынешние чиновники даже понятия не имеют о тех вещах, которые запрещают. Вряд ли в Гос. думе есть депутат, который разбирается в Интернет-технологиях? </p><p>Для исправления ситуации, по мнению автора, нужно дать детям чинить компьютер, если они сами его поломали; давать деньги на покупку приложений; улучшать уроки информатики в школах; использовать свободные ОС…</p><p>И теперь мое мнение: все-таки соблюдать это все нужно с осторожностью. В первой ситуации велика вероятность покупки нового аппарата, второе вообще бесмысленно в большинстве случаев (но автор советует “наступить на грабли”), а свободные ОС все-таки еще не настолько развиты и удобны, чтобы ими пользоваться каждый день (Да простят меня фанаты СПО и Linux).</p><p>Но все же, для общего развития, пользователю компьютера (а мобильники и планшеты тоже являются компьютерами) знать, какая операционная система стоит, какой браузер ты используешь и уметь отличить локальный диск от простого диска.</p><p>Ну а сейчас для многих Соц. сеть, браузер, иконка интернет-провайдера на рабочем столе являются одним и тем же и это печально.</p><p>В статье немало неосторожных слов, но она показывает истинное состояние дел в ИТ и компьютерной индустрии в целом. А ведь на этом наше будущее. </p><p><a href="http://habrahabr.ru/post/189706/" target="_blank" rel="noopener">Читать полную версию статьи “Дети не умеют пользоваться компьютерами… И вот почему это должно вас беспокоить” </a></p><p>Согласны? Делитесь с друзьями!</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Жизнь </category>
-          
-      </categories>
-      
       
     </entry>
     
@@ -1370,35 +1125,6 @@
     
     
     <entry>
-      <title>Dropbox: регистрация, основы</title>
-      <link href="/posts/2013/dropbox/"/>
-      <url>/posts/2013/dropbox/</url>
-      
-        <content type="html"><![CDATA[<p>Сегодня я выкладываю свой первый обучающий видеоурок на тему регистрации и работы с Dropbox. </p><a id="more"></a><p><a href="/content/2013/07/Image-0012.png"><img src="/content/2013/07/Image-0012.png" alt=""></a></p><p>Это моя первая попытка записи вообще и поэтому приветствуется критика, комментарии и отзывы.</p><p>И так, смотрим.</p><iframe width="560" height="315" src="//www.youtube.com/embed/yyZKIsuAqbM" frameborder="0" allowfullscreen></iframe><p><a href="http://db.tt/QQZoNRiG" target="_blank" rel="noopener">Ссылка для регистрации в Dropbox - db.tt/QQZoNRiG</a></p><p>Я в <a href="http://twitter.com/atnartur" target="_blank" rel="noopener">Твиттере</a>,  <a href="http://vk.com/atnartur" target="_blank" rel="noopener">ВКонтакте</a>, <a href="http://youtube.com/atnarturru" target="_blank" rel="noopener">YouTube</a>. Моя <a href="http://dev.atnartur.ru/projects/email-news/" target="_blank" rel="noopener">Информационная рассылка</a>.</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Софт </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> флешка </tag>
-            
-            <tag> синхронизация </tag>
-            
-            <tag> Видеоуроки </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Evernote - обзор, основы использования</title>
       <link href="/posts/2013/evernote/"/>
       <url>/posts/2013/evernote/</url>
@@ -1428,31 +1154,6 @@
     
     
     <entry>
-      <title>Бета версия Яндекс.островов</title>
-      <link href="/posts/2013/yandex-islands-beta/"/>
-      <url>/posts/2013/yandex-islands-beta/</url>
-      
-        <content type="html"><![CDATA[<p>Сегодня от Яндекса мне пришло письмо о том, что началось бета тестирование новой поисковой платформы “Яндекс.Острова”. Как они выглядят и что это такое далее. <a id="more"></a> </p><p>Вот такое суперинформативное письмо ждало меня в почтовом ящике. Видимо по ошибке оно было без текста.</p><p><a href="/content/2013/07/Image-0072.png"><img src="/content/2013/07/Image-0072-300x94.png" alt=""></a></p><p>Острова - новая поисковая платформа Яндекса, которая будет выводить на страницу не просто блоки ссылок, а блоки, в которых будет можно решать какую-либо задачу. Подробнее в этом видео:</p><iframe width="450" height="254" frameborder="0" src="http://video.yandex.ru/iframe/yacinema/qf601bmt2k.2605/"></iframe><p>И так, переходим на <a href="http://beta.yandex.ru" target="_blank" rel="noopener">beta.yandex.ru</a> и видим тот же Яндекс, только немножечко улучшенный.</p><p><a href="/content/2013/07/Image-0024.png"><img src="/content/2013/07/Image-0024-300x159.png" alt=""></a></p><p>Кнопка Настройки и кнопочка меню рядом с ней:<br><a href="/content/2013/07/Image-0031.png"><img src="/content/2013/07/Image-0031-300x117.png" alt=""></a></p><p>В одной из презентаций сервиса говорилось, что Острова смогут упросить навигацию по порталам государственных услуг. Давайте попробуем что-нибудь найти. Для начала просто “госуслуги Татарстана”</p><p><a href="/content/2013/07/Image-0041.png"><img src="/content/2013/07/Image-0041-300x160.png" alt=""></a></p><p>Ничего особенного:( Пробуем дальше. “записаться на прием к врачу” - тоже ничего особенного. С 200 попытки получилось найти запрос, в котором есть изменения:</p><p><a href="/content/2013/07/Image-0051.png"><img src="/content/2013/07/Image-0051-300x205.png" alt=""></a></p><p>При нажатии на адрес появляется карта:</p><p><a href="/content/2013/07/Image-0062.png"><img src="/content/2013/07/Image-0062-300x250.png" alt=""></a></p><p>ЕСТЬ! По запросу “Just travel” (по-русски: “только путешествия”) выходит достаточно информативное объявление!</p><p><a href="/content/2013/07/Image-0081.png"><img src="/content/2013/07/Image-0081-300x283.png" alt=""></a></p><p>Было найдено 2 ошибки в работе сервиса. И при отправке первой ошибки нашлась и третяя:D</p><p><a href="/content/2013/07/Image-0112.png"><img src="/content/2013/07/Image-0112-300x93.png" alt=""></a></p><p>Ну что ж? Это можно простить. Бета тестирование же:)</p><p>У полей “Туда” и “Обратно” есть календарь</p><p><a href="/content/2013/07/Image-0122.png"><img src="/content/2013/07/Image-0122-300x265.png" alt=""></a></p><p>Давайте попробуем запросить картинку.</p><p><a href="/content/2013/07/Image-0132.png"><img src="/content/2013/07/Image-0132-300x162.png" alt=""></a></p><p>После нажатия на “Еще … картинок” видим новую выдачу картинок: </p><p><a href="/content/2013/07/Image-0142.png"><img src="/content/2013/07/Image-0142-300x153.png" alt=""></a></p><p>Справа сразу же загружается первая картинка. Картинку можно посмотреть в увеличенном виде:</p><p><a href="/content/2013/07/Image-0152.png"><img src="/content/2013/07/Image-0152-300x148.png" alt=""></a></p><p>Видео:</p><p><a href="/content/2013/07/Image-0161.png"><img src="/content/2013/07/Image-0161-300x145.png" alt=""></a></p><p>Если нажать на “Карты”, то островов не будет. Будет просто <a href="http://maps.yandex.ru" target="_blank" rel="noopener">maps.yandex.ru</a></p><p>В некоторых случаях появляются специальные подсказки:</p><p><a href="/content/2013/07/Image-0171.png"><img src="/content/2013/07/Image-0171-300x82.png" alt=""></a></p><p>Страничка адаптирована для мобильных устройств:</p><p><a href="/content/2013/07/Image-0191.png"><img src="/content/2013/07/Image-0191-300x183.png" alt=""></a></p><p>Как оказалось, Острова доступны только тем, кто подписался на бету. Так что у других стоит стандартная промо-страница:</p><p><a href="/content/2013/07/Безымянный.png"><img src="/content/2013/07/%D0%91%D0%B5%D0%B7%D1%8B%D0%BC%D1%8F%D0%BD%D0%BD%D1%8B%D0%B9-300x148.png" alt=""></a></p><p>В общем, в ходе написания этого обзора было найдено 4 ошибки в работе новой платформы Яндекса (не считая пустого письма). Они будут направлены в службу поддержки.</p><p>Если вам понравился обзор - делитесь им с друзьями! Остались вопросы? Задавайте в комментариях!</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Жизнь </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Яндекс </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Как отключить новую сортировку писем в GMail</title>
       <link href="/posts/2013/gmail-sorting-off/"/>
       <url>/posts/2013/gmail-sorting-off/</url>
@@ -1472,37 +1173,6 @@
             <tag> Google </tag>
             
             <tag> GMail </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Открытие Универсиады 2013 в Казани</title>
-      <link href="/posts/2013/universiade2013-open/"/>
-      <url>/posts/2013/universiade2013-open/</url>
-      
-        <content type="html"><![CDATA[<p>Как житель Казани я не мог пропустить открытие Универсиады 2013, которая проходит в Казани. Как блогер я следил за происходящем еще и в <a href="http://twitter.com/atnartur" target="_blank" rel="noopener" title="@atnartur в Твиттере">Твиттере</a>! Ниже о том, что там происходило. <a id="more"></a></p><p>Недавно я перешел на Tweetdesk (обзор скоро) и там есть возможность следить сразу за несколькими пользователями/хештегами.</p><p><a href="/content/2013/07/Image-007.png"><img src="/content/2013/07/Image-007-300x141.png" alt=""></a></p><p>В Твиттере было создано несколько хештегов. Я следил за #openU2013 (официальный хештег церемонии открытия), #Казань, #Универсиада2013 и #kazan2013. Были еще #ЦеремонияОткрытия, #Kazan, #universiade, #universiade2013 и так далее… </p><p><em>(Хештег - слово, перед которым стоит символ #. Объединяет отдельные темы в социальных сетях (ВК, Твиттер))</em></p><p>Твиты с хештега #kazan2013 транслировались прямо на экран телевизора! И поэтому лента на #kazan2013 летела со скоростью света! В одну секунду по 10-15 твитов!</p><blockquote><p>Посмотрите <a href="https://twitter.com/search?q=%23kazan2013&amp;src=hash" target="_blank" rel="noopener">#kazan2013</a> и выдачу там записей! Это ужас какой-то….<br>&mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/statuses/353572520521244672" target="_blank" rel="noopener">July 6, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Вот так выглядела Казань Арена перед началом шоу:</p><blockquote><p><a href="https://twitter.com/search?q=%23openU2013&amp;src=hash" target="_blank" rel="noopener">#openU2013</a> фото с места событий <a href="http://t.co/S3a4XJIR8a" target="_blank" rel="noopener">pic.twitter.com/S3a4XJIR8a</a><br>&mdash; Артур (@Ar4es) <a href="https://twitter.com/Ar4es/statuses/353523328872488963" target="_blank" rel="noopener">July 6, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>На месте каждого зрителя лежал мешочек с тюльпаном, фанариком и колокольчиком. Все эти приятности в дальнейшем пригодятся. </p><blockquote><p>Каждый гость открытия Универсиады <a href="https://twitter.com/search?q=%23OpenU2013&amp;src=hash" target="_blank" rel="noopener">#OpenU2013</a> получил подарки <a href="http://t.co/EcawlBGgOQ" target="_blank" rel="noopener">pic.twitter.com/EcawlBGgOQ</a><br>&mdash; Аргументы в Ижевске (@aifudm) <a href="https://twitter.com/aifudm/statuses/353554999172820992" target="_blank" rel="noopener">July 6, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Зал перед началом</p><blockquote><p>Зал почти полный все готовы вот вот будет <a href="https://twitter.com/search?q=%23%D0%A6%D0%B5%D1%80%D0%B5%D0%BC%D0%BE%D0%BD%D0%B8%D1%8F%D0%9E%D1%82%D0%BA%D1%80%D1%8B%D1%82%D0%B8%D1%8F&amp;src=hash" target="_blank" rel="noopener">#ЦеремонияОткрытия</a> <a href="https://twitter.com/search?q=%23%D1%83%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D0%B0%D0%B4%D0%B02013&amp;src=hash" target="_blank" rel="noopener">#универсиада2013</a> <a href="https://twitter.com/search?q=%23OpenU2013&amp;src=hash" target="_blank" rel="noopener">#OpenU2013</a> <a href="https://twitter.com/search?q=%23Universiade2013&amp;src=hash" target="_blank" rel="noopener">#Universiade2013</a> <a href="https://twitter.com/search?q=%23kazan2013&amp;src=hash" target="_blank" rel="noopener">#kazan2013</a> <a href="http://t.co/j8IvjrLIeF" target="_blank" rel="noopener">pic.twitter.com/j8IvjrLIeF</a><br>&mdash; Victor Gusev (@Buk_Top) <a href="https://twitter.com/Buk_Top/statuses/353557080554213376" target="_blank" rel="noopener">July 6, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><blockquote><p>Уже совсем скоро, не пропустите!&#10;<a href="https://twitter.com/search?q=%23%D0%A3%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D0%B0%D0%B4%D0%B02013&amp;src=hash" target="_blank" rel="noopener">#Универсиада2013</a> <a href="https://twitter.com/search?q=%23%D0%9A%D0%B0%D0%B7%D0%B0%D0%BD%D1%8C&amp;src=hash" target="_blank" rel="noopener">#Казань</a> <a href="http://t.co/sWqbG7eP56" target="_blank" rel="noopener">pic.twitter.com/sWqbG7eP56</a><br>&mdash; Anton Galyaev (@agalyaev) <a href="https://twitter.com/agalyaev/statuses/353559182684860416" target="_blank" rel="noopener">July 6, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Прямые трансляции были на <a href="http://rutv.ru/live/" target="_blank" rel="noopener">России 1</a> и на <a href="http://ati-times.tatar-inform.ru/tv/uni/" target="_blank" rel="noopener">сайте спец. проекта ТатарИнформ</a>.</p><p>Шоу было очень завораживающим и красочным. В нем использовалась целая куча спец. эффектов, электроники и всего остального. </p><p>Ну и еще немного твитов:)</p><blockquote><p>Девочка из техников кричит своим всем стараться у меня мама смотрит)) <a href="https://twitter.com/search?q=%23OpenU2013&amp;src=hash" target="_blank" rel="noopener">#OpenU2013</a> <a href="https://twitter.com/search?q=%23kazan2013&amp;src=hash" target="_blank" rel="noopener">#kazan2013</a> <a href="https://twitter.com/search?q=%23%D0%A6%D0%B5%D1%80%D0%B5%D0%BC%D0%BE%D0%BD%D0%B8%D1%8F%D0%9E%D1%82%D0%BA%D1%80%D1%8B%D1%82%D0%B8%D1%8F&amp;src=hash" target="_blank" rel="noopener">#ЦеремонияОткрытия</a><br>&mdash; Victor Gusev (@Buk_Top) <a href="https://twitter.com/Buk_Top/statuses/353568834394918912" target="_blank" rel="noopener">July 6, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><blockquote><p>Началось торжественное открытие&#10;<a href="https://twitter.com/search?q=%23%D0%A3%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D0%B0%D0%B4%D0%B02013&amp;src=hash" target="_blank" rel="noopener">#Универсиада2013</a> <a href="https://twitter.com/search?q=%23%D0%9A%D0%B0%D0%B7%D0%B0%D0%BD%D1%8C&amp;src=hash" target="_blank" rel="noopener">#Казань</a> <a href="https://twitter.com/search?q=%23kazan2013&amp;src=hash" target="_blank" rel="noopener">#kazan2013</a> <a href="http://t.co/FOyfIPupCE" target="_blank" rel="noopener">pic.twitter.com/FOyfIPupCE</a><br>&mdash; Anton Galyaev (@agalyaev) <a href="https://twitter.com/agalyaev/statuses/353569437204500480" target="_blank" rel="noopener">July 6, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Мы смотрели церемонию открытия на простом ТВ. И в начале были некоторые проблемы с сигналом. А вот, что было на Россия HD</p><blockquote><p>Отличная трансляция <a href="https://twitter.com/search?q=%23%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8FHD&amp;src=hash" target="_blank" rel="noopener">#РоссияHD</a> <a href="https://twitter.com/search?q=%23kazan2013&amp;src=hash" target="_blank" rel="noopener">#kazan2013</a> <a href="https://twitter.com/search?q=%23%D0%A3%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D0%B0%D0%B4%D0%B02013&amp;src=hash" target="_blank" rel="noopener">#Универсиада2013</a> <a href="http://t.co/MSAXgu8LYO" target="_blank" rel="noopener">pic.twitter.com/MSAXgu8LYO</a><br>&mdash; Igor Radyshev (@radyshevigor) <a href="https://twitter.com/radyshevigor/statuses/353572834968211456" target="_blank" rel="noopener">July 6, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Тут видно и то, как выдавались твиты на экран. </p><p>Я очень сильно старался, чтобы мой твит попал на телеэкраны. Прошу прощения за количество вчерашних твитов от меня. После долгих стараний твит от <a href="http://twitter.com/wikitatar" target="_blank" rel="noopener">@wikitatar</a> все-таки выдали! Я был очень рад:D</p><p><a href="/content/2013/07/Image-0001.png"><img src="/content/2013/07/Image-0001-300x148.png" alt=""></a></p><p>В конце своей речи, В. В. Путин чуть не открыл олимпиаду и сказал “Исямесез” (татарское “здравствуйте”). Переводчик был в замешательстве и повторил слово. Было весело:D </p><blockquote><p>&quot;оль… Универсиаду!&quot; - Путин <a href="https://twitter.com/search?q=%23openU2013&amp;src=hash" target="_blank" rel="noopener">#openU2013</a> <a href="https://twitter.com/search?q=%23%D0%9A%D0%B0%D0%B7%D0%B0%D0%BD%D1%8C&amp;src=hash" target="_blank" rel="noopener">#Казань</a> <a href="https://twitter.com/search?q=%23%D0%A3%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D0%B0%D0%B4%D0%B02013&amp;src=hash" target="_blank" rel="noopener">#Универсиада2013</a> <a href="https://twitter.com/search?q=%23kazan2013&amp;src=hash" target="_blank" rel="noopener">#kazan2013</a><br>&mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/statuses/353629924755644416" target="_blank" rel="noopener">July 6, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><blockquote><p>ПУТИН ТОЛЬКО ЧТО ЧУТЬ ЛИ ОЛИМПИАДУ НЕ ОТКРЫЛ! <a href="https://twitter.com/search?q=%23kazan2013&amp;src=hash" target="_blank" rel="noopener">#kazan2013</a><br>&mdash; Мэтью Андерсон (@maybewewin) <a href="https://twitter.com/maybewewin/statuses/353629989700251648" target="_blank" rel="noopener">July 6, 2013</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Если вы не видели церемонию открытия по каким-либо причинам или хотите посмотреть её еще раз, то вы можете посмотреть шоу по ссылкам: <a href="http://player.rutv.ru/index/iframe/video_cid/507812/time_play/4597.76/isPlay/true/showPopUpBtn/false/showZoomBtn/true/" target="_blank" rel="noopener">первая часть</a>, <a href="http://player.rutv.ru/index/iframe/video_cid/507826/time_play/0.099/isPlay/true/showPopUpBtn/false/showZoomBtn/true/" target="_blank" rel="noopener">вторая часть</a>.</p><p>Если вам тоже понравилась церемония открытия, делитесь этой записью с друзьями а также оставляйте свои отзывы в комментариях!</p><p>Ну а я напомню, что сегодня в 11 часов вечера <a href="http://atnartur.ru/bitbucket-pereezzhaet-na-novy-server/">BitBucket начинает переезд на другой сервер</a> и следить за переводами официальных твитов вы можете в <a href="http://twitter.com/atnartur" target="_blank" rel="noopener">моем твиттере</a>.</p><p>Совсем скоро выйдет обзор Evernote, Tweetdesk и Dropbox! <a href="/">Подписывайтесь на обновления!</a></p><p>P.S. Ну а еще у меня завтра день рождения:)</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Жизнь </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> твиттер </tag>
-            
-            <tag> WikiTatar </tag>
-            
-            <tag> #kazan2013 </tag>
-            
-            <tag> Универсиада </tag>
             
         </tags>
       
@@ -1586,118 +1256,6 @@
     
     
     <entry>
-      <title>Продолжение об антипиратском законе</title>
-      <link href="/posts/2013/antipirate-law/"/>
-      <url>/posts/2013/antipirate-law/</url>
-      
-        <content type="html"><![CDATA[<p>Продолжение истории о нашумевшем законопроекте. <a id="more"></a></p><p>Начало обсуждения <a href="http://atnartur.ru/vernite-muzku-vk/" title="Верните музыку ВК">здесь</a>.</p><p>В передаче “Человек и закон” был составлен целый сюжет, посвященной данной теме. Там говорится о фильмах, но и к музыке и ко всему остальному авторскому контенту это тоже относится. </p><p>И так смотрим с 19 минуты и 20 секунды.</p><iframe width="560" height="315" src="http://www.youtube.com/embed/TtT1zQtjC2Q" frameborder="0" allowfullscreen></iframe><p>Ролик был найден в одной из <a href="http://habrahabr.ru/post/184212/" target="_blank" rel="noopener">статей на Хабре</a>, где тоже идет активное обсуждение. </p><p>Мне кажется, что сюжет имеет в себе очень много правды и об этом должны знать как можно больше людей. И, поэтому делитесь этой записью с друзьями!</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Жизнь </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> ВК </tag>
-            
-            <tag> пиратство </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Верните музыку ВК</title>
-      <link href="/posts/2013/vk-music/"/>
-      <url>/posts/2013/vk-music/</url>
-      
-        <content type="html"><![CDATA[<p>Сегодня Госдума приняла в первом чтении законопроект о блокировании сайтов с пиратским содержимым. Личное мнение об этом далее. <a id="more"></a></p><iframe src="http://player.rutv.ru/index/iframe/video_cid/475140/sid/vesti/?acc_video_id=515384" frameborder="0" style="width: 487px; height: 415px; border: none;"></iframe><p>Писать не буду. По-моему проще посмотреть видео. </p><p>Конечно же главным пиратским сайтом, по их словам, у нас является vk.com. Уже сейчас существует более 50 групп, в которых  высказываются мнения об отмене этого законопроекта. (<a href="http://vk.com/club48602391" target="_blank" rel="noopener">Первая</a>, <a href="http://vk.com/club54949518" target="_blank" rel="noopener">вторая</a>)</p><p>В основном в этих группах говорится только о музыке. Интересно, что происходит в торрент-трекерах… </p><h3 id="От-автора"><a href="#От-автора" class="headerlink" title="От автора"></a>От автора</h3><p>Но давайте посмотрим трезво на данную ситуацию. Представим, что вы являетесь автором очень популярной песни. Вы потратили месяцы на её сочинение, вы продвинули её на радио и теперь хотите получить наконец деньги за свою работу. Но тут ваша песня попадает в Интернет и вы не можете уже в полном объеме получать деньги. Обидно.</p><p>Популярность приходит по разному. Распространение музыки по Интернету - тоже своя популярность. Но от такой популярности мало дохода.</p><h3 id="От-пользователя"><a href="#От-пользователя" class="headerlink" title="От пользователя"></a>От пользователя</h3><p>Теперь давайте посмотрим на пиратство с точки зрения пользователя. Для меня самым безопасным хранилищем музыки был и остается (надеюсь, останется) контакт. Если искать файлы в гугле, то можно наткнуться на вирусы и вообще неприятные сайты. Ни для кого не секрет, что есть куча расширений для скачивания музыки и с контакта, и с YouTube, и с других сайтов. Даже если музыку из контакта уберут, её можно будет найти на зарубежных ресурсах. Опасно - но можно.</p><h3 id="В-общем…"><a href="#В-общем…" class="headerlink" title="В общем…"></a>В общем…</h3><p>музыка останется на месте. Пусть часть, но останется. Вот официальное тому подтверждение:</p><p><a href="/content/2013/06/51Xv1FNPt_Y.jpg"><img src="/content/2013/06/51Xv1FNPt_Y-300x167.jpg" alt="51Xv1FNPt_Y"></a></p><p>Так же есть множество групп радиостанций, которые выкладывают новую музыку в социальную сеть без всяких опасений (<a href="http://vk.com/record" target="_blank" rel="noopener">Record</a>, <a href="http://vk.com/dfm" target="_blank" rel="noopener">DFM</a>, <a href="http://vk.com/europaplus" target="_blank" rel="noopener">EuropaPlus</a>)! В этих группах и до сегодняшнего дня можно было увидеть сообщения об удалении той или иной песни.</p><h3 id="Поддержать…"><a href="#Поддержать…" class="headerlink" title="Поддержать…"></a>Поддержать…</h3><p>движение против законопроекта можно <a href="http://vk.com/club48602391" target="_blank" rel="noopener">здесь</a> и <a href="http://vk.com/club54949518" target="_blank" rel="noopener">здесь</a>;<br>Хештегами: #вернитемузыкувvk, #вернеммузыкувvk;<br>а также поделившись этой статьей. </p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Жизнь </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> ВК </tag>
-            
-            <tag> пиратство </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Вирус в скайпе - продолжение</title>
-      <link href="/posts/2013/skype-virus-2/"/>
-      <url>/posts/2013/skype-virus-2/</url>
-      
-        <content type="html"><![CDATA[<p>Как вы помните, я писал про <a href="http://atnartur.ru/spam-virus-v-skaype/">спам-вирус в скайпе</a>. Эта история получила продолжение.<a id="more"></a></p><p>И сегодня об этом вирусе написали на хабре:</p><blockquote><p>Спам-кампания в Skype подвергла опасности сотни тысяч пользователей <a href="https://twitter.com/search/%23habr" target="_blank" rel="noopener">#habr</a> <a href="http://t.co/WPJ8F4R8cS" target="_blank" rel="noopener" title="http://habr.ru/p/182754/">habr.ru/p/182754/</a><br>&mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/status/344038376393027585" target="_blank" rel="noopener">10 июня 2013 г.</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Статья очень интересная. Советую прочитать.</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Софт </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Школа </tag>
-            
-            <tag> windows </tag>
-            
-            <tag> вирус </tag>
-            
-            <tag> Skype </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Не открывается локальный диск из «Компьютера»</title>
-      <link href="/posts/2013/pc-local-drive-not-open/"/>
-      <url>/posts/2013/pc-local-drive-not-open/</url>
-      
-        <content type="html"><![CDATA[<p>После разделения диска C через Acronis Disk Director появилась проблема: новый логический раздел не хотел открываться. Вылезало окошко о том, что не найдено приложение для открытие файла. Как исправить данную ошибку - читайте далее. Открывание локального жесткого диска было похоже на открывание простой флешки. Ничего не помогало. Но решение все-таки нашлось. <strong>ВНИМАНИЕ!!! ЛЮБЫЕ НЕОСТОРОЖНЫЕ ОПЕРАЦИИ В РЕЕСТРЕ МОГУТ ПРИВЕСТИ К ПОЛОМКЕ ОПЕРАЦИОННОЙ СИСТЕМЫ!!!</strong> Чтобы убрать проблему, нужно:</p><ol><li>Открыть реестр (Пуск/Выполнить/regedit)</li><li>В открывшемся окне перейти в HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\MountPoints2</li><li>Найти раздел с названием проблемного диска и открыть его</li><li>В разделе проблемного диска удалить раздел Shell</li></ol><p>Все! Проблема должна уйти после этого. Что-то не понятно? Напишите ваш вопрос в комментарии! Отвечу:) Если вам помогло это решение - поделитесь им с друзьями!</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Другое </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> windows </tag>
-            
-            <tag> вирус </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Opera Next 15 - Opera на WebKit</title>
       <link href="/posts/2013/opera15-webkit/"/>
       <url>/posts/2013/opera15-webkit/</url>
@@ -1754,219 +1312,6 @@
     
     
     <entry>
-      <title>Спам-вирус в скайпе</title>
-      <link href="/posts/2013/skype-spam-virus/"/>
-      <url>/posts/2013/skype-spam-virus/</url>
-      
-        <content type="html"><![CDATA[<p>Заметка написана на скорую руку. За ошибки, не ругайте:)</p><p>Со вчерашнего дня вижу распространение вируса, который отправляет всем контактам сообщение с просьбой посмотреть на фотографию и ссылкой на скачивание вируса. <a id="more"></a></p><p>Вот так выглядят эти сообщения:<br><a href="/content/2013/05/Image-010.png"><img src="/content/2013/05/Image-010.png" alt="Image 010"></a></p><p>После клика на ссылку, начинает скачиваться архив. В архиве - EXE программа с вирусом. Вирус залезает непонятно куда и начинает распространяться…</p><p>Чтобы вычистить его, нужно зайти в скайп, затем Инструменты/Настройки/Дополнительно/Расширенные настройки/Контроль доступа других программ…<br><a href="/content/2013/05/Image-012.png"><img src="/content/2013/05/Image-012-300x257.png" alt="Image 012"></a></p><p>И в открывшемся окне убираем все, что есть.</p><p>После этого нужно перезагрузиться в безопасный режим Windows (перезагружаемся и жмем во время перезагрузки F8 и в появившемся списке выбираем Безопасный режим). </p><p>Затем идем в C://ProgrammData и убираем оттуда все файлы, но ПАПКИ НЕ ТРОГАЕМ!!! </p><p>После удаления, нужно почистить компьютер через <a href="http://download.cnet.com/CCleaner/3000-18512_4-10315544.html?part=dl-&subj=dl&tag=button" target="_blank" rel="noopener">CCleaner</a>. Удалятся все данные просмотра веб-страниц, история, кеш, куки браузеров и много другого не нужного.</p><p>Потом идем в “Компьютер” и набираем в строке адреса %APPDATA% и нажимаем Enter.<br><a href="/content/2013/05/Image-011.png"><img src="/content/2013/05/Image-011.png" alt="Image 011"></a></p><p>Переходим. Удаляем здесь полностью папку Skype.</p><p>После этого чистим корзину и перезагружаемся.</p><p>Все это пробовалось на Windows 7. В восьмерке - должно совпасть, а вот в XP - не знаю…</p><p>Вроде все. Если у вас этот вирус не прошел, напишите в комментарии, разберемся сообща.</p><p>P.S. Поменяйте пароль! Этот вирус, кроме всего вышеперечисленного, крадет пароли!</p><p>P.P.S. История получила <a href="http://atnartur.ru/virus-v-skaype-prodolzhenie/">продолжение!</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Софт </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Школа </tag>
-            
-            <tag> windows </tag>
-            
-            <tag> вирус </tag>
-            
-            <tag> Skype </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Как получить дополнительные 32+5 ГБ на Яндекс.Диске?</title>
-      <link href="/posts/2013/yandex-disk-32gb/"/>
-      <url>/posts/2013/yandex-disk-32gb/</url>
-      
-        <content type="html"><![CDATA[<p>В Яндекс.Диске проходит новая акция: после того, как вы отправите с камеры или фотоаппарата фотографии или видео, вам дают дополнительные 32 гигабайта! Подробности здесь. <a id="more"></a></p><p><a href="/content/2013/05/Image-0013.png"><img src="/content/2013/05/Image-0013-300x179.png" alt="Image 001"></a></p><p>У кого нет Яндекс.Диска, его нужно конечно же <a href="http://atnartur.ru/r/ydisk" title="Зарегистрировать Яндекс.Диск">зарегистрировать по этой ссылке</a>. Если уже зарегистрированы, читаем дальше.</p><p>Затем переходим <a href="http://disk.yandex.ru/download/" target="_blank" rel="noopener" title="Загрузить Яндекс.Диск">сюда</a>, чтобы обновить (или скачать) Яндекс.Диск. </p><p>После обновления подключаем камеру и разрешаем импорт фотографий из камеры на Яндекс.Диск. Все! 32 гигабайта получены! </p><p>После получения приходит такое письмо:<br><a href="/content/2013/05/Image-0031.png"><img src="/content/2013/05/Image-0031-300x263.png" alt="Image 003"></a></p><p>Делитесь статьей с друзьями и отвечайте в комментариях!</p><p>P.S. Кто хочет еще 5 ГБ, поставьте Яндекс.Браузер с <a href="https://mail.yandex.ru/neo2/?force2pane#disk/tuning/" target="_blank" rel="noopener">этой страницы</a>.</p><p>Мой диск сейчас:<br><a href="/content/2013/05/Image-0041.png"><img src="/content/2013/05/Image-0041-300x32.png" alt="Image 004"></a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Софт </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Яндекс </tag>
-            
-            <tag> синхронизация </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Еще один день с хромом - Переход на хром, часть третья</title>
-      <link href="/posts/2013/moving-to-chrome-3/"/>
-      <url>/posts/2013/moving-to-chrome-3/</url>
-      
-        <content type="html"><![CDATA[<p>Еще одна запись про мой переход на хром. Продожение <a href="http://atnartur.ru/dopilivaem-hrom-perehod-na-hrom-tchasty-pervaya/" title="Допиливаем хром — Переход на хром, часть первая">этого</a> и <a href="http://atnartur.ru/perve-vpetchatleniya-perehod-na-hrom-tchasty-vtoraya/" title="Первые впечатления — Переход на хром, часть вторая">этого</a>. Все по порядку можно посмотреть <a href="http://atnartur.ru/tag/na-hrom/" title="На хром (метка)">здесь</a>. <a id="more"></a></p><h3 id="Реклама-на-vk-com-от-Feedly"><a href="#Реклама-на-vk-com-от-Feedly" class="headerlink" title="Реклама на vk.com от Feedly"></a>Реклама на vk.com от Feedly</h3><p>Как оказалось, реклама эта не от Feedly, а от Mail Checker Plus for Google Mail.</p><p><a href="/content/2013/05/Image-0012.png"><img src="/content/2013/05/Image-0012-300x56.png" alt="Image 001"></a></p><p>А в Feedly она появлялась из-за Mail Checker как раз:)  Пришлось искать другое расширение. И я его нашел. Это <a href="https://chrome.google.com/webstore/detail/checker-plus-for-gmail/oeopbcgkkoapgobdbedcemjljbihmemj" target="_blank" rel="noopener">Checker Plus for Gmail</a>. Делает все то же самое и, на первый взгляд, не ставит рекламы. На странице оплаты написано следующее (читайте подчеркнутое одной линией):</p><p><a href="/content/2013/05/Image-0022.png"><img src="/content/2013/05/Image-0022-300x130.png" alt="Image 002"></a></p><p>А теперь прочитайте подчеркнутое двумя линиями! Google Переводчик старался изо всех сил!:DDD</p><h3 id="Загрузка…"><a href="#Загрузка…" class="headerlink" title="Загрузка…"></a>Загрузка…</h3><p>Хром у меня переодически произносит слово “загрузка”. Очень странно… Дело конечно же в каком-то из расширений… Но вот в каком? Если знаете, напишите пожалуйста в комментарии.</p><p>Также в комментарии можно писать и ваши отзывы о статье. Если статья вам понравилась, поделитесь ею в социальных сетях!</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Софт </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> браузеры </tag>
-            
-            <tag> Хром </tag>
-            
-            <tag> На хром </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Первые впечатления - Переход на хром, часть вторая</title>
-      <link href="/posts/2013/moving-to-chrome-2/"/>
-      <url>/posts/2013/moving-to-chrome-2/</url>
-      
-        <content type="html"><![CDATA[<p>Первые впечатления после перехода на хром. Продолжение <a href="http://atnartur.ru/dopilivaem-hrom-perehod-na-hrom-tchasty-pervaya/" title="Допиливаем хром — Переход на хром, часть первая">вчерашней</a> статьи. <a id="more"></a></p><h3 id="Решенные-и-не-решенные-проблемы"><a href="#Решенные-и-не-решенные-проблемы" class="headerlink" title="Решенные и не решенные проблемы"></a>Решенные и не решенные проблемы</h3><p><strong>RSS клиент нашелся</strong>. Мне понравился <a href="https://chrome.google.com/webstore/detail/feedly-your-news-rss-goog/hipbfijinpcgfogaopmgehiegacbhmob" target="_blank" rel="noopener">Feedly</a>. Все красиво и все работает. </p><p><a href="/content/2013/05/Image-008.png"><img src="/content/2013/05/Image-008-300x140.png" alt=""></a></p><p><strong>Пароли</strong> потихоньку переносятся сами. Хотя не заметил пока, что хром сохраняет несколько паролей на одной странице, как мне <a href="http://vk.com/wall69498414_2193?reply=2194" target="_blank" rel="noopener">писали ВК</a>. Вот что у меня было в опере на одном из сайтов: </p><p> <a href="/content/2013/05/Image-002-копия.png"><img src="/content/2013/05/Image-002-%D0%BA%D0%BE%D0%BF%D0%B8%D1%8F-300x146.png" alt=""></a></p><p>В хроме нет такого окошка - уже плохо. Но есть ли сохранение нескольких паролей на одной страничке? Пока тоже его не увидел.</p><p><a href="http://vk.com/wall69498414_2193?reply=2194" target="_blank" rel="noopener">Оказывается</a>, вкладки закрепляются. И они действительно закрепляются.</p><h3 id="Замеченные-баги"><a href="#Замеченные-баги" class="headerlink" title="Замеченные баги"></a>Замеченные баги</h3><p><strong>Яндекс</strong> у меня сегодня грузится очень странно. Может это не зависит от хрома, но это действительно так.</p><p><strong>Не грузится <a href="https://miro.com" target="_blank" rel="noopener">Realtimeboard</a></strong>. Было замечено и другими моими друзьями, которые пользуются этим сервисом.</p><p><strong>Реклама в чатах ВК</strong> непонятно откуда взялась. Очень странно. Вот так это выгядит</p><p><a href="/content/2013/05/Image-004.png"><img src="/content/2013/05/Image-004-300x108.png" alt=""></a></p><p>Реклама появляется внизу сообщений и сдвигает их вверх, что очень неприятно. Не знаю уж, баг это или фича, но это точно мешает переписываться. Пошел смотреть код… </p><p><a href="/content/2013/05/Image-005.png"><img src="/content/2013/05/Image-005-300x37.png" alt=""></a></p><p>Видите подчеркнутое, да? Дальше стал смотреть в сторону установленных недавно расширений. При просмотре Feedly нашел: </p><p><a href="/content/2013/05/Image-006.png"><img src="/content/2013/05/Image-006-300x180.png" alt=""></a></p><p>Очень странно… Какая связь между Feedly и ВК - непонятно…</p><h3 id="Остальное"><a href="#Остальное" class="headerlink" title="Остальное"></a>Остальное</h3><p>В качестве экспресс панели поставил <a href="https://chrome.google.com/webstore/detail/speed-dial-2/jpfpebmajhhopeonhlcgidhclcccjcik" target="_blank" rel="noopener">Speed Dial 2</a>. Он мне очень понравился и выглядит он так:</p><p><a href="/content/2013/05/Image-007.png"><img src="/content/2013/05/Image-007-300x151.png" alt="Image 007"></a></p><p>Пришлось поставить свой фон, но сам дизайн тоже очень хорошо. Правая панелька содержит приложения, закладки и историю. Тоже очень удобно.</p><p>Для проверки почты стоят:</p><ul><li><a href="https://chrome.google.com/webstore/detail/yandex-mail-notifier/eadffjcokgoackhjjolijibmofedopnk" target="_blank" rel="noopener">Yandex Mail Notifier (показывает кол-во непрочитанных писем рядом с адресной строкой)</a></li><li><a href="https://chrome.google.com/webstore/detail/%D1%8F%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D0%BF%D0%BE%D1%87%D1%82%D0%B0/lonndeeklpobbkjaacljjjkddafbbbfa" target="_blank" rel="noopener">Яндекс.Почта (показывает уведомления о непрочитанных письмах)</a></li><li><a href="https://chrome.google.com/webstore/detail/mail-checker-plus-for-goo/gffjhibehnempbkeheiccaincokdjbfe" target="_blank" rel="noopener">Mail Checker Plus for Google Mail (показывает уведомления о непрочитанных письмах и имеет индикатор рядом с адресной строкой)</a></li></ul><h3 id="Вывод"><a href="#Вывод" class="headerlink" title="Вывод"></a>Вывод</h3><p>Пользоваться можно, но как-то не очень удобно. Напоминаю, что свои отзывы вы можете оставить в комментариях. Следить за моими мучениями можно <a href="http://atnartur.ru" title="atnartur.ru">здесь</a>, по <a href="http://feeds.feedburner.com/atnartur" target="_blank" rel="noopener" title="RSS лента">RSS</a> и через <a href="http://atnartur.ru" title="atnartur.ru">e-mail уведомления</a>.</p><p><a href="http://atnartur.ru/eshte-odin-deny-s-hromom-perehod-na-hrom-tchasty-tretyya/" title="Еще один день с хромом — Переход на хром, часть третья">продолжение</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Софт </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Opera </tag>
-            
-            <tag> браузеры </tag>
-            
-            <tag> Хром </tag>
-            
-            <tag> На хром </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Допиливаем хром - Переход на хром, часть первая</title>
-      <link href="/posts/2013/moving-to-chrome-1/"/>
-      <url>/posts/2013/moving-to-chrome-1/</url>
-      
-        <content type="html"><![CDATA[<p>Всем привет! Недавно я на <a href="http://vk.com/atnartur?w=wall69498414_2163" target="_blank" rel="noopener" title="Атнагулов Артур - ВКонтакте">своей стене ВКонтакте</a> опубликовал опрос. Ну так вот. Зрелище начинается! :) <a id="more"></a></p><p><a href="/content/2013/05/Image-0011.png"><img src="/content/2013/05/Image-0011-300x222.png" alt="Пост ВКонтакте"></a></p><p>Многие друзья сидят на хроме и все же гнобят оперу. Я и сам замечаю, что некоторые сайты (особенно те, которые пренадлежат гуглу) отображаются неверно в опере. </p><p>Ну что ж? Рынок браузеров, к сожалению, зависит не от нас, и мы вынуждены подстраиваться под него. </p><p>Сегодня начинается очередная попытка перехода на хром. Следить за этим вы сможете на <a href="http://atnartur.ru">моем сайте</a>, подписавшись на <a href="http://feeds.feedburner.com/atnartur" target="_blank" rel="noopener" title="RSS">RSS ленту</a> или на <a href="http://atnartur.ru/">E-mail рассылку новостей</a>.</p><h3 id="Недостатки-хрома"><a href="#Недостатки-хрома" class="headerlink" title="Недостатки хрома"></a>Недостатки хрома</h3><p>В первую очередь: <strong>нет нормального сохранения паролей</strong>. Во-первых, пароли сохраняются далеко не на всех сайтах. Во-вторых, нельзя сохранить несколько паролей на одну страничку.</p><p>Во вторую очередь: <strong>нет встроенного клиента для чтения RSS лент</strong>. Тем более сейчас еще и Google Reader закрыли… Но, думаю, есть множество сервисов в онлайне, например Яндекс.Подписки. Придется поискать…</p><p>Еще в хроме <strong>нельзя помещать закладки иконочками рядом с адресной строкой</strong>. Не все наверное поняли. Объясню. У меня в опере некоторые закладки лежат в экспресс панели, а некоторые (может быть не самые важные, но нужные прямо сейчас) лежат рядом с адресной строкой:</p><p><a href="/content/2013/05/Image-0021.png"><img src="/content/2013/05/Image-0021-300x30.png" alt="Иконки рядом с адресной строкой в опере"></a></p><p>Хром также обладает, на мой взгляд, <strong>кривыми инструментами разработки</strong>. Нельзя кликнуть по элементу и сразу же увидеть код. Не такая консоль, как в Firefox и Opera… </p><p>Ну и наконец, хром <strong>слишком простой</strong> для меня. Ну слишком мало информации там… Ну ужас просто. Нельзя закрепить вкладки, нет панелей (боковых) как в опере…</p><h3 id="Методы-решения-проблем"><a href="#Методы-решения-проблем" class="headerlink" title="Методы решения проблем"></a>Методы решения проблем</h3><p><strong>Пароли</strong>. Есть много кроссбраузерных менеджеров паролей. Мне больше нравится <a href="https://lastpass.com/index.php?fromwebsite=1" target="_blank" rel="noopener" title="lastpass.com">LastPass</a>. Есть расширения для всех популярных браузеров. Но! Из оперы никак не перенести пароли… И это печалька… Гуглил, сам копал конфиги, документации… Кроме как вручную их не перенесешь…</p><p><strong>RSS клиент</strong> действительно можно найти. Нужно просто поискать. Если по паролям я уже искал, то по RSS клиентам, даже без поиска знаю, что есть такие.</p><p><strong>Всякие штучки на адресной строке</strong> можно поставить с помощью расширений… Но это конечно будет уже немного не то…</p><p><strong>Инструментами разработчика</strong> в опере редко пользовался, т. к. для этого у меня Firefox. И тут они особенно не понадобятся…</p><h3 id="Вывод"><a href="#Вывод" class="headerlink" title="Вывод"></a>Вывод</h3><p>Чтобы перейти на хром, придется приложить усилия… </p><p>Усилия уже были приложены. 3 часа потратил на способ переноса паролей из Оперы в Хром. Видимо хакерскими методами этого не сделать, т. к. (цитаты) “движки разные”, “пароли хранятся в закрытом режиме и в своем формате”.</p><p>Дорогие читатели, прошу вас. Если кто-то знает метод переноса паролей из оперы на хром (лучше через last pass), прошу написать в комментарии или на <a href="mailto:i@atnartur.ru">i@atnartur.ru</a></p><p><a href="http://atnartur.ru/perve-vpetchatleniya-perehod-na-hrom-tchasty-vtoraya/" title="Первые впечатления — Переход на хром, часть вторая">продолжение</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Софт </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Opera </tag>
-            
-            <tag> браузеры </tag>
-            
-            <tag> Хром </tag>
-            
-            <tag> На хром </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Не работает Денвер при отключенном интернете</title>
-      <link href="/posts/2013/denwer-without-internet-not-working/"/>
-      <url>/posts/2013/denwer-without-internet-not-working/</url>
-      
-        <content type="html"><![CDATA[<p>Здравствуйте. Недавно у меня появилась такая проблема: при отсутствии подключения к интернету, Денвер запускался, но сайты не открывались ни в одном браузере.</p><p>Сегодня, убив целый час на поиск проблемы, я все же её нашел. Подробнее здесь <a id="more"></a></p><p><a href="/content/2013/05/11.gif"><img src="/content/2013/05/11.gif" alt="Денвер"></a></p><p><strong>Подробнее о проблеме</strong> Когда интернет включен, локальные сайты открываются. Когда интернета нет, локальные сайты не открываются. Все просто:)</p><p>Сначала я копал в настройки брандмауэра, сетевых подключений и прочего… После всего этого пришла в голову мысль создать подключение <strong>Loopback</strong> (петля), которое подключается к этому же компьютеру. Способ создания петли искал долго, но не нашел… </p><p>Затем пробовал создавать <strong>сетевой мост</strong> среди нескольких подключений. Это тоже не дало никаких результатов… </p><p>У меня стоит еще один локальный сервер - Open Server. Попробовал запустить его. И ОН ОТКРЫЛСЯ! У меня было просто изумление… Значит дело в Денвере…</p><p><strong>Начал сравнивать конфигурации Apache</strong> двух комплектов. Мучал директиву Listen. </p><p>После этого решил взглянуть на <strong>окно отчета Apache</strong> (честно говоря не знаю как оно правильно называется, но выглядит оно так). Вызывается оно по клику на иконку Apache в трее (<img src="/content/2013/05/Image-001.png" alt="Image 001">)).</p><p><a href="/content/2013/05/Image-000.png"><img src="/content/2013/05/Image-000-300x170.png" alt="Image 000"></a></p><p>На этом скриншоте - все хорошо. Интернет включен и все нормально работает. </p><p>А вот так оно выглядело, когда проблема еще не была решена:</p><p><a href="/content/2013/05/Image-003.png"><img src="/content/2013/05/Image-003-300x173.png" alt="Image 003"></a></p><p>У него не получается разрешить адрес 192.168.0.**:80. Когда интернета нет, WiFi тоже не работает, значит и этого IP адреса нет. Как раз на это Apache и ругается.</p><p>У меня один из сайтов Денвера открыт в локальную сеть. В связи с этим в .htaccess этого сайта написано: </p><p><a href="/content/2013/05/Image-002.png"><img src="/content/2013/05/Image-002.png" alt="Image 002"></a></p><p>После того, как я убрал эту строку из .htaccess и перезапустил Денвер, все заработало!</p><p><strong>Вывод</strong></p><p>Прежде чем гуглить, посмотрите на окно отчета Apache. Там пишется много всего интересного.</p><p>Если уж начали искать, поищите сначала на <a href="http://denwer.ru" target="_blank" rel="noopener" title="Официальный сайт Денвера">на сайте проекта</a> в разделе FAQ. Возможно найдете ответ там.</p><p>Если уж не нашли, тогда гуглите.</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> О разработке </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> браузеры </tag>
-            
-            <tag> windows </tag>
-            
-            <tag> Денвер </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Юный программист - муниципальный этап</title>
-      <link href="/posts/2013/young-programmer-rayon/"/>
-      <url>/posts/2013/young-programmer-rayon/</url>
-      
-        <content type="html"><![CDATA[<p>У меня давно вошло в традицию смотреть, кто занял первые места на тех или иных конкурсах. Юный программист не стал исключением. Как раз недавно проходил районный этап этого конкурса и ссылки на сайты победителей районного этапа были выложены на сайте Министерства образования и науки. Вот некоторые мысли об этом.<a id="more"></a></p><p>Всё, что накипело, я сначала писал в <a href="http://twitter.com/atnartur" target="_blank" rel="noopener" title="Мой Твиттер">Твиттер</a>. Поэтому вся статья будет состоять из твитов.</p><blockquote><p>ЮП: сайты, первые места, на бесплатных хостингах, ссылки не работают, дизайн отсутсвует…. А <a href="http://t.co/D7qh58XPsH" target="_blank" rel="noopener" title="http://wikitatar.ru">wikitatar.ru</a> не пропустили<br>&mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/status/327795112988012547" target="_blank" rel="noopener">26 апреля 2013 г.</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Не подумайте, что я прямо так хочу восхвалять <a href="http://wikitatar.ru" target="_blank" rel="noopener">Викитатар</a>, но все же…. Хотя сейчас сами все увидите…</p><p>И мне тут ответил <a href="http://mubinov.com" target="_blank" rel="noopener">Алмаз Мубинов</a> - ведущий эксперт Байтика на сменах по веб-разработке:</p><blockquote><p>@<a href="https://twitter.com/atnartur" target="_blank" rel="noopener">atnartur</a> Эгей! Полегче!) Первых мест еще нет, и могу заверить, что на очном туре победители будут достойными.<br>&mdash; Almaz Mubinov (@mubinov) <a href="https://twitter.com/mubinov/status/327873230746550273" target="_blank" rel="noopener">26 апреля 2013 г.</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>И я ему:</p><blockquote><p>@<a href="https://twitter.com/mubinov" target="_blank" rel="noopener">mubinov</a> Я не сомневаюсь, что на очном туре все будет классно!) Про движки - согласен…<br>&mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/status/328080321448927232" target="_blank" rel="noopener">27 апреля 2013 г.</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>А теперь, продолжение:</p><blockquote><p>ЮП: цель сайта зачастую непонятна… Дизайн на уровне 90х годов… Ярко-желтый фони на нем белый текст…<br>&mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/status/327795390780936195" target="_blank" rel="noopener">26 апреля 2013 г.</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><blockquote><p>ЮП: но ладно хоть @<a href="https://twitter.com/cafe4me_tweet" target="_blank" rel="noopener">cafe4me_tweet</a> прошли)) Молодцы!))<br>&mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/status/327796199480504320" target="_blank" rel="noopener">26 апреля 2013 г.</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Кстати! <a href="http://cafe4me.ru" target="_blank" rel="noopener">Cafe4me</a> прошел в следующий этап! Поздравляю!!!))</p><blockquote><p>ЮП: на одном из сайтов вообще в &lt;title&gt; написано Data Life Engine. Но он на соц. тематику и им можно это простить))<br>&mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/status/327798132559708160" target="_blank" rel="noopener">26 апреля 2013 г.</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><blockquote><p>ЮП: сайт какой-то школы. Регистрироваться, чтобы посмотреть новости школы? Оно мне надо? Регистрация ради регистрации? жесть…<br>&mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/status/327798442107752450" target="_blank" rel="noopener">26 апреля 2013 г.</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><blockquote><p>ЮП: А! Ну забыл сказать! Целая куча сайтов на юкозах и прочих!<br>&mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/status/327800549296709633" target="_blank" rel="noopener">26 апреля 2013 г.</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><blockquote><p>ЮП: при этом самописных сайтов там по пальцам одной руки пересчитать можно!<br>&mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/status/327800658080182275" target="_blank" rel="noopener">26 апреля 2013 г.</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><blockquote><p>ЮП: Ну а правильно! Проверяют же обычные учителя информатики. Они даже HTML не знают… А разбираются в сайтах вообще единицы…<br>&mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/status/327801013073502208" target="_blank" rel="noopener">26 апреля 2013 г.</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><blockquote><p>ЮП: что с них взять?<br>&mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/status/327801035915681794" target="_blank" rel="noopener">26 апреля 2013 г.</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>С учителей имеется в виду.</p><p>Ну вот так… Получается те, кто действительно работал над своим сайтом, искал, изучал технологии, набирал опыт, остаются вне конкурса, а те, кто на шару заходит на юкоз, пробивается на первые места.</p><p>В том году, на Юном программисте в Байтике, говорили, что много достойных проектов осталось на районном этапе…</p><p>И <a href="http://mubinov.com" target="_blank" rel="noopener">Алмаз Мубинов</a> подтверждает:</p><blockquote><p>@<a href="https://twitter.com/atnartur" target="_blank" rel="noopener">atnartur</a> Однако печалит, что на ЮП проходят ucoz/dle/wordpress сайты на шаблонах, оставляя за бортом по-настоящему сильные работы.<br>&mdash; Almaz Mubinov (@mubinov) <a href="https://twitter.com/mubinov/status/327874170685894657" target="_blank" rel="noopener">26 апреля 2013 г.</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p><strong>В итоге</strong>, чтобы пройти районный этап, нужно иметь кучу информации на сайте, но на чем написан сайт - все равно. А дальше: информация - тоже хорошо, даже отлично, но важнее - код, который находится под капотом…</p><p>Ваши мнения жду в комментариях. Кто согласен, поделитесь статьей!</p><p>P. S. <a href="http://mon.tatarstan.ru/rus/programmist_2013.htm" target="_blank" rel="noopener" title="МОН РТ">здесь</a> есть файл со ссылками на сайты победителей</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Жизнь </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Проекты </tag>
-            
-            <tag> cafe4me </tag>
-            
-            <tag> Школа </tag>
-            
-            <tag> Байтик </tag>
-            
-            <tag> WikiTatar </tag>
-            
-            <tag> Юный программист </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Как снять атрибут «скрытый» и «системный» с файлов и папок</title>
       <link href="/posts/2013/hidden-system-attrs/"/>
       <url>/posts/2013/hidden-system-attrs/</url>
@@ -1992,176 +1337,6 @@
             <tag> вирус </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>IT-чемпион: зачем он нужен и как зарегистрироваться</title>
-      <link href="/posts/2013/it-champion/"/>
-      <url>/posts/2013/it-champion/</url>
-      
-        <content type="html"><![CDATA[<p>В поддержку <a href="http://uslugi.tatar.ru" target="_blank" rel="noopener" title="Портал государтсвенных и мунициальных услуг Республики Татарстан">uslugi.tatar.ru</a> был запущен проект IT-чемпион. Очень много шума, но внятной информации почти нигде нет и она трудно доступна. В этой статье - все по полочкам о том, как зарегистрироваться и как набрать баллы. <a id="more"></a></p><h2 id="Регистрация"><a href="#Регистрация" class="headerlink" title="Регистрация"></a>Регистрация</h2><p>Входим в <a href="http://edu.tatar.ru" target="_blank" rel="noopener" title="Электронное образование в Республике Татарстан">электронный дневник</a> и кликаем в левом меню по ссылке “IT-чемпион”.</p><p><a href="/content/2013/04/Image-0001.png"><img src="/content/2013/04/Image-0001-300x127.png" alt="Image 000"></a></p><p>Открывается такая страничка. Ждем загрузки баллов и ВСЕ! Регистрация закончена! Да! Действительно все так просто:)<br><a href="/content/2013/04/Image-001.png"><img src="/content/2013/04/Image-001-300x260.png" alt="Image 001"></a></p><p>“+4” как у меня у вас еще нет. Но скоро появится. Читаем дальше!</p><h2 id="Как-набрать-баллы"><a href="#Как-набрать-баллы" class="headerlink" title="Как набрать баллы"></a>Как набрать баллы</h2><p>Баллы набираются действиями на <a href="http://uslugi.tatar.ru" target="_blank" rel="noopener" title="Портал государтсвенных и мунициальных услуг Республики Татарстан">uslugi.tatar.ru</a>. Там нужно оплачивать. И это самое главное. Без оплаты баллов не дадут. Ну, обо всем по порядку.</p><p><em>При регистрации, если вам не трудно, укажите мой логин <strong>4910053026</strong>. Буду вам очень благодарен.</em></p><p>Заходим на <a href="http://uslugi.tatar.ru" target="_blank" rel="noopener" title="Портал государтсвенных и мунициальных услуг Республики Татарстан">uslugi.tatar.ru</a> и, кликнув по кнопке “Регистрация”, регистрируем маму, папу, дядю, тетю, соседей и т. д. Кого захотите. Затем где-то в недрах личного кабинета нужно указать логин ребенка с <a href="http://edu.tatar.ru" target="_blank" rel="noopener" title="Электронное образование в Республике Татарстан">edu.tatar.ru</a>.</p><p>После этого у этого ребенка появляется маленькая “+4”. Это означает, что ребенок зарегистрировал взрослого, но взрослый ничего не оплатил.</p><p>Как же все-таки получить настоящие баллы?</p><p>Картинка с сайта <a href="http://edu.tatar.ru" target="_blank" rel="noopener" title="Электронное образование в Республике Татарстан">edu.tatar.ru</a><br><a href="/content/2013/04/champion.png"><img src="/content/2013/04/champion-278x300.png" alt="Картинка с сайта edu.tatar.ru"></a></p><p>Получить баллы можно:</p><ol><li>За регистрацию личного кабинета</li><li>За заполнение следующих разделов в Личном кабинете: «ЖКХ», «Услуги связи», «Дети», «Автомобиль», «Личные данные» (фамилия+ИНН), «Паспортные данные»</li><li>За сохранение информации о банковской карте при оплате</li><li>И т. д.</li></ol><p>Но ВСЕ ЭТО!!! начисляется только после совершения платежа, суммой не менее 100 рублей. Баллы за каждый пункт начисляются только ОДИН РАЗ! То есть вы, даже при оплате, например штрафа, несколько раз, вы получите балл только один раз. <a href="/content/2013/04/Image-003.png">Подробнее (картинка с uslugi.tatar.ru)</a></p><p>Затем эти баллы можно потратить на призы. </p><h2 id="Вывод"><a href="#Вывод" class="headerlink" title="Вывод"></a>Вывод</h2><p>Все это запустили только ради раскрутки портала uslugi.tatar.ru, в котором теперь уже нормальный дизайн, но затруднения с навигацией и бюрократия на каждом шагу мешают проекту развиваться нормально и должном направлении.</p><p>Также существует проблема, что многие не знают, как элементарно зайти на портал. Очень много таких людей, которые заходят в Google, в гугле ищут Яндекс, а уже в Яндексе - mail.ru (узнаете себя?). </p><p>Я проверил запрос “электронные услуги” в Яндексе и Google. В Google uslugi.tatar.ru на третьей позиции, в Яндексе - на первой. Но сам запрос достаточно длинный…</p><p>И еще. Чтобы победить в IT-чемпионе, нужно отдать государству свои паспортные данные, ИНН, номер и права доступа к банковской карточке! И куда это все улетит - не понятно. Так что… решайте сами))</p><p><a href="http://atnartur.ru/it-tchempion-registratsiya-na-uslugi-tatar-ru-i-oplata-uslug/">IT-чемпион: регистрация на uslugi.tatar.ru и оплата услуг</a></p><p>Отзывы жду в комментариях. Если понравилось, расскажите друзьям!</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Другое </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Школа </tag>
-            
-            <tag> edu.tatar.ru </tag>
-            
-            <tag> IT-чемпион </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>WikiTatar: обновление 5 апреля 2013</title>
-      <link href="/posts/2013/wikitatar-update/"/>
-      <url>/posts/2013/wikitatar-update/</url>
-      
-        <content type="html"><![CDATA[<p>Информация об обновлении на сайте wikitatar.ru 5 апреля 2013 года <a id="more"></a></p><blockquote><p>Сегодня, 5 марта 2013 года, ровно в полночь был выложен наш переводчик! Добро пожаловать! // <a href="http://wik" target="_blank" rel="noopener">http://wik</a>.. <a href="http://t.co/mdTlKSTJdB" target="_blank" rel="noopener" title="http://vk.cc/1pfOHV">vk.cc/1pfOHV</a><br>&mdash; ВикиТатар (@WikiTatar) <a href="https://twitter.com/WikiTatar/status/319905047993524224" target="_blank" rel="noopener">4 апреля 2013 г.</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>5 апреля, ровно в 12 часов ночи, состоялось обновление на сайте проекта <a href="http://wikitatar.ru" target="_blank" rel="noopener">WikiTatar</a>. </p><p><strong>Добавлено</strong></p><ul><li>Новый дизайн</li><li>Новая система регистрации и авторизации</li><li>Дизайн переводчика</li><li>Dev-раздел (раздел для тех, кто хочет помочь проекту)</li><li>Добавлена система отправки ошибок переводчика</li><li>Переделана система реализации двух языков на сайте</li><li>Новая архитектура сайта</li></ul><p><strong>В планах</strong></p><ul><li>Создание новой версии переводчика (с литературным переводом)</li><li>Доработка DEV-раздела</li><li>И многое другое…</li></ul><p>Посмотреть все эти изменения можно на <strong><a href="http://wikitatar.ru" target="_blank" rel="noopener">wikitatar.ru</a></strong> или <strong><a href="http://викитатар.рф" target="_blank" rel="noopener">викитатар.рф</a></strong></p><p>Следите за развитием проекта в <strong><a href="http://vk.com/wikitatar" target="_blank" rel="noopener" title="vk.com/wikitatar">группе ВКонтакте</a></strong> или в <strong><a href="http://twitter.com/wikitatar" target="_blank" rel="noopener" title="@wikitatar">Twitter</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Новости проектов </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Проекты </tag>
-            
-            <tag> WikiTatar </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Как открывать MP3 файлы в Google Drive</title>
-      <link href="/posts/2013/google-drive-mp3/"/>
-      <url>/posts/2013/google-drive-mp3/</url>
-      
-        <content type="html"><![CDATA[<p>Недавно встал вопрос об открытии файлов MP3 в Google Drive. Ни один нормальный браузер (даже Хром!) не смог открыть их. Вероятно нет такой возможности из-за того, что кодек MP3 охраняется авторскими правами и использовать его надо с осторожностью. Но открыть музыку в Google Диске все-таки можно! <a id="more"></a></p><p>И так. Не будем тянуть. Первым делом идем <a href="https://chrome.google.com/webstore/detail/music-player-for-google-d/hnfeekfpnjbdmelcapngdgkjnhgijjkh?hl=ru&utm_source=chrome-ntp-launcher" target="_blank" rel="noopener">сюда</a> и устанавливаем это расширение. Оно позволит нам открыть MP3 файл в Google Диске.</p><p><a href="/content/2013/04/Image-010.png"><img src="/content/2013/04/Image-010-300x129.png" alt="Установка расширения"></a></p><p>Жмем “Добавить”<br><a href="/content/2013/04/Image-011.png"><img src="/content/2013/04/Image-011-300x152.png" alt="Добавление расширения"></a></p><p>Расширение установлено! Теперь переходим в Google Диск и пробуем открыть аудиофайл через Music Player for Google Drive.<br><a href="/content/2013/04/Image-012.png"><img src="/content/2013/04/Image-012-300x76.png" alt="Открытие файла"></a></p><p>Открывается новая вкладка. После полной загрузки страницы выходит такое окно. Жмем “Разрешить”<br><a href="/content/2013/04/Image-013.png"><img src="/content/2013/04/Image-013-300x105.png" alt="Предоставление доступа"></a></p><p>Дальше страничка перезагружается и появляется плеер, в котором начинает играть музыка.<br><a href="/content/2013/04/Image-015.png"><img src="/content/2013/04/Image-015-300x160.png" alt="Плеер"></a></p><p>В дальнейшем открывайте аудиофайлы через Music player for Google Drive. </p><p>Все это хозяйство точно работает в хроме. Если оно работает еще где-нибудь, напишите в комментариях. </p><p>Понравилась статья? Расскажи о ней друзьям!</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Софт </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Google </tag>
-            
-            <tag> Хром </tag>
-            
-            <tag> Google Drive </tag>
-            
-            <tag> Музыка </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>1 апреля в Интернете</title>
-      <link href="/posts/2013/1-apr/"/>
-      <url>/posts/2013/1-apr/</url>
-      
-        <content type="html"><![CDATA[<p>Всем привет! Первое апреля прошло, все уже оттерли белые спины и смыли зубную пасту с лица. А разговор о первоапрельских шутках в Интернете еще идет. В этой статье шутки, на которые я наткнулся вчера. <a id="more"></a></p><p><strong>Yo FM</strong><br><a href="/content/2013/04/c78b0b81cba87ff1333ea2af73e709e2.jpg"><img src="/content/2013/04/c78b0b81cba87ff1333ea2af73e709e2-300x187.jpg" alt="Yo fm"></a></p><p>Вместо Радио Рекорд первого апреля звучало Yo FM со странной музыкой: реп, хип-хоп и т. д… В общем, такое не нравится обычному слушателю радио. Такое событие объяснялось следующим:</p><p><a href="/content/2013/04/Image-000.png"><img src="/content/2013/04/Image-000-300x71.png" alt="Рекорд: сообщение о Yo Fm"></a></p><p><a href="http://www.radiorecord.ru/news/137324/" target="_blank" rel="noopener">Подробнее об этом на сайте Радио Рекорд</a></p><p><strong>Google нос</strong></p><p>Это совсем другая история. Google предлагал нам почувствовать запахи прямо из своего компьютера!</p><p>Как это все происходит: вы нажимаете на кнопку, в динамиках (наушниках) начинает звучать странный звук, а на экране появляется предложение поднясти устройство к носу.</p><p><a href="/content/2013/04/a569b13285ae14a4cd2fc69e4c4d8af7.jpg"><img src="/content/2013/04/a569b13285ae14a4cd2fc69e4c4d8af7-300x118.jpg" alt="Google нос"></a></p><p>Сам пробовал:D Никакого запаха естественно не идет и идти не может. Но почему же? На этот случай тоже приготовлено объяснение:</p><blockquote><p>c 1 апреля от <a href="https://t.co/CIbi2xRKGN" target="_blank" rel="noopener" title="https://www.google.com/intl/ru/landing/nose/help.html">google.com/intl/ru/landin…</a> <a href="http://t.co/lME4D0FUkq" target="_blank" rel="noopener" title="http://twitter.com/atnartur/status/318802682909446144/photo/1">twitter.com/atnartur/statu…</a><br>&mdash; atnartur (@atnartur) <a href="https://twitter.com/atnartur/status/318802682909446144" target="_blank" rel="noopener">1 апреля 2013 г.</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Ну и Типичный программист не остался в стороне:</p><blockquote><p>На злобу дня <a href="http://t.co/5UtS95K2Ig" target="_blank" rel="noopener" title="http://twitter.com/tproger/status/318763546240491521/photo/1">twitter.com/tproger/status…</a><br>&mdash; Типичный программист (@tproger) <a href="https://twitter.com/tproger/status/318763546240491521" target="_blank" rel="noopener">1 апреля 2013 г.</a></p></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p><a href="http://www.google.ru/intl/ru/landing/nose/" target="_blank" rel="noopener">Подробнее</a></p><p><strong>YouTube закрывают</strong></p><p>В тот же день по интернету было распространено это видео, в котором говорится, что YouTube собрал достаточно видео с 2005 года (год открытия проекта) и готов выбрать самое лучшее видео среди всех, загруженных на хостинг. 1 апреля - последний день, когда вы можете загрузить видео на YouTube.</p><iframe width="560" height="315" src="http://www.youtube.com/embed/H542nLTTbu0" frameborder="0" allowfullscreen></iframe><p>Оглашение победителя будет в 2023 году (именно столько лет нужно команде хостинга, чтобы отсмотреть все видео и выбрать лучшее) </p><p>В это тоже многие поверили (в том числе и я). Как <a href="http://glavnoe.ua/news/n131987" target="_blank" rel="noopener">оказалось</a> это была шутка:)</p><p><strong>Яндекс.Почта: в поисках истины</strong></p><p>Наш дорогой Яндекс тоже не остался в стороне. Они заявили, что создали сервис, который на основе порядка слов, знаков препинания и т. д. может определять, врет человек, или нет. </p><p>Видео:<br><object width="640" height="360"><param name="video" value="http://static.video.yandex.net/lite/yacinema/yykrwy3mh5.7012/"></param><param name="allowFullScreen" value="true"></param><param name="scale" value="noscale"></param><param name="flashvars" value="is-hq=true"></param>&lt;embed src=”<a href="http://static.video.yandex.net/lite/yacinema/yykrwy3mh5.7012/&quot;" target="_blank" rel="noopener">http://static.video.yandex.net/lite/yacinema/yykrwy3mh5.7012/&quot;</a> type=”application/x-shockwave-flash” width=”640” height=”360” allowFullScreen=”true” scale=”noscale”flashvars=”is-hq=true” &gt;</embed></object></p><p>В интерфейсе почты появилась специальная кнопка для анализа слов на правду. И это тоже была шутка)))</p><p>В этот раз в интернете было очень много шуток, и не мало - злых. Например, в закрытие YouTube я поверил в серьез. А во что поверили вы? Напишите в комментариях! </p><p>Понравилась статья - расскажи друзьям! </p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Жизнь </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Google </tag>
-            
-            <tag> YouTube </tag>
-            
-            <tag> Типичный программист </tag>
-            
-            <tag> шутки </tag>
-            
-            <tag> Яндекс почта </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Почему я так не люблю хром</title>
-      <link href="/posts/2013/chrome-in-my-case/"/>
-      <url>/posts/2013/chrome-in-my-case/</url>
-      
-        <content type="html"><![CDATA[<p>Всем привет! Многие друзья задают мне вопрос: каким браузером я пользуюсь. Ответ у меня всегда один и тот же - Opera. Затем следует унижение оперы и восхваление хрома, и начинается спор… Чтобы остановить спор мне всегда приходится пересказывать историю, которая описана здесь. Чтобы больше не повторять её, опишу её ниже. </p><a id="more"></a><p><a href="/content/2013/03/vs.jpg"><img src="/content/2013/03/vs-300x282.jpg" alt="vs"></a></p><p>Интернет у меня дома появился не так давно, а мои родители уже пользовались им на работе. По рекомендации мамы я стал использовать оперу. В то время я не занимался веб-разработкой и опера мне очень даже понравилась. </p><p>Но появилось одно НО: мама тоже использовала оперу. И наши данные все время перемешивались (Экспресс панель, пароли, закладки …) Я попытался поставить 2 оперы рядом, но в то время у меня не получилось этого сделать. Пришлось переходить на Firefox.</p><p>Firefox было больше возможностей и им не пользовался никто из моей семьи, и, значит, мои данные ни с кем не перемешивались. Я туда понаставил кучу тулбаров, тем и других дополнений. Это все прекрасно работало где-то полгода. Но потом выпустили 4 версию, в которой изменился дизайн. (Firefox третьей версии на скриншоте)</p><p><a href="/content/2013/03/firefox_main.png"><img src="/content/2013/03/firefox_main-300x244.png" alt="Firefox 3.6"></a></p><p>С дизайном поменялась и скорость. Все стало жутко тормозить и я опять пустился в поиски браузера…</p><p>Тогда хром только набирал популярность и я решил его попробовать. Мне он понравился скоростью и простотой (обычно этим он и нравится…) Но пользовался я им недолго… Примерно через месяц вылез банер и пришлось переустанавливать Windows. Я не придал этому значения. </p><p>После этого я опять пересел на Firefox. Потом опять на хром. Примерно через 2 месяца опять баннер. Опять переустановка. </p><p>В обоих случаях последним моим браузером был хром. И я понял, что причина была именно в нем. Затем я опять пересел на оперу и пользуюсь ей по сей день.</p><h2 id="Мой-взгляд-на-назначение-браузеров"><a href="#Мой-взгляд-на-назначение-браузеров" class="headerlink" title="Мой взгляд на назначение браузеров"></a>Мой взгляд на назначение браузеров</h2><p><strong>Opera</strong> - для профессионалов, которые используют все прелести интернета</p><p><strong>Firefox</strong> - для профессионалов, которые используют все прелести интернета и имеют мощный компьютер. Также Firefox удобен в веб-разработке.</p><p><strong>Хром (и все остальное на Web-kit)</strong> - для тех, кто в интернет заходит только ради контакта, почты и все. Не имеет нормального сохранения паролей, RSS чтения… О инструментах для разработчика вообще молчу…</p><p><strong>Internet Explorer</strong> - для новичков или пришельцев. Все вы прекрасно о нём знаете:)</p><p>Ну вот и все. Жду Ваши отзывы и пожелания в комментариях. Если статья понравилась, поделитесь ею с друзьями! </p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Софт </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Firefox </tag>
-            
-            <tag> Opera </tag>
-            
-            <tag> браузеры </tag>
-            
-            <tag> Хром </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Первая запись</title>
-      <link href="/posts/2013/first/"/>
-      <url>/posts/2013/first/</url>
-      
-        <content type="html"><![CDATA[<p>Всем привет! Меня зовут Атнагулов Артур. И теперь я буду вести свой блог. Это первая вступительная запись. <a id="more"></a></p><p>В своем блоге я буду писать о веб-разработке, новости проектов, в которых я задействован и многое, многое другое. </p><p>Раньше моим блогом был сайт <a href="http://old.atnartur.ru" target="_blank" rel="noopener">sdelasitesam.ru</a>, но теперь я буду писать здесь:)</p><p>Чтобы следить за новостями, подписывайтесь на <a href="http://twitter.com/atnartur" target="_blank" rel="noopener">твиттер</a>. В твиттер, кроме новостей с блога, буду еще выкладывать интересные материалы со всего интернета.</p><p>Связаться со мной Вы можете по <a href="mailto:i@atnartur.ru">электронной почте</a> или на моей страничке <a href="http://vk.com/atnartur" target="_blank" rel="noopener">ВКонтакте</a>.</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Жизнь </category>
-          
-      </categories>
-      
       
     </entry>
     
