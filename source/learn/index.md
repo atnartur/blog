@@ -83,7 +83,7 @@ date: 2021-06-24 20:07:56
 - [Docker .NET (2018)](https://docs.google.com/presentation/d/1ROSaOsn-s02x2fTC52lEI625qRUeG4QtxxqSiTzLIq4/edit) / [репозиторий](https://github.com/atnartur/docker-dotnet-example)
 - [Docker Python (2018)](https://docs.google.com/presentation/d/1kmCxD65zuTok7EaULMyvwBEXlig81H3U43RiAWI_6ls/edit#slide=id.g35e72a4f03_0_0)
 - [Docker (PHP, 2017 для Stride)](https://docs.google.com/presentation/d/1Z7LgtFm3Ke8oatkk5MtzESwtIUwc84fNL4_NbYUQ0kg/edit) / [репозиторий](https://github.com/atnartur/docker-test-project)
-- [Пошаговая инструкция по упаковке проекта в Docker](https://gitlab.com/atnartur/docker-docs)
+- [Пошаговая инструкция по упаковке проекта в Docker](https://git.atnartur.dev/atnartur/docker-docs)
 
 ## Другое
 
