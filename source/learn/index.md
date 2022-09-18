@@ -11,6 +11,7 @@ date: 2021-06-24 20:07:56
 Презентации курса по Django + Vue с небольшими отступлениями в развертывание.
 
 **Python**
+- [Python base](https://atnartur.github.io/python-base-presentation/)
 - [Многопоточность и сокеты](https://docs.google.com/presentation/d/1OhmNXfe9chRqMJkFmtuP9AJ1ZTcWFw3l4ImJIbwNbME/edit)
 - [Тестирование](https://docs.google.com/presentation/d/1bApoSNG0z4pExxqA7LxrAS1HkjQf819HwnZH8Q8qjgQ/edit)
 - [Virtualenv, Codestyle, Django](https://docs.google.com/presentation/d/1IP9wnwdUAZx3jxhZzPbcjfVW-vychPUa66g30dt2yXE/edit?usp=sharing)
