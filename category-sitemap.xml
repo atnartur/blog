@@ -9,6 +9,13 @@
 
 
     <url>
+        <loc>http://atnartur.ru/categories/%25D0%259E-%25D1%2580%25D0%25B0%25D0%25B7%25D1%2580%25D0%25B0%25D0%25B1%25D0%25BE%25D1%2582%25D0%25BA%25D0%25B5/</loc>
+        <lastmod>2022-10-11T19:45:51.511Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://atnartur.ru/categories/%25D0%259D%25D0%25BE%25D0%25B2%25D0%25BE%25D1%2581%25D1%2582%25D0%25B8-%25D0%25BF%25D1%2580%25D0%25BE%25D0%25B5%25D0%25BA%25D1%2582%25D0%25BE%25D0%25B2/</loc>
         <lastmod>2022-09-02T15:04:41.273Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -25,13 +32,6 @@
     <url>
         <loc>http://atnartur.ru/categories/%25D0%2596%25D0%25B8%25D0%25B7%25D0%25BD%25D1%258C/</loc>
         <lastmod>2022-09-02T14:57:50.903Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/categories/%25D0%259E-%25D1%2580%25D0%25B0%25D0%25B7%25D1%2580%25D0%25B0%25D0%25B1%25D0%25BE%25D1%2582%25D0%25BA%25D0%25B5/</loc>
-        <lastmod>2022-09-02T14:55:17.750Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

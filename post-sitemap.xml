@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>http://atnartur.ru/posts/2022/celery-in-yandex-cloud/</loc>
+        <lastmod>2022-10-11T19:45:51.511Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://atnartur.ru/posts/2013/1gb-fail/</loc>
         <lastmod>2022-09-02T15:04:41.273Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -51,14 +59,6 @@
     <url>
         <loc>http://atnartur.ru/posts/2016/phalcon-magic/</loc>
         <lastmod>2022-09-02T14:46:39.589Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://atnartur.ru/posts/2022/celery-in-yandex-cloud/</loc>
-        <lastmod>2022-09-02T14:40:29.940Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
