@@ -9,7 +9,6 @@ description: atnartur.ru - Блог веб-разработчика
 author: Артур Атнагулов
 language: ru
 timezone: Europe/Moscow
-disqus_shortname: atnarturru
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'

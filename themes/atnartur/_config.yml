@@ -13,7 +13,6 @@ sidebar: right
 widgets:
 - search
 - category
-- ads
 
 # display widgets at the bottom of index pages (pagination == 2)
 index_widgets:

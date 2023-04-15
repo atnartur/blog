@@ -1,7 +1,3 @@
-<% if (!index){ %>
-	<%- partial('_partial/ads/post_top', {pagination: 2, index: true}) %>
-<% } %>
-
 <article id="<%= post.layout %>-<%= post.slug %>" class="article article-type-<%= post.layout %>" itemscope itemtype="http://schema.org/BlogPosting">
 	<% if (post.link || post.title){ %>
 		<%- partial('post/title', {class_name: 'article-title'}) %>
@@ -36,10 +32,6 @@
 		<% } %>
 	</div>
 </article>
-<% if (!index){ %>
-	<%- partial('_partial/ads/post_bottom', {pagination: 2, index: true}) %>
-<% } %>
-
 <% if (!index && post.comments && config.disqus_shortname){ %>
 	<section id="comments">
 	  	<div id="disqus_thread">
