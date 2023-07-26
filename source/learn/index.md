@@ -3,16 +3,18 @@ title: Обучающие материалы
 date: 2021-06-24 20:07:56
 ---
 
-Здесь размещены мои презентации и другие образовательные материалы. Большинство из них были сделаны для выступлений в [КФУ ИТИС](http://kpfu.ru/itis). При использовании ссылка на сайт [atnartur.ru](http://atnartur.ru) обязательна. 
+Здесь размещены мои презентации и другие образовательные материалы. Большинство из них были сделаны для выступлений в [КФУ ИТИС](http://kpfu.ru/itis). Презентации не являются полноценным обучающим курсом. 
 
-Если нашли ошибку, пишите на i@atnartur.dev.
+При использовании ссылка на сайт [atnartur.ru](http://atnartur.ru) обязательна. Если нашли ошибку, пишите на i@atnartur.dev.
 
 
 ## Python
 
 - [Python base (2022)](https://atnartur.github.io/python-base-presentation/)
+- [git - выходим из трех сосен (2021)](https://docs.google.com/presentation/d/1MV7RaV76_mJavE83RSL89mMtsuRUjc2M4Gs71nSOV7o/edit)
 - [path, git, f-strings, sessions (2020)](https://docs.google.com/presentation/d/1uiHhbiDH-PlwhaIo9qkDFPRSMmn0qqN3WZOM1v_fFQc/edit?usp=sharing)
 - [Многопоточность и сокеты (2020)](https://docs.google.com/presentation/d/1OhmNXfe9chRqMJkFmtuP9AJ1ZTcWFw3l4ImJIbwNbME/edit)
+- [Параллельная обработка (2022)](https://docs.google.com/presentation/d/1ZWooJmTPUkAZcekt9oCBf-8-xy1Mpnq33QAU2gDtnnA/edit#slide=id.g172ad5ec1cf_0_6)
 - [Тестирование (2020)](https://docs.google.com/presentation/d/1bApoSNG0z4pExxqA7LxrAS1HkjQf819HwnZH8Q8qjgQ/edit)
 - [Virtualenv, Codestyle, Django (2020)](https://docs.google.com/presentation/d/1IP9wnwdUAZx3jxhZzPbcjfVW-vychPUa66g30dt2yXE/edit?usp=sharing)
 - [Бот для Tелеграм на Python (telebot) (2021)](https://docs.google.com/presentation/d/1F5TWPbNi_x8eXujhB7KSZXqE6gUzgLzGvfQHnf9NLpY/edit#slide=id.gb93c88049a_0_190)
@@ -28,6 +30,7 @@ date: 2021-06-24 20:07:56
 - [конфигурирование, backend & frontend (2021)](https://docs.google.com/presentation/d/1s4Ll_-DYn-6UhpVMiOBYKBtHYLhudWZQxEnAfMB0BCQ/edit?usp=sharing)
 - [REST API (2021)](https://docs.google.com/presentation/d/1gGj8An7sKRz3sszeGdgZ4RB9WmGmgstVn98iQXGuQaE/edit?usp=sharing)
 - [Письма и celery (2021)](https://docs.google.com/presentation/d/1nVgtEmp48V9C07J7x2Vnke9bZ51EeUmCX9ekUBOozHY/edit?usp=drivesdk)
+- [Clickhouse (2022)](https://docs.google.com/presentation/d/1N2FQxdLjOAyQB0LrVFCvmZADWvYy2DAkdcCg4VxgEtE/edit#slide=id.g172ad5ec1cf_0_0)
 
 ## Frontend (Vue)
 
@@ -40,7 +43,10 @@ date: 2021-06-24 20:07:56
 
 ## CI/CD
 
-- [Раздел помощи платформы UniEnv про облачное развертывание и некоторые другие моменты (2023)](http://uenv.ru/help)
+
+- Облачные технологии
+	+ [Раздел помощи платформы UniEnv про облачное развертывание и некоторые другие моменты (2023)](http://uenv.ru/help)
+	+ [queue & storage (2023)](https://docs.google.com/presentation/d/13TJomlibdEwQ6yDUzO_ymbdTYP3TRvF3vWM2wMTE-yc/edit#slide=id.g172ad5ec1cf_0_0)
 - Docker
 	+ [Docker basics (2021)](https://docs.google.com/presentation/d/1l3wWKsL5A8yJVY2Q8cw8xX99Qg3yX3o3f4zj47ULX0w/edit?usp=sharing)
 	+ [Docker Python (v2, 2020)](https://docs.google.com/presentation/d/1l3wWKsL5A8yJVY2Q8cw8xX99Qg3yX3o3f4zj47ULX0w/edit?usp=sharing) / [репозиторий](https://github.com/atnartur/docker-django-example)
@@ -53,17 +59,24 @@ date: 2021-06-24 20:07:56
 - [Deploy on linux with docker (2021)](https://docs.google.com/presentation/d/1nXJBjEBPdKwymeRwk44MFdhUsKNn1-yUy-uPhKwQAoc/edit?usp=sharing)
 - [Gitlab CI (2021)](https://docs.google.com/presentation/d/1-OKTrFx3QS4532Sshf4dnddJrH8FQfo149b7zSJ_SzQ/edit?usp=sharing)
 - [Ansible (2021)](https://docs.google.com/presentation/d/1qnkENdXuPA-O5LN65Q8WY2G9_WEmzfbP2DDAp4m3Eq8/edit)
-- [Микросервисы (2021)](https://docs.google.com/presentation/d/1SunauK2sO4AWPKTV8FvfTACQEkL1n5sJ-Fd36-gIwAA/edit)
+- [Микросервисы (2022)](https://docs.google.com/presentation/d/1qe0lkjK4FjrIPAAuITPuVCnEJpqGSzZMvAvTpfplH-0/edit#slide=id.gfa0e86a237_0_0)
 - [Инфраструктура проекта (2020)](https://docs.google.com/presentation/d/1Gs2a9eeo9bqyUNYe6WBBDhbMhiKk1nxHEIcVjRuNUe4/edit?usp=sharing)
+
+## Организация работы в команде
+
+- [Работа в команде (2023)](https://docs.google.com/presentation/d/1ZsM9BMBSWtf9z9hQ5cCcKC7E1EJABjXSYFOAwLXdfrk/edit#slide=id.g215c483e17a_0_154)
+- [Сode review (2022)](https://docs.google.com/presentation/d/1GUF1sekrFMNoIXVm6klt62u-MpipCk8IUK0IPMO2YeI/edit?usp=sharing)
+- [Ретроспектива (2023)](https://docs.google.com/presentation/d/1UfjsxwKXd6rtEiXt_8uy3IlVYK8hM4ElmdL1kylV7uo/edit#slide=id.g172ad5ec1cf_0_0)
+- [Оформление задач (2022)](https://docs.google.com/presentation/d/1cSW5hZcWWzcHYgUh_iHaOYX-9MPfAJXI3R2hBaexF24/edit#slide=id.gfa0e86a237_0_0)
 
 ## Общие моменты
 
-- [git - выходим из трех сосен (2021)](https://docs.google.com/presentation/d/1MV7RaV76_mJavE83RSL89mMtsuRUjc2M4Gs71nSOV7o/edit)
-- [code review (2022)](https://docs.google.com/presentation/d/1GUF1sekrFMNoIXVm6klt62u-MpipCk8IUK0IPMO2YeI/edit?usp=sharing)
 - [Формирование требований к ПО (2021)](https://docs.google.com/presentation/d/1VxidttBbwVWJVhpvnQzpSLw8o7CpYPCToK3mrpy1Nrk/edit)
 - [Введение в Open Source проекты (2020)](https://docs.google.com/presentation/d/1eycMnUHwbiPBiu7j9SSLIhcr69F5c7zV1-EnqIU9lNE/edit)
 - [Крутая презентация (2023)](https://docs.google.com/presentation/d/1dNyykzaUjAsPYuroDz-qB_aHXJojBhKn54p0SoxlUkA/edit#slide=id.g97afaf0086_0_131)
+- [Дизайн (2023)](https://docs.google.com/presentation/d/1HqBNbzXRWSqFkhNMyyxwTQAjN4ESG8NSDyoRftOZ_eQ/edit#slide=id.gfa0e86a237_0_0)
 - [Оформление документов (2022)](https://docs.google.com/presentation/d/1D1pu-lxlKh1J4KJAvNY-iMRfcRbErO1U67l6E7EJMYw/edit?usp=sharing)
+- [Продуктивность (2023)](https://docs.google.com/presentation/d/1_EKh4QunHY_7Z_r6W-EJs_8EVhgKUCrYW9NaJ8sJL0g/edit#slide=id.gfa0e86a237_0_0)
 
 ## С# (2019)
 
