@@ -11,7 +11,9 @@ const copyFaFonts = () => gulp.src('./node_modules/font-awesome/fonts/*')
 
 const copyFromNpm = () => gulp.src([
         './node_modules/highlightjs/styles/github.css',
-        './node_modules/bootstrap-3-typeahead/bootstrap3-typeahead.min.js'
+        './node_modules/bootstrap-3-typeahead/bootstrap3-typeahead.min.js',
+        './node_modules/bootstrap/dist/css/bootstrap.min.css',
+        './node_modules/jquery/dist/jquery.min.js'
     ]).pipe(gulp.dest('./themes/atnartur/source/libs/'));
 
 const copy = gulp.parallel([copyFaCss, copyFaFonts, copyFromNpm]);
