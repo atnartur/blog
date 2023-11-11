@@ -65,7 +65,7 @@ date: 2021-06-24 20:07:56
 ## Организация работы в команде
 
 - [Работа в команде (2023)](https://docs.google.com/presentation/d/1ZsM9BMBSWtf9z9hQ5cCcKC7E1EJABjXSYFOAwLXdfrk/edit#slide=id.g215c483e17a_0_154)
-- [Сode review (2022)](https://docs.google.com/presentation/d/1GUF1sekrFMNoIXVm6klt62u-MpipCk8IUK0IPMO2YeI/edit?usp=sharing)
+- [Code review (2022)](https://docs.google.com/presentation/d/1GUF1sekrFMNoIXVm6klt62u-MpipCk8IUK0IPMO2YeI/edit?usp=sharing)
 - [Ретроспектива (2023)](https://docs.google.com/presentation/d/1UfjsxwKXd6rtEiXt_8uy3IlVYK8hM4ElmdL1kylV7uo/edit#slide=id.g172ad5ec1cf_0_0)
 - [Оформление задач (2022)](https://docs.google.com/presentation/d/1cSW5hZcWWzcHYgUh_iHaOYX-9MPfAJXI3R2hBaexF24/edit#slide=id.gfa0e86a237_0_0)
 
@@ -78,7 +78,7 @@ date: 2021-06-24 20:07:56
 - [Оформление документов (2022)](https://docs.google.com/presentation/d/1D1pu-lxlKh1J4KJAvNY-iMRfcRbErO1U67l6E7EJMYw/edit?usp=sharing)
 - [Продуктивность (2023)](https://docs.google.com/presentation/d/1_EKh4QunHY_7Z_r6W-EJs_8EVhgKUCrYW9NaJ8sJL0g/edit#slide=id.gfa0e86a237_0_0)
 
-## С# (2019)
+## C# (2019)
 
 Занятия для студентов 1 курса с разбором наиболее сложных тем по разработке на C#.
 
