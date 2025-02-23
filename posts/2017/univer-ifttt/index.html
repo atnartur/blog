@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+
+	<title>Автоматизируй это: как мы разгружали почту потока | atnartur.ru</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<meta name="description" content="На нашем факультете было принято отправлять лекционные материалы и некоторые общие объявления для студентов на так называемую почту потока. Преподавателям очень удобно: написав на один адрес, они сраз">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Автоматизируй это: как мы разгружали почту потока">
+<meta property="og:url" content="http://atnartur.ru/posts/2017/univer-ifttt/index.html">
+<meta property="og:site_name" content="atnartur.ru">
+<meta property="og:description" content="На нашем факультете было принято отправлять лекционные материалы и некоторые общие объявления для студентов на так называемую почту потока. Преподавателям очень удобно: написав на один адрес, они сраз">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="http://atnartur.ru/content/2017/09/univer-ifttt/ifttt.jpg">
+<meta property="og:image" content="http://atnartur.ru/content/2017/09/univer-ifttt/trello.png">
+<meta property="og:image" content="http://atnartur.ru/content/2017/09/univer-ifttt/tg.png">
+<meta property="article:published_time" content="2017-09-02T20:21:05.000Z">
+<meta property="article:modified_time" content="2025-02-01T17:45:09.747Z">
+<meta property="article:author" content="Артур Атнагулов">
+<meta property="article:tag" content="Trello">
+<meta property="article:tag" content="GMail">
+<meta property="article:tag" content="IFTTT">
+<meta property="article:tag" content="Telegram">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://atnartur.ru/content/2017/09/univer-ifttt/ifttt.jpg">
+
+				
+		<link rel="alternate" href="/atom.xml" title="atnartur.ru" type="application/atom+xml">
+	
+
+	
+
+	<meta name="keywords" content="atnartur.ru, Блог веб-разработчика, веб-разработка, создание сайта, web-разработка, web, Атнагулов Артур, atnartur" />
+
+	<link rel="stylesheet" href="/styles/main.min.css">
+	<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/libs/github.css">
+
+	<meta name='yandex-verification' content='4cef18e7b73150a8' />
+    <meta name="google-site-verification" content="qAxWEQPavOYoENugvm5uJblx9ZIKvUZUq7nRhovUvjc" />
+    <meta name="theme-color" content="#0099cc">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+	<header>
+	<div class="logo">
+		<h1>
+		<a href="/">atnartur</a>
+		</h1>
+		<h2>веб-разработка, и не только</h2>
+	</div>
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+		</div>
+		
+		<nav class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-left">
+				
+					<li><a href="/">Главная</a></li>
+				
+					<li><a href="/learn">Обучение</a></li>
+				
+					<li><a target="_blank" rel="noopener" href="http://atnartur.dev">Обо мне</a></li>
+				
+			</ul>
+			
+			<ul class="nav navbar-nav navbar-right" id="socials">
+				<li>
+					<a href="http://t.me/atnartur" title="Написать в Telegram" target="_blank">
+						<i class="fa fa-send"></i>
+					</a>
+				</li>
+				<li>
+					<a href="http://github.com/atnartur" title="GitHub - @atnartur" target="_blank">
+						<i class="fa fa-github"></i>
+					</a>
+				</li>
+				<li>
+					<a href="mailto:i@atnartur.dev" title="Напишите мне - i@atnartur.dev">
+						<i class="fa fa-envelope-o"></i>
+					</a>
+				</li>
+				<li>
+					<a href="/atom.xml" title="RSS-лента" target="_blank">
+						<i class="fa fa-rss"></i>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9" id="main">
+				<div class="posts">
+	<article id="post-univer-ifttt" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+	
+		
+  
+    <h1 class="article-title" itemprop="name">
+      Автоматизируй это: как мы разгружали почту потока
+    </h1>
+  
+
+	
+	
+	<div class="post_content">
+		
+			<p>На нашем факультете было принято отправлять лекционные материалы и некоторые общие объявления для студентов на так называемую почту потока. Преподавателям очень удобно: написав на один адрес, они сразу же доставляют информацию огромному количеству людей. А вот когда огромное количество этих самых людей пытаются зайти на почтовый сервис для того, чтобы забрать корреспонденцию, начинаются трудности. <span id="more"></span></p>
+<p><img src="/content/2017/09/univer-ifttt/ifttt.jpg"></p>
+<p>Таким образом, наш бедненький Gmail начал часто падать и закрывать доступ к авторизации. Однако, всем по-прежнему хотелось получать информацию вовремя, ведь иногда на лекции бывает трудно записать все термины, о которых говорит преподаватель. Для уверенности в том, что студенты смогут повторить полученный материал, наставники пересылают лекции студентам простым для них способом. В конце семестра на этой самой почте потока также появляются экзаменационные вопросы.</p>
+<p>С первых дней обучения мне понравилось, что никто и никогда не идет против применения информационных технологий в любой сфере жизни на факультете, поэтому нам с однокурсником с легкостью удалось запустить автоматизацию этого процесса.</p>
+<p>Преподаватели  продолжают отправлять информацию на обычную почту - на этом этапе не изменилось ровным счетом ничего. Но вот после того, как письмо попадает в Gmail, почтовый сервис автоматически пересылает письма на специальный адрес, который предоставляет сервис <a target="_blank" rel="noopener" href="http://trello.com/">Trello</a> (именно там было решено структурировано хранить всю получаемую информацию).</p>
+<p>Переcылка в Gmail добавляется в настройках на вкладке “Пересылка и POP&#x2F;IMAP”. Специальный адрес электронной почты, который “слушает” Trello и переделывает письма в карточки на доске, можно получить после нажатия на кнопку “Menu”, далее “Next” , затем “Email Settings”.</p>
+<p><img src="/content/2017/09/univer-ifttt/trello.png"></p>
+<p>Информацию собрали, осталось грамотно уведомить поток о данном сервисе. Уже на этом этапе можно отправить ссылку на доску в Trello, ребята могут поставить мобильное приложение и получать уведомления. Но большинство из нас являются активными пользователями мессенджера <a target="_blank" rel="noopener" href="http://telegram.org/">Telegram</a>, и поэтому мы решили также сделать специальный канал, куда бот будет отправлять все обновления. </p>
+<p>Автоматизацию с телеграмом настраивать уже немного сложнее.</p>
+<p>После создания Telegram-канала мы поняли, что в этот канал  сторонние боты писать не могут. Таким образом, бот <a target="_blank" rel="noopener" href="http://ifttt.com/">IFTTT</a> нам помочь не смог, а сам сервис все-таки сыграл свою важную роль. Здесь мы настроили Applet (в сервисе IFTTT) под названием “<a target="_blank" rel="noopener" href="https://ifttt.com/gmail">If any new email in inbox for ...@gmail.com</a>, then make <a target="_blank" rel="noopener" href="https://ifttt.com/maker_webhooks">a web request</a>”, который после получения новых писем делает запрос на <a target="_blank" rel="noopener" href="https://core.telegram.org/bots/api">Telegram Bot API</a>,  которое в свою очередь публикует сообщение в канал с помощью бота.<br>Для начала нужно зарегистрировать бота, чтобы получить его токен. Делается это с помощью специального служебного бота <a target="_blank" rel="noopener" href="http://t.me/botfather">@BotFather</a>.</p>
+<p>Запрос к Bot API выглядит так: </p>
+<ul>
+<li>URL: <code>https://api.telegram.org/botBOTTOKEN/sendMessage?chat_id=CHAT_ID&amp;parse_mode=markdown</code></li>
+<li>Method: <code>POST</code></li>
+<li>Content-type: <code>application/json</code></li>
+<li>Body: <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;chat_id&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;CHAT_ID&quot;</span><span class="hljs-punctuation">,</span> <br>    <span class="hljs-attr">&quot;parse_mode&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;markdown&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;text&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;*&#123;&#123;Subject&#125;&#125;* от &#123;&#123;FromAddress&#125;&#125; \n</span><br><span class="hljs-string">    &#123;&#123;FirstAttachmentPublicURL&#125;&#125; \n</span><br><span class="hljs-string">    Полная версия на доске https://trello.com/...&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>Используемые сокращения:</p>
+<ul>
+<li><code>BOTTOKEN</code> - токен созданного нами на предыдущем шаге бота</li>
+<li><code>CHAT_ID</code> - ID чата, в который надо публиковать сообщения (после добавления бота в этот чат, ID чата можно будет увидеть, открыв следующую ссылку <code>https://api.telegram.org/botBOTОКЕN/getUpdates</code>)</li>
+<li>Вместо переменных подставляются соответствующие поля из электронного письма</li>
+<li><code>trello.com/…</code> - ссылка на нашу доску, для того, чтобы можно было прочесть полную версию письма или ознакомиться с другими документами</li>
+</ul>
+<p>Иногда бывает так, что старосты групп (только они имеют доступ на редактирование доски) добавляют информацию на доску вручную. Для того, чтобы эта информация тоже попадала в телеграм, был настроен еще один IFTTT-Applet “<a target="_blank" rel="noopener" href="https://ifttt.com/trello">If card added to the board in Trello</a> make <a target="_blank" rel="noopener" href="https://ifttt.com/maker_webhooks">a web request</a>” со следующими параметрами:</p>
+<ul>
+<li>URL, Method, Content-type такие же, как и в предыдущем шаге.</li>
+<li>Body: <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;chat_id&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;-1001082774373&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;parse_mode&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;markdown&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;text&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;&lt;&lt;&lt;*&#123;&#123;Title&#125;&#125;*&gt;&gt;&gt; в списке &#123;&#123;ListName&#125;&#125; \n</span><br><span class="hljs-string">    &#123;&#123;Description&#125;&#125; \n</span><br><span class="hljs-string">    &lt;&lt;&lt;[Посмотреть полностью](&#123;&#123;CardURL&#125;&#125;)&gt;&gt;&gt;&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>Опять-таки, вместо переменных подставляются данные из добавленной карточки из Trello.</p>
+<p>В результате, в канале появлялись сообщения следующего вида: </p>
+<p><img src="/content/2017/09/univer-ifttt/tg.png"></p>
+<p>После выполнения вышеуказанных настроек, происходило тестирование, длившееся достаточно долго. Так как в IFTTT обрабатывается очень много событий, наши запросы иногда выполнялись моментально, иногда около часа, а иногда (крайне редко, конечно) вообще не выполнялись. </p>
+<p>Спасибо <a target="_blank" rel="noopener" href="https://vk.com/andrey_romanov11">Андрею Романову</a> за помощь в организации и тестировании данной затеи. В целом, студенты и старосты были довольны нашим трудом. Хочется отметить, что всё, что описано выше, не требует вложений (Trello, IFTTT, Telegram - бесплатные) и  написания кода (все работает через связки API этих сервисов). Однако, если вы захотите что-то улучшить в данной автоматизации, то вам все-таки придется написать своего бота, который будет обрабатывать вебхуки от других API. </p>
+
+	  	
+	</div>
+	
+	<div class="post_footer">
+		<div class="post_info">	
+			<i class="fa fa-calendar-o"></i> <a href="/posts/2017/univer-ifttt/" class="article-date">
+  	<time datetime="2017-09-02T20:21:05.000Z" itemprop="datePublished">02.09.2017</time>
+</a> 
+			 |
+				<i class="fa fa-folder-o"></i> 
+    <a class="article-category-link" href="/categories/%D0%9E-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5/">О разработке</a>
+ 
+				
+			
+		</div>
+		
+		
+	</div>
+</article>
+
+</div>
+
+			</div>
+			
+				<aside class="col-md-3" id="sidebar">
+	
+		<div class="widget">
+			<form onsubmit="return false;" method="get" accept-charset="UTF-8" class="search-form">
+	<input type="hidden" name="sitesearch" value="http://atnartur.ru">
+	<input type="text" class="form-control" placeholder="Поиск" type="search" name="q" results="0" id="search" autocomplete="off">
+	<div id="local-search-result"></div>
+</form><!-- /input-group -->
+		</div>
+  	
+		<div class="widget">
+			
+	<h2>Категории</h2>
+	<div class="list-group">
+		
+			<a href="/categories/Другое/" class="list-group-item">Другое <small>4</small></a>
+		
+			<a href="/categories/Жизнь/" class="list-group-item">Жизнь <small>9</small></a>
+		
+			<a href="/categories/Новости-проектов/" class="list-group-item">Новости проектов <small>3</small></a>
+		
+			<a href="/categories/О-разработке/" class="list-group-item">О разработке <small>15</small></a>
+		
+			<a href="/categories/Софт/" class="list-group-item">Софт <small>16</small></a>
+		
+	</div>    
+
+		</div>
+  	
+</aside>
+			
+		</div>
+	</div>
+	<footer>
+	<div class="container">
+		<p>
+			&copy; 2013-2025 <a href="http://i.atnartur.ru" target="_blank" class="logo">Артур Атнагулов</a>
+		</p>
+		<p class="links">
+			<a href="http://github.com/atnartur/blog" target="_blank">
+				Если нашел ошибку, помоги проекту на <kbd><i class="fa fa-github"></i> Github</kbd>
+			</a>
+		</p>
+	</div>
+</footer>
+	
+
+<script src="/libs/jquery.min.js"></script>
+<!--<script src="/libs/bootstrap.min.js"></script>-->
+<script src="/libs/bootstrap3-typeahead.min.js"></script>
+<!--<script src="/libs/highlight.pack.min.js"></script>-->
+<script async src="/js/main.js"></script>
+
+<script
+    data-goatcounter="https://atnartur-ru.goatcounter.com/count"
+    async
+    src="//gc.zgo.at/count.js"
+    crossorigin="anonymous"
+></script>
+
+	
+</body>
+</html>

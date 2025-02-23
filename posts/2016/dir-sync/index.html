@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+
+	<title>Программы для синхронизации директорий без подключения к интернету | atnartur.ru</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<meta name="description" content="Хотя сейчас присутствуют множество сервисов для хранения и синхронизации файлов в облаке (например, Яндекс.Диск или Dropbox), случаются ситуации, когда данные решения для синхронизации не подходят.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Программы для синхронизации директорий без подключения к интернету">
+<meta property="og:url" content="http://atnartur.ru/posts/2016/dir-sync/index.html">
+<meta property="og:site_name" content="atnartur.ru">
+<meta property="og:description" content="Хотя сейчас присутствуют множество сервисов для хранения и синхронизации файлов в облаке (например, Яндекс.Диск или Dropbox), случаются ситуации, когда данные решения для синхронизации не подходят.">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="http://atnartur.ru/content/2016/05/dir-sync/meld.png">
+<meta property="article:published_time" content="2016-05-10T18:53:10.000Z">
+<meta property="article:modified_time" content="2025-02-01T17:45:09.745Z">
+<meta property="article:author" content="Артур Атнагулов">
+<meta property="article:tag" content="GIT">
+<meta property="article:tag" content="windows">
+<meta property="article:tag" content="sync">
+<meta property="article:tag" content="Яндекс Диск">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://atnartur.ru/content/2016/05/dir-sync/meld.png">
+
+				
+		<link rel="alternate" href="/atom.xml" title="atnartur.ru" type="application/atom+xml">
+	
+
+	
+
+	<meta name="keywords" content="atnartur.ru, Блог веб-разработчика, веб-разработка, создание сайта, web-разработка, web, Атнагулов Артур, atnartur" />
+
+	<link rel="stylesheet" href="/styles/main.min.css">
+	<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/libs/github.css">
+
+	<meta name='yandex-verification' content='4cef18e7b73150a8' />
+    <meta name="google-site-verification" content="qAxWEQPavOYoENugvm5uJblx9ZIKvUZUq7nRhovUvjc" />
+    <meta name="theme-color" content="#0099cc">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+	<header>
+	<div class="logo">
+		<h1>
+		<a href="/">atnartur</a>
+		</h1>
+		<h2>веб-разработка, и не только</h2>
+	</div>
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+		</div>
+		
+		<nav class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-left">
+				
+					<li><a href="/">Главная</a></li>
+				
+					<li><a href="/learn">Обучение</a></li>
+				
+					<li><a target="_blank" rel="noopener" href="http://atnartur.dev">Обо мне</a></li>
+				
+			</ul>
+			
+			<ul class="nav navbar-nav navbar-right" id="socials">
+				<li>
+					<a href="http://t.me/atnartur" title="Написать в Telegram" target="_blank">
+						<i class="fa fa-send"></i>
+					</a>
+				</li>
+				<li>
+					<a href="http://github.com/atnartur" title="GitHub - @atnartur" target="_blank">
+						<i class="fa fa-github"></i>
+					</a>
+				</li>
+				<li>
+					<a href="mailto:i@atnartur.dev" title="Напишите мне - i@atnartur.dev">
+						<i class="fa fa-envelope-o"></i>
+					</a>
+				</li>
+				<li>
+					<a href="/atom.xml" title="RSS-лента" target="_blank">
+						<i class="fa fa-rss"></i>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9" id="main">
+				<div class="posts">
+	<article id="post-dir-sync" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+	
+		
+  
+    <h1 class="article-title" itemprop="name">
+      Программы для синхронизации директорий без подключения к интернету
+    </h1>
+  
+
+	
+	
+	<div class="post_content">
+		
+			<p>Хотя сейчас присутствуют множество сервисов для хранения и синхронизации файлов в облаке (например, <a href="http://atnartur.ru/r/ydisk">Яндекс.Диск</a> или <a href="http://atnartur.ru/r/drop">Dropbox</a>), случаются ситуации, когда данные решения для синхронизации не подходят. <span id="more"></span></p>
+<p>Не буду рассказывать о моей ситуации, потому что это не так уж и интересно, на самом деле. Просто представим, что в каком-то конкретном месте нет нормального подключения к интернету для работы облачных служб. В таком случае приходит необходимость использовать синхронизацию файлов через флешку.</p>
+<h2 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h2><p>GIT может быть неплохим решением для синхронизации файлов и папок небольшого размера. Дома при наличии интернета закомитили на компе, скачали на флешке, и все ОК. Однако, нет возможности производить синхронизацию в месте назначения, где подключение к интернету (согласно нашей ситуации) отсутствует.</p>
+<h2 id="Meld"><a href="#Meld" class="headerlink" title="Meld"></a>Meld</h2><p><a target="_blank" rel="noopener" href="http://meldmerge.org/">Meld</a> - программа для сравнения файлов и папок. Подробно показывает различия версий между разными сущностями и дает возможность синхронизировать данные в полуручном режиме.</p>
+<p><img src="/content/2016/05/dir-sync/meld.png"></p>
+<p>На скриншоте видно, что в левой папке отсутсвует директория из правой. Кликаем по папке в правой области, нажимаем на “Copy left”, и точно такая же директория появляется в левой области. Все просто. </p>
+<p>Программа устанавливается и работает без подключения к интернету, поэтому она является идеальным решением для данной проблемы.</p>
+<h2 id="Мой-случай"><a href="#Мой-случай" class="headerlink" title="Мой случай"></a>Мой случай</h2><p>Ну теперь, когда вся основная информация сказана, расскажу про мой случай. Как многие уже догадались, речь идет о школе, где стабильное подключение к интернету отсутсвует. Поэтому я, закончив работу с файлами дома, синхронизирую данные с флешкой, а затем через флешку синхронизирую файлы с компьютером в школе. В папке текущего мероприятия может быть больше 2 гигабайт файлов, поэтому GIT такое не выдержит, а облака будут синхронизироваться очень долго.</p>
+
+	  	
+	</div>
+	
+	<div class="post_footer">
+		<div class="post_info">	
+			<i class="fa fa-calendar-o"></i> <a href="/posts/2016/dir-sync/" class="article-date">
+  	<time datetime="2016-05-10T18:53:10.000Z" itemprop="datePublished">10.05.2016</time>
+</a> 
+			 |
+				<i class="fa fa-folder-o"></i> 
+    <a class="article-category-link" href="/categories/%D0%A1%D0%BE%D1%84%D1%82/">Софт</a>
+ 
+				
+			
+		</div>
+		
+		
+	</div>
+</article>
+
+</div>
+
+			</div>
+			
+				<aside class="col-md-3" id="sidebar">
+	
+		<div class="widget">
+			<form onsubmit="return false;" method="get" accept-charset="UTF-8" class="search-form">
+	<input type="hidden" name="sitesearch" value="http://atnartur.ru">
+	<input type="text" class="form-control" placeholder="Поиск" type="search" name="q" results="0" id="search" autocomplete="off">
+	<div id="local-search-result"></div>
+</form><!-- /input-group -->
+		</div>
+  	
+		<div class="widget">
+			
+	<h2>Категории</h2>
+	<div class="list-group">
+		
+			<a href="/categories/Другое/" class="list-group-item">Другое <small>4</small></a>
+		
+			<a href="/categories/Жизнь/" class="list-group-item">Жизнь <small>9</small></a>
+		
+			<a href="/categories/Новости-проектов/" class="list-group-item">Новости проектов <small>3</small></a>
+		
+			<a href="/categories/О-разработке/" class="list-group-item">О разработке <small>15</small></a>
+		
+			<a href="/categories/Софт/" class="list-group-item">Софт <small>16</small></a>
+		
+	</div>    
+
+		</div>
+  	
+</aside>
+			
+		</div>
+	</div>
+	<footer>
+	<div class="container">
+		<p>
+			&copy; 2013-2025 <a href="http://i.atnartur.ru" target="_blank" class="logo">Артур Атнагулов</a>
+		</p>
+		<p class="links">
+			<a href="http://github.com/atnartur/blog" target="_blank">
+				Если нашел ошибку, помоги проекту на <kbd><i class="fa fa-github"></i> Github</kbd>
+			</a>
+		</p>
+	</div>
+</footer>
+	
+
+<script src="/libs/jquery.min.js"></script>
+<!--<script src="/libs/bootstrap.min.js"></script>-->
+<script src="/libs/bootstrap3-typeahead.min.js"></script>
+<!--<script src="/libs/highlight.pack.min.js"></script>-->
+<script async src="/js/main.js"></script>
+
+<script
+    data-goatcounter="https://atnartur-ru.goatcounter.com/count"
+    async
+    src="//gc.zgo.at/count.js"
+    crossorigin="anonymous"
+></script>
+
+	
+</body>
+</html>

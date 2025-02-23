@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+
+	<title>Падение хостинга 2 - возвращение дурдома | atnartur.ru</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<meta name="description" content="Всем привет. Пишу этот материал в воскресенье после чтения группы хостинга 1GB.ru, который в очередной раз перестал работать. А пошел я туда после гневных писем заказчиков по поводу того, что сайты ле">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Падение хостинга 2 - возвращение дурдома">
+<meta property="og:url" content="http://atnartur.ru/posts/2015/1gb-fail2/index.html">
+<meta property="og:site_name" content="atnartur.ru">
+<meta property="og:description" content="Всем привет. Пишу этот материал в воскресенье после чтения группы хостинга 1GB.ru, который в очередной раз перестал работать. А пошел я туда после гневных писем заказчиков по поводу того, что сайты ле">
+<meta property="og:locale" content="ru_RU">
+<meta property="article:published_time" content="2015-07-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-01T17:45:09.744Z">
+<meta property="article:author" content="Артур Атнагулов">
+<meta property="article:tag" content="Проекты">
+<meta property="article:tag" content="1gb">
+<meta property="article:tag" content="clienddev">
+<meta name="twitter:card" content="summary">
+
+				
+		<link rel="alternate" href="/atom.xml" title="atnartur.ru" type="application/atom+xml">
+	
+
+	
+
+	<meta name="keywords" content="atnartur.ru, Блог веб-разработчика, веб-разработка, создание сайта, web-разработка, web, Атнагулов Артур, atnartur" />
+
+	<link rel="stylesheet" href="/styles/main.min.css">
+	<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/libs/github.css">
+
+	<meta name='yandex-verification' content='4cef18e7b73150a8' />
+    <meta name="google-site-verification" content="qAxWEQPavOYoENugvm5uJblx9ZIKvUZUq7nRhovUvjc" />
+    <meta name="theme-color" content="#0099cc">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+	<header>
+	<div class="logo">
+		<h1>
+		<a href="/">atnartur</a>
+		</h1>
+		<h2>веб-разработка, и не только</h2>
+	</div>
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+		</div>
+		
+		<nav class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-left">
+				
+					<li><a href="/">Главная</a></li>
+				
+					<li><a href="/learn">Обучение</a></li>
+				
+					<li><a target="_blank" rel="noopener" href="http://atnartur.dev">Обо мне</a></li>
+				
+			</ul>
+			
+			<ul class="nav navbar-nav navbar-right" id="socials">
+				<li>
+					<a href="http://t.me/atnartur" title="Написать в Telegram" target="_blank">
+						<i class="fa fa-send"></i>
+					</a>
+				</li>
+				<li>
+					<a href="http://github.com/atnartur" title="GitHub - @atnartur" target="_blank">
+						<i class="fa fa-github"></i>
+					</a>
+				</li>
+				<li>
+					<a href="mailto:i@atnartur.dev" title="Напишите мне - i@atnartur.dev">
+						<i class="fa fa-envelope-o"></i>
+					</a>
+				</li>
+				<li>
+					<a href="/atom.xml" title="RSS-лента" target="_blank">
+						<i class="fa fa-rss"></i>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9" id="main">
+				<div class="posts">
+	<article id="post-1gb-fail2" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+	
+		
+  
+    <h1 class="article-title" itemprop="name">
+      Падение хостинга 2 - возвращение дурдома
+    </h1>
+  
+
+	
+	
+	<div class="post_content">
+		
+			<p>Всем привет. Пишу этот материал в воскресенье после чтения <a target="_blank" rel="noopener" href="http://vk.com/1gb_ru">группы хостинга 1GB.ru</a>, который в очередной раз перестал работать. А пошел я туда после гневных писем заказчиков по поводу того, что сайты легли. Напрочь. <span id="more"></span></p>
+<p><a href="http://atnartur.ru/istoriya-odnogo-sboya/">Похожая ситуация</a> была 3 года назад с проектом Cafe4me. В августе 2013 года на 1gb.ru у меня был только этот проект. Сейчас уже там находятся проекты 2х заказчиков (6 сайтов), которые сейчас недоступны. </p>
+<p>А у 1gb.ru по традиции лежит <a target="_blank" rel="noopener" href="http://1gb.ru/">основной сайт</a>. <a target="_blank" rel="noopener" href="http://status.1gb.ru/">Статус-сайт</a> прилег вместе со всеми, хотя, казалось бы, должен быть самым стойким во всей инфраструктуре. Сайт хостера <a target="_blank" rel="noopener" href="http://jino.ru/">Джино</a> и <a target="_blank" rel="noopener" href="https://roem.ru/06-07-2015/199519/jino-1gb-ru-rt-comm-msk/">их сайты</a> тоже отдыхают.</p>
+<p>Сейчас основная дискуссия идет в группе 1gb ВКонтакте. В тот раз все происходило в Твиттере. </p>
+<p>А <a target="_blank" rel="noopener" href="http://vk.com/wall-58174222_950?reply=952">легло опять оборудование компании РТКомм</a>, как и <a href="http://atnartur.ru/istoriya-odnogo-sboya/">в прошлый раз</a>. Кстати, твиттер-аккаунт РТКомм теперь удален. </p>
+<p>Радует то, что представитель хостинга отвечает в группе на всех претензии клиентов. И отвечает вполне спокойно, сдержанно и со здравым смыслом. <a target="_blank" rel="noopener" href="http://vk.com/wall-58174222_980?reply=988">Ответил он</a> и на мой пост про “прошлый раз”. </p>
+<p>РТКомм менять не собираются, ведь, <a target="_blank" rel="noopener" href="http://vk.com/wall-58174222_1040?reply=1073">по словам технического директора</a>, такие сбои раз в 3 года в принципе нормальное дело, если вспомнить инциденты с ВК, Mail.ru, и прочими… </p>
+<p>Честно говоря, мне не нравится дизайн сайта 1gb, дизайн их админки, принципы ее работы. Все как будто из начала 2000х. Инфраструктура хостинга хороша, но сайт и админка точно нуждается в переработке. Один из главных инструментов - система администрирования баз данных PHPMyAdmin - тоже тупит очень сильно. Ладно хоть есть возможность подключаться с внешних ресурсов к базам и управлять данными удаленно. </p>
+<p>На вопрос по поводу обновления сайта 1GB ответ я нашел в обсуждениях группы, где от имени администрации было сказано, что <a target="_blank" rel="noopener" href="http://vk.com/topic-58174222_29715736?post=8">полная переработка сайта очень сложна и пока не предвидится</a>. </p>
+<p>В три часа ночи работа хостинга была восстановлена.</p>
+
+	  	
+	</div>
+	
+	<div class="post_footer">
+		<div class="post_info">	
+			<i class="fa fa-calendar-o"></i> <a href="/posts/2015/1gb-fail2/" class="article-date">
+  	<time datetime="2015-07-06T16:00:00.000Z" itemprop="datePublished">06.07.2015</time>
+</a> 
+			 |
+				<i class="fa fa-folder-o"></i> 
+    <a class="article-category-link" href="/categories/%D0%A1%D0%BE%D1%84%D1%82/">Софт</a>
+ 
+				
+			
+		</div>
+		
+		
+	</div>
+</article>
+
+</div>
+
+			</div>
+			
+				<aside class="col-md-3" id="sidebar">
+	
+		<div class="widget">
+			<form onsubmit="return false;" method="get" accept-charset="UTF-8" class="search-form">
+	<input type="hidden" name="sitesearch" value="http://atnartur.ru">
+	<input type="text" class="form-control" placeholder="Поиск" type="search" name="q" results="0" id="search" autocomplete="off">
+	<div id="local-search-result"></div>
+</form><!-- /input-group -->
+		</div>
+  	
+		<div class="widget">
+			
+	<h2>Категории</h2>
+	<div class="list-group">
+		
+			<a href="/categories/Другое/" class="list-group-item">Другое <small>4</small></a>
+		
+			<a href="/categories/Жизнь/" class="list-group-item">Жизнь <small>9</small></a>
+		
+			<a href="/categories/Новости-проектов/" class="list-group-item">Новости проектов <small>3</small></a>
+		
+			<a href="/categories/О-разработке/" class="list-group-item">О разработке <small>15</small></a>
+		
+			<a href="/categories/Софт/" class="list-group-item">Софт <small>16</small></a>
+		
+	</div>    
+
+		</div>
+  	
+</aside>
+			
+		</div>
+	</div>
+	<footer>
+	<div class="container">
+		<p>
+			&copy; 2013-2025 <a href="http://i.atnartur.ru" target="_blank" class="logo">Артур Атнагулов</a>
+		</p>
+		<p class="links">
+			<a href="http://github.com/atnartur/blog" target="_blank">
+				Если нашел ошибку, помоги проекту на <kbd><i class="fa fa-github"></i> Github</kbd>
+			</a>
+		</p>
+	</div>
+</footer>
+	
+
+<script src="/libs/jquery.min.js"></script>
+<!--<script src="/libs/bootstrap.min.js"></script>-->
+<script src="/libs/bootstrap3-typeahead.min.js"></script>
+<!--<script src="/libs/highlight.pack.min.js"></script>-->
+<script async src="/js/main.js"></script>
+
+<script
+    data-goatcounter="https://atnartur-ru.goatcounter.com/count"
+    async
+    src="//gc.zgo.at/count.js"
+    crossorigin="anonymous"
+></script>
+
+	
+</body>
+</html>

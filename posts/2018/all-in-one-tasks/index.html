@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+
+	<title>Сводим все задачи в Google Calendar | atnartur.ru</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<meta name="description" content="Во многих статьях о продуктивности пишут, что у человека всегда должен быть список дел, которые он должен сделат за день. Однако во время работы нередко происходит так, что личные задачи лежат в одном">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Сводим все задачи в Google Calendar">
+<meta property="og:url" content="http://atnartur.ru/posts/2018/all-in-one-tasks/index.html">
+<meta property="og:site_name" content="atnartur.ru">
+<meta property="og:description" content="Во многих статьях о продуктивности пишут, что у человека всегда должен быть список дел, которые он должен сделат за день. Однако во время работы нередко происходит так, что личные задачи лежат в одном">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="http://atnartur.ru/content/2018/02/all-in-one-tasks/google-calendar-logo.jpg">
+<meta property="og:image" content="http://atnartur.ru/content/2018/02/all-in-one-tasks/import.png">
+<meta property="article:published_time" content="2018-02-18T15:52:57.000Z">
+<meta property="article:modified_time" content="2025-02-01T17:45:09.744Z">
+<meta property="article:author" content="Артур Атнагулов">
+<meta property="article:tag" content="Google">
+<meta property="article:tag" content="Wunderlist">
+<meta property="article:tag" content="Flow">
+<meta property="article:tag" content="Gitlab">
+<meta property="article:tag" content="Trello">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://atnartur.ru/content/2018/02/all-in-one-tasks/google-calendar-logo.jpg">
+
+				
+		<link rel="alternate" href="/atom.xml" title="atnartur.ru" type="application/atom+xml">
+	
+
+	
+
+	<meta name="keywords" content="atnartur.ru, Блог веб-разработчика, веб-разработка, создание сайта, web-разработка, web, Атнагулов Артур, atnartur" />
+
+	<link rel="stylesheet" href="/styles/main.min.css">
+	<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/libs/github.css">
+
+	<meta name='yandex-verification' content='4cef18e7b73150a8' />
+    <meta name="google-site-verification" content="qAxWEQPavOYoENugvm5uJblx9ZIKvUZUq7nRhovUvjc" />
+    <meta name="theme-color" content="#0099cc">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+	<header>
+	<div class="logo">
+		<h1>
+		<a href="/">atnartur</a>
+		</h1>
+		<h2>веб-разработка, и не только</h2>
+	</div>
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+		</div>
+		
+		<nav class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-left">
+				
+					<li><a href="/">Главная</a></li>
+				
+					<li><a href="/learn">Обучение</a></li>
+				
+					<li><a target="_blank" rel="noopener" href="http://atnartur.dev">Обо мне</a></li>
+				
+			</ul>
+			
+			<ul class="nav navbar-nav navbar-right" id="socials">
+				<li>
+					<a href="http://t.me/atnartur" title="Написать в Telegram" target="_blank">
+						<i class="fa fa-send"></i>
+					</a>
+				</li>
+				<li>
+					<a href="http://github.com/atnartur" title="GitHub - @atnartur" target="_blank">
+						<i class="fa fa-github"></i>
+					</a>
+				</li>
+				<li>
+					<a href="mailto:i@atnartur.dev" title="Напишите мне - i@atnartur.dev">
+						<i class="fa fa-envelope-o"></i>
+					</a>
+				</li>
+				<li>
+					<a href="/atom.xml" title="RSS-лента" target="_blank">
+						<i class="fa fa-rss"></i>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9" id="main">
+				<div class="posts">
+	<article id="post-all-in-one-tasks" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+	
+		
+  
+    <h1 class="article-title" itemprop="name">
+      Сводим все задачи в Google Calendar
+    </h1>
+  
+
+	
+	
+	<div class="post_content">
+		
+			<p>Во многих статьях о продуктивности пишут, что у человека всегда должен быть список дел, которые он должен сделат за день. Однако во время работы нередко происходит так, что личные задачи лежат в одном месте, корпоративные - в другом, задачи open source проекта (к примеру) - в третьем. Сегодня мы поговорим о том, как собрать единый список задач в Google Calendar автоматически и в каждый момент времени понимать свою повестку дня. <span id="more"></span></p>
+<p><img src="/content/2018/02/all-in-one-tasks/google-calendar-logo.jpg"></p>
+<h2 id="Почему-Google-Calendar"><a href="#Почему-Google-Calendar" class="headerlink" title="Почему Google Calendar?"></a>Почему Google Calendar?</h2><p><a href="/posts/2018/clouds/">Google сервисы отлично синхронизируются</a> с большинством платформ: iOS, MacOS, Android, даже WindowsPhone! На Windows 10 вроде тоже работала синхронизация, но я ее запускал очень давно, поэтому уверенно утверждать о том, что события адекватно придут на эту операционную систему от Microsoft, не буду.</p>
+<p>С Google сервисами отлично интегрированы различные автоматизаторы типа <a href="/posts/2017/univer-ifttt/">IFTTT</a> или <a target="_blank" rel="noopener" href="http://zapier.com/">Zapier</a>, поэтому в случае отсутствия готовых инструментов синхронизации, всегда можно попробовать накостылять что-то свое. А если даже таким образом решить проблему не получится, то для большинства популярных языков программирования есть модули, умеющие общаться с Google API.</p>
+<p>Однако, не все так плохо, и далее Вы в этом убедитесь :)</p>
+<h2 id="А-почему-календарь-Там-же-нет-задач"><a href="#А-почему-календарь-Там-же-нет-задач" class="headerlink" title="А почему календарь? Там же нет задач!"></a>А почему календарь? Там же нет задач!</h2><p>Задачи могут отображаться в календаре сверху как события на весь день. Таким образом, внизу будет график настоящих событий, а наверху будут все задачи. По-моему, это удобно:)</p>
+<p>Есть только одна проблема: нет возможности редактировать информацию из внешних сервисов. Но я считаю, что в этом нет острой необходимости, потому что каждый описанный ниже сервис имеет много специфических функций, которые в любом случае не укладываются в интерфейс календаря. И ведь наша задача не сделать полнофункциональный агрегатор, а лишь просто собрать список задач в одном месте.</p>
+<p>Еще одна важная особенность: в календаре появятся только те задачи, у которых есть крайний срок, иначе непонятно, в какое место календаря их добавлять.</p>
+<h2 id="Внешние-календари"><a href="#Внешние-календари" class="headerlink" title="Внешние календари"></a>Внешние календари</h2><p>Внешние календари подключаются с помощью ссылки. Добавление происходит с помощью кнопки “+”, далее “Добавить по URL”.</p>
+<p><img src="/content/2018/02/all-in-one-tasks/import.png"></p>
+<p>Вставляем туда ссылку, нажимаем на “Добавить календарь”. И готово!</p>
+<p>Таким образом, внешние сервисы смогут доставлять к Вам список своих событий. Но так как календари все-таки внешние, Google по умолчанию не синхронизирует их. </p>
+<p>Чтобы включить синхронизацию, нужно перейти на <a target="_blank" rel="noopener" href="https://calendar.google.com/calendar/syncselect">эту страницу</a> и отметить галочками нужные для синхронизации календари.</p>
+<h2 id="Подключение-сервисов"><a href="#Подключение-сервисов" class="headerlink" title="Подключение сервисов"></a>Подключение сервисов</h2><h3 id="Wunderlist"><a href="#Wunderlist" class="headerlink" title="Wunderlist"></a><a href="/posts/2013/wunderlist/">Wunderlist</a></h3><p>Работает через подключение календаря по ссылке. </p>
+<ol>
+<li><a target="_blank" rel="noopener" href="http://wunderlist.com/">Заходим в веб-приложение</a></li>
+<li>Нажимаем на стрелочку рядом с именем</li>
+<li>Далее “Параметры учетной записи”</li>
+<li>Чуть ниже будет поле “Канал календаря” со ссылкой. Добавляем ссылку указанным выше способом, и задачи из Wunderlist появляются в Google Calendar!</li>
+</ol>
+<h3 id="Trello-Todoist"><a href="#Trello-Todoist" class="headerlink" title="Trello, Todoist"></a><a target="_blank" rel="noopener" href="http://trello.com/">Trello</a>, <a target="_blank" rel="noopener" href="http://todoist.com/">Todoist</a></h3><p>Для настройки нужно зарегистрироваться на <a target="_blank" rel="noopener" href="http://ifttt.com/">IFTTT</a>, подключить аккаунты Trello и Google Calendar и настроить соответствующую автоматизацию с помощью ссылок ниже. Частично процесс работы с этим сервисом описан <a href="/posts/2017/univer-ifttt/">здесь</a>.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://ifttt.com/applets/299812p-when-you-create-a-new-trello-card-add-an-event-to-google-calendar">Апплет для Trelo</a>. </li>
+<li><a target="_blank" rel="noopener" href="https://ifttt.com/connect/todoist/google_calendar">Апплет для Todoist</a></li>
+</ul>
+<h3 id="Flow"><a href="#Flow" class="headerlink" title="Flow"></a><a target="_blank" rel="noopener" href="http://getflow.com/">Flow</a></h3><p>Flow также поддерживает синхронизацию календаря по ссылке. Подробная инструкция по настройке находится <a target="_blank" rel="noopener" href="https://www.getflow.com/support/tasks/calendar-sync">здесь</a>. Нужно отметить, что указанных в статье настроек нет в бета-версии веб-приложения, поэтому нужно по-старинке заходить на <a target="_blank" rel="noopener" href="http://app.getflow.com/">http://app.getflow.com</a>.</p>
+<h3 id="Gitlab"><a href="#Gitlab" class="headerlink" title="Gitlab"></a><a target="_blank" rel="noopener" href="http://gitlab.com/">Gitlab</a></h3><p>Let’s hardcore begins! Нету у них никакой поддержки экспорта крайних сроков issue. Можно попробовать сделать костыль на <a target="_blank" rel="noopener" href="http://zapier.com/">Zapier</a>, который умеет подключаться к обоим сервисам, но я не рискнул это сделать.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/le1ca/gitlab-calendar">На github есть проект</a>, который умеет осуществлять синхронизацию через Webhook. Я дописал поддержку <a href="/posts/2017/edu-open-data/">Docker</a>, кому надо - <a target="_blank" rel="noopener" href="https://github.com/atnartur/gitlab-calendar/tree/feat_docker">пользуйтесь</a>. Конечно же минус такого решения: придется заморачиваться с сервером. Но если у Вас нет проблем с этим, перейдем к настройке:</p>
+<ol>
+<li><p>Переходим в <a target="_blank" rel="noopener" href="https://console.developers.google.com/iam-admin/serviceaccounts/">Google Developer Console</a></p>
+</li>
+<li><p>Создаем проект</p>
+</li>
+<li><p>Создаем сервисный аккаунт</p>
+</li>
+<li><p>Создаем ключ сервисного аккаунта, скачиваем его и кладем в папку с проектом</p>
+</li>
+<li><p>С помощью верхнего поиска находим <code>Google Calendar API</code> и включаем его </p>
+</li>
+<li><p>Создаем календарь в Google Calendar, и даем доступ сервисному аккаунту на внесение изменений</p>
+</li>
+<li><p>Отредактировать конфигурационный файл:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br><br>    <span class="hljs-attr">&quot;logLevel&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;INFO&quot;</span><span class="hljs-punctuation">,</span><br><br>    <span class="hljs-attr">&quot;timezone&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Europe/Moscow&quot;</span><span class="hljs-punctuation">,</span><br>    <br>    <span class="hljs-attr">&quot;googleSecretFile&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;НАЗВАНИЕ ФАЙЛА ИЗ 4 ПУНКТА&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;gitlabSecret&quot;</span><span class="hljs-punctuation">:</span>     <span class="hljs-string">&quot;ЛЮБОЕ СЛУЧАЙНОЕ СЛОВО (БУДЕТ ИСПОЛЬЗОВАТЬСЯ ДЛЯ ПРОВЕРКИ ДОСТУПА)&quot;</span><span class="hljs-punctuation">,</span><br>    <br>    <span class="hljs-attr">&quot;gitlabApi&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;enable&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;url&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://gitlab.com/&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;token&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;paste_impersonation_token_here&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;inviteAssignees&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <br>    <span class="hljs-attr">&quot;authorizedDomain&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;your-gsuite-domain.net&quot;</span><span class="hljs-punctuation">,</span><br>    <br>    <span class="hljs-attr">&quot;listenPort&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">8080</span><span class="hljs-punctuation">,</span><br>    <br>    <span class="hljs-attr">&quot;ssl&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;enable&quot;</span><span class="hljs-punctuation">:</span>   <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;keyfile&quot;</span><span class="hljs-punctuation">:</span>  <span class="hljs-string">&quot;/etc/letsencrypt/live/domain_name/privkey.pem&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;certfile&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/etc/letsencrypt/live/domain_name/fullchain.pem&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <br>    <span class="hljs-attr">&quot;repoMap&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;НАЗВАНИЕ РЕПОЗИТОРИЯ&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;НАЗВАНИЕ КАЛЕНДАРЯ&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;НАЗВАНИЕ РЕПОЗИТОРИЯ 2&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;НАЗВАНИЕ КАЛЕНДАРЯ 2&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <br>    <span class="hljs-attr">&quot;dropPrivileges&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;enable&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;user&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;nobody&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;group&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;nobody&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Выкладываем приложение gitlab-calendar на какой-нибудь сервер. Оно должно запуститься на порту <code>8080</code> (если Вы ничего не меняли)</p>
+</li>
+<li><p>Идем на <a target="_blank" rel="noopener" href="http://gitlab.com/">http://gitlab.com</a></p>
+</li>
+<li><p>Открываем нужный проект, затем Settings &#x2F; Integrations</p>
+</li>
+<li><p>Вставляем ссылку на работающее приложение</p>
+</li>
+<li><p>В Secret Token вставляем <code>ЛЮБОЕ СЛУЧАЙНОЕ СЛОВО</code>, которое Вы написали в конфигурационном файле в 7 пункте</p>
+</li>
+<li><p>Добавлем webhook</p>
+</li>
+<li><p>Готово (да, наконец-то)</p>
+</li>
+</ol>
+<p>Постарался описать все подробно, надеюсь, у Вас получится:)</p>
+<p>Если инструкции по интеграции Вашего любимого сервиса тут нет, <a target="_blank" rel="noopener" href="http://i.atnartur.ru/">напишите мне</a> или <a target="_blank" rel="noopener" href="http://github.com/atnartur/blog">дополните</a> статью самостоятельно.</p>
+<p>Продуктивной Вам недели!:)</p>
+
+	  	
+	</div>
+	
+	<div class="post_footer">
+		<div class="post_info">	
+			<i class="fa fa-calendar-o"></i> <a href="/posts/2018/all-in-one-tasks/" class="article-date">
+  	<time datetime="2018-02-18T15:52:57.000Z" itemprop="datePublished">18.02.2018</time>
+</a> 
+			 |
+				<i class="fa fa-folder-o"></i> 
+    <a class="article-category-link" href="/categories/%D0%A1%D0%BE%D1%84%D1%82/">Софт</a>
+ 
+				
+			
+		</div>
+		
+		
+	</div>
+</article>
+
+</div>
+
+			</div>
+			
+				<aside class="col-md-3" id="sidebar">
+	
+		<div class="widget">
+			<form onsubmit="return false;" method="get" accept-charset="UTF-8" class="search-form">
+	<input type="hidden" name="sitesearch" value="http://atnartur.ru">
+	<input type="text" class="form-control" placeholder="Поиск" type="search" name="q" results="0" id="search" autocomplete="off">
+	<div id="local-search-result"></div>
+</form><!-- /input-group -->
+		</div>
+  	
+		<div class="widget">
+			
+	<h2>Категории</h2>
+	<div class="list-group">
+		
+			<a href="/categories/Другое/" class="list-group-item">Другое <small>4</small></a>
+		
+			<a href="/categories/Жизнь/" class="list-group-item">Жизнь <small>9</small></a>
+		
+			<a href="/categories/Новости-проектов/" class="list-group-item">Новости проектов <small>3</small></a>
+		
+			<a href="/categories/О-разработке/" class="list-group-item">О разработке <small>15</small></a>
+		
+			<a href="/categories/Софт/" class="list-group-item">Софт <small>16</small></a>
+		
+	</div>    
+
+		</div>
+  	
+</aside>
+			
+		</div>
+	</div>
+	<footer>
+	<div class="container">
+		<p>
+			&copy; 2013-2025 <a href="http://i.atnartur.ru" target="_blank" class="logo">Артур Атнагулов</a>
+		</p>
+		<p class="links">
+			<a href="http://github.com/atnartur/blog" target="_blank">
+				Если нашел ошибку, помоги проекту на <kbd><i class="fa fa-github"></i> Github</kbd>
+			</a>
+		</p>
+	</div>
+</footer>
+	
+
+<script src="/libs/jquery.min.js"></script>
+<!--<script src="/libs/bootstrap.min.js"></script>-->
+<script src="/libs/bootstrap3-typeahead.min.js"></script>
+<!--<script src="/libs/highlight.pack.min.js"></script>-->
+<script async src="/js/main.js"></script>
+
+<script
+    data-goatcounter="https://atnartur-ru.goatcounter.com/count"
+    async
+    src="//gc.zgo.at/count.js"
+    crossorigin="anonymous"
+></script>
+
+	
+</body>
+</html>

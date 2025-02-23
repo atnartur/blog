@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+
+	<title>Символы в коммитах - польза или зло? | atnartur.ru</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<meta name="description" content="Несколько лет назад я подсмотрел интересный метод оформления commit-сообщений: в начале каждого сообщения ставится один из символов + - ! &#x3D;. В этой статье - небольшие мысли по поводу таких сокращений.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Символы в коммитах - польза или зло?">
+<meta property="og:url" content="http://atnartur.ru/posts/2016/commit-symbols/index.html">
+<meta property="og:site_name" content="atnartur.ru">
+<meta property="og:description" content="Несколько лет назад я подсмотрел интересный метод оформления commit-сообщений: в начале каждого сообщения ставится один из символов + - ! &#x3D;. В этой статье - небольшие мысли по поводу таких сокращений.">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="http://atnartur.ru/content/2013/07/Git-Logo-2Color.jpg">
+<meta property="article:published_time" content="2016-09-30T20:48:39.000Z">
+<meta property="article:modified_time" content="2025-02-01T17:45:09.745Z">
+<meta property="article:author" content="Артур Атнагулов">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://atnartur.ru/content/2013/07/Git-Logo-2Color.jpg">
+
+				
+		<link rel="alternate" href="/atom.xml" title="atnartur.ru" type="application/atom+xml">
+	
+
+	
+
+	<meta name="keywords" content="atnartur.ru, Блог веб-разработчика, веб-разработка, создание сайта, web-разработка, web, Атнагулов Артур, atnartur" />
+
+	<link rel="stylesheet" href="/styles/main.min.css">
+	<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/libs/github.css">
+
+	<meta name='yandex-verification' content='4cef18e7b73150a8' />
+    <meta name="google-site-verification" content="qAxWEQPavOYoENugvm5uJblx9ZIKvUZUq7nRhovUvjc" />
+    <meta name="theme-color" content="#0099cc">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+	<header>
+	<div class="logo">
+		<h1>
+		<a href="/">atnartur</a>
+		</h1>
+		<h2>веб-разработка, и не только</h2>
+	</div>
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+		</div>
+		
+		<nav class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-left">
+				
+					<li><a href="/">Главная</a></li>
+				
+					<li><a href="/learn">Обучение</a></li>
+				
+					<li><a target="_blank" rel="noopener" href="http://atnartur.dev">Обо мне</a></li>
+				
+			</ul>
+			
+			<ul class="nav navbar-nav navbar-right" id="socials">
+				<li>
+					<a href="http://t.me/atnartur" title="Написать в Telegram" target="_blank">
+						<i class="fa fa-send"></i>
+					</a>
+				</li>
+				<li>
+					<a href="http://github.com/atnartur" title="GitHub - @atnartur" target="_blank">
+						<i class="fa fa-github"></i>
+					</a>
+				</li>
+				<li>
+					<a href="mailto:i@atnartur.dev" title="Напишите мне - i@atnartur.dev">
+						<i class="fa fa-envelope-o"></i>
+					</a>
+				</li>
+				<li>
+					<a href="/atom.xml" title="RSS-лента" target="_blank">
+						<i class="fa fa-rss"></i>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9" id="main">
+				<div class="posts">
+	<article id="post-commit-symbols" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+	
+		
+  
+    <h1 class="article-title" itemprop="name">
+      Символы в коммитах - польза или зло?
+    </h1>
+  
+
+	
+	
+	<div class="post_content">
+		
+			<p>Несколько лет назад я подсмотрел интересный метод оформления commit-сообщений: в начале каждого сообщения ставится один из символов <code>+ - ! =</code>. В этой статье - небольшие мысли по поводу таких сокращений.</p>
+<span id="more"></span>
+
+<p><img src="/content/2013/07/Git-Logo-2Color.jpg"></p>
+<p><strong>Вот, собственно, и сами условные обозначения:</strong></p>
+<ul>
+<li><code>+</code> добавлено</li>
+<li><code>-</code> удалено</li>
+<li><code>=</code> изменение в текущем функционале</li>
+<li><code>!</code> исправлено</li>
+<li><code>Х%</code> сделано на Х процентов</li>
+</ul>
+<p>Данная тема неоднократно порождала холиварчики приличного объема среди моих друзей-программистов. Одни считали, что сокращения слов в символы - это очень удобно потому, что можно быстро визуально определить, что было сделано в это коммите. Другие утверждали, что это излишне, и новые разработчики, пришедшие в проект, будут с трудом входить в данный способ изъяснения. (Это далеко не полный список возражений по этому поводу.)</p>
+<p>И данный кусочек содержится в каждом README моих проектов для того, чтобы новый разработчик мог прочитать и понять, что же значит эта “загадочная” “морзянка”. </p>
+<p>И все-таки, в чем трудность запомнить 5 символов и не писать <code>added / deleted/removed / edited / updated / fixed / created / not fully implimented / ...</code>? Да, значения слов повторяются, как они и повторяются в реальной жизни. Если нужно будет выполнить поиск всех добавлений нового функционала, то нужно будет искать, например, <code>created, added...</code> Английский язык не столь многогранен, как русский, но все же…</p>
+<p>Стоп, а если коммит-сообщения еще и на двух языках? Еще больше вариантов надо учесть при поиске. </p>
+<p>Вот, например, <a target="_blank" rel="noopener" href="https://github.com/ClienDDev/ClienD-ext/commits/dev">использование этих условных обозначений в проекте ClienD extension</a>. </p>
+<p>Намного проще писать просто один сивмол в начале каждого коммита, который будет охарактеризовать его тип, ведь так?</p>
+
+	  	
+	</div>
+	
+	<div class="post_footer">
+		<div class="post_info">	
+			<i class="fa fa-calendar-o"></i> <a href="/posts/2016/commit-symbols/" class="article-date">
+  	<time datetime="2016-09-30T20:48:39.000Z" itemprop="datePublished">30.09.2016</time>
+</a> 
+			 |
+				<i class="fa fa-folder-o"></i> 
+    <a class="article-category-link" href="/categories/%D0%9E-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5/">О разработке</a>
+ 
+				
+			
+		</div>
+		
+		
+	</div>
+</article>
+
+</div>
+
+			</div>
+			
+				<aside class="col-md-3" id="sidebar">
+	
+		<div class="widget">
+			<form onsubmit="return false;" method="get" accept-charset="UTF-8" class="search-form">
+	<input type="hidden" name="sitesearch" value="http://atnartur.ru">
+	<input type="text" class="form-control" placeholder="Поиск" type="search" name="q" results="0" id="search" autocomplete="off">
+	<div id="local-search-result"></div>
+</form><!-- /input-group -->
+		</div>
+  	
+		<div class="widget">
+			
+	<h2>Категории</h2>
+	<div class="list-group">
+		
+			<a href="/categories/Другое/" class="list-group-item">Другое <small>4</small></a>
+		
+			<a href="/categories/Жизнь/" class="list-group-item">Жизнь <small>9</small></a>
+		
+			<a href="/categories/Новости-проектов/" class="list-group-item">Новости проектов <small>3</small></a>
+		
+			<a href="/categories/О-разработке/" class="list-group-item">О разработке <small>15</small></a>
+		
+			<a href="/categories/Софт/" class="list-group-item">Софт <small>16</small></a>
+		
+	</div>    
+
+		</div>
+  	
+</aside>
+			
+		</div>
+	</div>
+	<footer>
+	<div class="container">
+		<p>
+			&copy; 2013-2025 <a href="http://i.atnartur.ru" target="_blank" class="logo">Артур Атнагулов</a>
+		</p>
+		<p class="links">
+			<a href="http://github.com/atnartur/blog" target="_blank">
+				Если нашел ошибку, помоги проекту на <kbd><i class="fa fa-github"></i> Github</kbd>
+			</a>
+		</p>
+	</div>
+</footer>
+	
+
+<script src="/libs/jquery.min.js"></script>
+<!--<script src="/libs/bootstrap.min.js"></script>-->
+<script src="/libs/bootstrap3-typeahead.min.js"></script>
+<!--<script src="/libs/highlight.pack.min.js"></script>-->
+<script async src="/js/main.js"></script>
+
+<script
+    data-goatcounter="https://atnartur-ru.goatcounter.com/count"
+    async
+    src="//gc.zgo.at/count.js"
+    crossorigin="anonymous"
+></script>
+
+	
+</body>
+</html>

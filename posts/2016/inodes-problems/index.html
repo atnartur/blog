@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+
+	<title>Решение проблем с ограничением по количеству файлов (inodes) | atnartur.ru</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<meta name="description" content="Около месяца мы боролись с тем, что на сервере постоянно кончаются inodes (по-русски: иноды или айноды). Это индексные дескрипторы файлов. Одна айнода соответствует одному файлу на сервере. В ней хран">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Решение проблем с ограничением по количеству файлов (inodes)">
+<meta property="og:url" content="http://atnartur.ru/posts/2016/inodes-problems/index.html">
+<meta property="og:site_name" content="atnartur.ru">
+<meta property="og:description" content="Около месяца мы боролись с тем, что на сервере постоянно кончаются inodes (по-русски: иноды или айноды). Это индексные дескрипторы файлов. Одна айнода соответствует одному файлу на сервере. В ней хран">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="http://atnartur.ru/content/2016/10/inodes-problems/1.png">
+<meta property="og:image" content="http://atnartur.ru/content/2016/10/inodes-problems/2.png">
+<meta property="og:image" content="http://atnartur.ru/content/2016/10/inodes-problems/3.png">
+<meta property="article:published_time" content="2016-10-21T18:55:42.000Z">
+<meta property="article:modified_time" content="2025-02-01T17:45:09.746Z">
+<meta property="article:author" content="Артур Атнагулов">
+<meta property="article:tag" content="сервер">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://atnartur.ru/content/2016/10/inodes-problems/1.png">
+
+				
+		<link rel="alternate" href="/atom.xml" title="atnartur.ru" type="application/atom+xml">
+	
+
+	
+
+	<meta name="keywords" content="atnartur.ru, Блог веб-разработчика, веб-разработка, создание сайта, web-разработка, web, Атнагулов Артур, atnartur" />
+
+	<link rel="stylesheet" href="/styles/main.min.css">
+	<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/libs/github.css">
+
+	<meta name='yandex-verification' content='4cef18e7b73150a8' />
+    <meta name="google-site-verification" content="qAxWEQPavOYoENugvm5uJblx9ZIKvUZUq7nRhovUvjc" />
+    <meta name="theme-color" content="#0099cc">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+	<header>
+	<div class="logo">
+		<h1>
+		<a href="/">atnartur</a>
+		</h1>
+		<h2>веб-разработка, и не только</h2>
+	</div>
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+		</div>
+		
+		<nav class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-left">
+				
+					<li><a href="/">Главная</a></li>
+				
+					<li><a href="/learn">Обучение</a></li>
+				
+					<li><a target="_blank" rel="noopener" href="http://atnartur.dev">Обо мне</a></li>
+				
+			</ul>
+			
+			<ul class="nav navbar-nav navbar-right" id="socials">
+				<li>
+					<a href="http://t.me/atnartur" title="Написать в Telegram" target="_blank">
+						<i class="fa fa-send"></i>
+					</a>
+				</li>
+				<li>
+					<a href="http://github.com/atnartur" title="GitHub - @atnartur" target="_blank">
+						<i class="fa fa-github"></i>
+					</a>
+				</li>
+				<li>
+					<a href="mailto:i@atnartur.dev" title="Напишите мне - i@atnartur.dev">
+						<i class="fa fa-envelope-o"></i>
+					</a>
+				</li>
+				<li>
+					<a href="/atom.xml" title="RSS-лента" target="_blank">
+						<i class="fa fa-rss"></i>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9" id="main">
+				<div class="posts">
+	<article id="post-inodes-problems" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+	
+		
+  
+    <h1 class="article-title" itemprop="name">
+      Решение проблем с ограничением по количеству файлов (inodes)
+    </h1>
+  
+
+	
+	
+	<div class="post_content">
+		
+			<p>Около месяца мы боролись с тем, что на сервере постоянно кончаются inodes (по-русски: иноды или айноды). Это индексные дескрипторы файлов. Одна айнода соответствует одному файлу на сервере. В ней хранится некоторая метаинформация, кроме названия и пути к файлу. Подробнее о нашей проблеме - ниже. </p>
+<span id="more"></span>
+
+<p>Поиск проблемы осложняется тем, что линукс постоянно заявляет, что <code>no space left on device</code>. Но по факту место на самом деле есть (в нашем случае около 5 гигов), но места все равно нет. Значит надо смотреть айноды.</p>
+<p><code>df -h</code> - посмотреть информацию о занятом пространстве на жестком диске<br><code>df -i</code> - посмотреть информацию об айнодах</p>
+<p>Первоначально я пытался просто удалять некоторые папки, которые содержат очень много файлов. Я считал, что здесь нет никакой проблемы, просто файлов с логами стало слишком много, и их надо немного почистить. Однако освобожденные 55000 айнод забились через 3 дня. </p>
+<p><em>Вечер понедельника</em><br><img src="/content/2016/10/inodes-problems/1.png"></p>
+<p><em>Утро четверга</em><br><img src="/content/2016/10/inodes-problems/2.png"></p>
+<p>Это было очень странно. В результате было принято логичное решение найти в системе такую папку, где очень много непонятных файлов.</p>
+<p>Чтобы построить дерево всех каталогов и файлов, выполняем команду: </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">tree / &gt; dirs.txt<br></code></pre></td></tr></table></figure>
+
+<p>Команду нужно выполнить с root-правами для того, чтобы в выдачу попали все каталоги системы. Если утилита tree не установлена, устаналиваем ее из репозиторией, например так: <code>apt-get install tree</code>.</p>
+<p>В нашем случае сгенерировался файл на 73МБ. После его анализа была найдена папка, в которой скопилось очень много файлов. Для упрощения поиска полного пути до папки, выполняем команду </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">du -h / &gt; dirs.txt<br></code></pre></td></tr></table></figure>
+
+<p>Она покажет нам вес каждой папки и полный путь до нее. Опять же, команда должна выполняться с root-правами.</p>
+<p>После того, как был найден полный путь до папки, выяснилось, что в ней содержатся <strong>1098902 файлов</strong> на 231 МБ. В получении этих данных помогли команды:</p>
+<p><code>du -h .</code> - подсчет размера текущей папки<br><code>ls -f . | wc -l</code> - подсчет количества файлов в текущей папке</p>
+<p>Теперь начинаем удалять файлы с помощью</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">rm /path/to/dir -rf<br></code></pre></td></tr></table></figure>
+
+<p>где <code>/path/to/dir</code> - путь до проблемной папки.</p>
+<p>После этих операций количество свободных айнод перевалило за миллион. Победа!<br><img src="/content/2016/10/inodes-problems/3.png"></p>
+<p><em>Спасибо <a target="_blank" rel="noopener" href="https://vk.com/romanovandreey">Андрею Романову</a> за помощь в решении проблем!</em></p>
+
+	  	
+	</div>
+	
+	<div class="post_footer">
+		<div class="post_info">	
+			<i class="fa fa-calendar-o"></i> <a href="/posts/2016/inodes-problems/" class="article-date">
+  	<time datetime="2016-10-21T18:55:42.000Z" itemprop="datePublished">21.10.2016</time>
+</a> 
+			 |
+				<i class="fa fa-folder-o"></i> 
+    <a class="article-category-link" href="/categories/%D0%9E-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5/">О разработке</a>
+ 
+				
+			
+		</div>
+		
+		
+	</div>
+</article>
+
+</div>
+
+			</div>
+			
+				<aside class="col-md-3" id="sidebar">
+	
+		<div class="widget">
+			<form onsubmit="return false;" method="get" accept-charset="UTF-8" class="search-form">
+	<input type="hidden" name="sitesearch" value="http://atnartur.ru">
+	<input type="text" class="form-control" placeholder="Поиск" type="search" name="q" results="0" id="search" autocomplete="off">
+	<div id="local-search-result"></div>
+</form><!-- /input-group -->
+		</div>
+  	
+		<div class="widget">
+			
+	<h2>Категории</h2>
+	<div class="list-group">
+		
+			<a href="/categories/Другое/" class="list-group-item">Другое <small>4</small></a>
+		
+			<a href="/categories/Жизнь/" class="list-group-item">Жизнь <small>9</small></a>
+		
+			<a href="/categories/Новости-проектов/" class="list-group-item">Новости проектов <small>3</small></a>
+		
+			<a href="/categories/О-разработке/" class="list-group-item">О разработке <small>15</small></a>
+		
+			<a href="/categories/Софт/" class="list-group-item">Софт <small>16</small></a>
+		
+	</div>    
+
+		</div>
+  	
+</aside>
+			
+		</div>
+	</div>
+	<footer>
+	<div class="container">
+		<p>
+			&copy; 2013-2025 <a href="http://i.atnartur.ru" target="_blank" class="logo">Артур Атнагулов</a>
+		</p>
+		<p class="links">
+			<a href="http://github.com/atnartur/blog" target="_blank">
+				Если нашел ошибку, помоги проекту на <kbd><i class="fa fa-github"></i> Github</kbd>
+			</a>
+		</p>
+	</div>
+</footer>
+	
+
+<script src="/libs/jquery.min.js"></script>
+<!--<script src="/libs/bootstrap.min.js"></script>-->
+<script src="/libs/bootstrap3-typeahead.min.js"></script>
+<!--<script src="/libs/highlight.pack.min.js"></script>-->
+<script async src="/js/main.js"></script>
+
+<script
+    data-goatcounter="https://atnartur-ru.goatcounter.com/count"
+    async
+    src="//gc.zgo.at/count.js"
+    crossorigin="anonymous"
+></script>
+
+	
+</body>
+</html>

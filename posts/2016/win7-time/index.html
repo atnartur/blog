@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+
+	<title>Windows 7, Мегаплан и перевод времени | atnartur.ru</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<meta name="description" content="Только что произошел интересный случай: из-за того, что на моем компьютере было выставлено неправильное время, API Мегаплана не разрешало авторизоваться на их сервере. Подробнее далее.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows 7, Мегаплан и перевод времени">
+<meta property="og:url" content="http://atnartur.ru/posts/2016/win7-time/index.html">
+<meta property="og:site_name" content="atnartur.ru">
+<meta property="og:description" content="Только что произошел интересный случай: из-за того, что на моем компьютере было выставлено неправильное время, API Мегаплана не разрешало авторизоваться на их сервере. Подробнее далее.">
+<meta property="og:locale" content="ru_RU">
+<meta property="article:published_time" content="2016-03-27T19:17:08.000Z">
+<meta property="article:modified_time" content="2025-02-01T17:45:09.747Z">
+<meta property="article:author" content="Артур Атнагулов">
+<meta property="article:tag" content="Windows 7">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="Microsoft">
+<meta property="article:tag" content="Мегаплан">
+<meta name="twitter:card" content="summary">
+
+				
+		<link rel="alternate" href="/atom.xml" title="atnartur.ru" type="application/atom+xml">
+	
+
+	
+
+	<meta name="keywords" content="atnartur.ru, Блог веб-разработчика, веб-разработка, создание сайта, web-разработка, web, Атнагулов Артур, atnartur" />
+
+	<link rel="stylesheet" href="/styles/main.min.css">
+	<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/libs/github.css">
+
+	<meta name='yandex-verification' content='4cef18e7b73150a8' />
+    <meta name="google-site-verification" content="qAxWEQPavOYoENugvm5uJblx9ZIKvUZUq7nRhovUvjc" />
+    <meta name="theme-color" content="#0099cc">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+	<header>
+	<div class="logo">
+		<h1>
+		<a href="/">atnartur</a>
+		</h1>
+		<h2>веб-разработка, и не только</h2>
+	</div>
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+		</div>
+		
+		<nav class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-left">
+				
+					<li><a href="/">Главная</a></li>
+				
+					<li><a href="/learn">Обучение</a></li>
+				
+					<li><a target="_blank" rel="noopener" href="http://atnartur.dev">Обо мне</a></li>
+				
+			</ul>
+			
+			<ul class="nav navbar-nav navbar-right" id="socials">
+				<li>
+					<a href="http://t.me/atnartur" title="Написать в Telegram" target="_blank">
+						<i class="fa fa-send"></i>
+					</a>
+				</li>
+				<li>
+					<a href="http://github.com/atnartur" title="GitHub - @atnartur" target="_blank">
+						<i class="fa fa-github"></i>
+					</a>
+				</li>
+				<li>
+					<a href="mailto:i@atnartur.dev" title="Напишите мне - i@atnartur.dev">
+						<i class="fa fa-envelope-o"></i>
+					</a>
+				</li>
+				<li>
+					<a href="/atom.xml" title="RSS-лента" target="_blank">
+						<i class="fa fa-rss"></i>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9" id="main">
+				<div class="posts">
+	<article id="post-win7-time" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+	
+		
+  
+    <h1 class="article-title" itemprop="name">
+      Windows 7, Мегаплан и перевод времени
+    </h1>
+  
+
+	
+	
+	<div class="post_content">
+		
+			<p>Только что произошел интересный случай: из-за того, что на моем компьютере было выставлено неправильное время, API Мегаплана не разрешало авторизоваться на их сервере. Подробнее далее. <span id="more"></span></p>
+<p>Так уж получилось, что после Windows 8, Windows 8.1, Windows 10 и Fedora 23 я снова вернулся на Windows 7. Здесь меня все устраивает, все работает с нормальной скоростью и нет необходимости каждый раз думать о настройках того ил иного компонента. Но сейчас разговор не об операционных системах, а о случившейся проблеме. </p>
+<p>И так. В одном из проектов используется взаимодействие с CRM-системой <a target="_blank" rel="noopener" href="http://megaplan.ru/">Мегаплан</a> через <a target="_blank" rel="noopener" href="https://help.megaplan.ru/API">API</a>. Сегодня в России был день перевода часов на летнее время. <a target="_blank" rel="noopener" href="http://ria.ru/society/20160327/1397862013.html">В нескольких регионах это произошло</a>, в остальных все осталось так же. Однако, Windows 7 по старой памяти решила перевести часы. Чтобы не мучаться с часами в дальнейшем я сразу поставил часовой пояс на GTM+4. Для меня был важен только тот факт, что время показывается нормальное. Часовой пояс не интересовал.</p>
+<p>Через несколько часов вышла неприятная особенность. В локальной версии проекта авторизация в API Мегаплана не работает, а на сервере все функционирует отлично. Код одинаковый, вчера все работало, а сегодня - нет. </p>
+<p>При авторизации в API Мегаплана, как оказалось, <a target="_blank" rel="noopener" href="https://help.megaplan.ru/API_authentication">используется дата с часовым поясом</a>. Как раз она, видимо, формировалась неправильно, генерация подписи происходила тоже неверно и авторизация не работала. Решение оказалось простым: нужно выставить московский часовой пояс, убрать галку “автоматический переход на летнее время и обратно” и вручную выставить правильный час. После выполнения этих действий все заработало. </p>
+
+	  	
+	</div>
+	
+	<div class="post_footer">
+		<div class="post_info">	
+			<i class="fa fa-calendar-o"></i> <a href="/posts/2016/win7-time/" class="article-date">
+  	<time datetime="2016-03-27T19:17:08.000Z" itemprop="datePublished">27.03.2016</time>
+</a> 
+			 |
+				<i class="fa fa-folder-o"></i> 
+    <a class="article-category-link" href="/categories/%D0%9E-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5/">О разработке</a>
+ 
+				
+			
+		</div>
+		
+		
+	</div>
+</article>
+
+</div>
+
+			</div>
+			
+				<aside class="col-md-3" id="sidebar">
+	
+		<div class="widget">
+			<form onsubmit="return false;" method="get" accept-charset="UTF-8" class="search-form">
+	<input type="hidden" name="sitesearch" value="http://atnartur.ru">
+	<input type="text" class="form-control" placeholder="Поиск" type="search" name="q" results="0" id="search" autocomplete="off">
+	<div id="local-search-result"></div>
+</form><!-- /input-group -->
+		</div>
+  	
+		<div class="widget">
+			
+	<h2>Категории</h2>
+	<div class="list-group">
+		
+			<a href="/categories/Другое/" class="list-group-item">Другое <small>4</small></a>
+		
+			<a href="/categories/Жизнь/" class="list-group-item">Жизнь <small>9</small></a>
+		
+			<a href="/categories/Новости-проектов/" class="list-group-item">Новости проектов <small>3</small></a>
+		
+			<a href="/categories/О-разработке/" class="list-group-item">О разработке <small>15</small></a>
+		
+			<a href="/categories/Софт/" class="list-group-item">Софт <small>16</small></a>
+		
+	</div>    
+
+		</div>
+  	
+</aside>
+			
+		</div>
+	</div>
+	<footer>
+	<div class="container">
+		<p>
+			&copy; 2013-2025 <a href="http://i.atnartur.ru" target="_blank" class="logo">Артур Атнагулов</a>
+		</p>
+		<p class="links">
+			<a href="http://github.com/atnartur/blog" target="_blank">
+				Если нашел ошибку, помоги проекту на <kbd><i class="fa fa-github"></i> Github</kbd>
+			</a>
+		</p>
+	</div>
+</footer>
+	
+
+<script src="/libs/jquery.min.js"></script>
+<!--<script src="/libs/bootstrap.min.js"></script>-->
+<script src="/libs/bootstrap3-typeahead.min.js"></script>
+<!--<script src="/libs/highlight.pack.min.js"></script>-->
+<script async src="/js/main.js"></script>
+
+<script
+    data-goatcounter="https://atnartur-ru.goatcounter.com/count"
+    async
+    src="//gc.zgo.at/count.js"
+    crossorigin="anonymous"
+></script>
+
+	
+</body>
+</html>

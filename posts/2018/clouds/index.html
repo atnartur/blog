@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+
+	<title>Всё в облака! | atnartur.ru</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<meta name="description" content="Очень часто бывает так, что о сохранности своих данных мы вспоминает только в тот момент, когда они по какой-то причине пропадают. Сегодня я хочу рассказать Вам про свой подход работы с облачными хран">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Всё в облака!">
+<meta property="og:url" content="http://atnartur.ru/posts/2018/clouds/index.html">
+<meta property="og:site_name" content="atnartur.ru">
+<meta property="og:description" content="Очень часто бывает так, что о сохранности своих данных мы вспоминает только в тот момент, когда они по какой-то причине пропадают. Сегодня я хочу рассказать Вам про свой подход работы с облачными хран">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="http://atnartur.ru/content/2018/01/clouds/image.jpg">
+<meta property="article:published_time" content="2018-01-17T17:19:39.000Z">
+<meta property="article:modified_time" content="2025-02-01T17:45:09.745Z">
+<meta property="article:author" content="Артур Атнагулов">
+<meta property="article:tag" content="облака">
+<meta property="article:tag" content="синхронизация">
+<meta property="article:tag" content="Яндекс.Диск">
+<meta property="article:tag" content="Google Drive">
+<meta property="article:tag" content="Dropbox">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://atnartur.ru/content/2018/01/clouds/image.jpg">
+
+				
+		<link rel="alternate" href="/atom.xml" title="atnartur.ru" type="application/atom+xml">
+	
+
+	
+
+	<meta name="keywords" content="atnartur.ru, Блог веб-разработчика, веб-разработка, создание сайта, web-разработка, web, Атнагулов Артур, atnartur" />
+
+	<link rel="stylesheet" href="/styles/main.min.css">
+	<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/libs/github.css">
+
+	<meta name='yandex-verification' content='4cef18e7b73150a8' />
+    <meta name="google-site-verification" content="qAxWEQPavOYoENugvm5uJblx9ZIKvUZUq7nRhovUvjc" />
+    <meta name="theme-color" content="#0099cc">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+	<header>
+	<div class="logo">
+		<h1>
+		<a href="/">atnartur</a>
+		</h1>
+		<h2>веб-разработка, и не только</h2>
+	</div>
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+		</div>
+		
+		<nav class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-left">
+				
+					<li><a href="/">Главная</a></li>
+				
+					<li><a href="/learn">Обучение</a></li>
+				
+					<li><a target="_blank" rel="noopener" href="http://atnartur.dev">Обо мне</a></li>
+				
+			</ul>
+			
+			<ul class="nav navbar-nav navbar-right" id="socials">
+				<li>
+					<a href="http://t.me/atnartur" title="Написать в Telegram" target="_blank">
+						<i class="fa fa-send"></i>
+					</a>
+				</li>
+				<li>
+					<a href="http://github.com/atnartur" title="GitHub - @atnartur" target="_blank">
+						<i class="fa fa-github"></i>
+					</a>
+				</li>
+				<li>
+					<a href="mailto:i@atnartur.dev" title="Напишите мне - i@atnartur.dev">
+						<i class="fa fa-envelope-o"></i>
+					</a>
+				</li>
+				<li>
+					<a href="/atom.xml" title="RSS-лента" target="_blank">
+						<i class="fa fa-rss"></i>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9" id="main">
+				<div class="posts">
+	<article id="post-clouds" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+	
+		
+  
+    <h1 class="article-title" itemprop="name">
+      Всё в облака!
+    </h1>
+  
+
+	
+	
+	<div class="post_content">
+		
+			<p>Очень часто бывает так, что о сохранности своих данных мы вспоминает только в тот момент, когда они по какой-то причине пропадают. Сегодня я хочу рассказать Вам про свой подход работы с облачными хранилищами, а также о том, как не бояться за сохранность данных, когда сгорает жесткий диск, а телефон попадает в стиральную машину:)</p>
+<span id="more"></span>
+
+<p><img src="/content/2018/01/clouds/image.jpg"></p>
+<h2 id="Что-нужно-сохранять"><a href="#Что-нужно-сохранять" class="headerlink" title="Что нужно сохранять?"></a>Что нужно сохранять?</h2><p>Давайте сначала подумаем о том, какие данные в принципе могут храниться в наших устройствах:</p>
+<ul>
+<li><strong>Памятные фото&#x2F;видео</strong> - то, что дорого сердцу и хранит воспоминания о Вашей жизни. Это однозначно нужно сохранять, так как этих данных скорее всего больше ни у кого нет.</li>
+<li><strong>Проекты&#x2F;документы</strong> - рабочие файлы, творчество (с исходными файлами), юридическая информация. Потеря таких данных может вызывать не только чувство обиды и печали, но и проблемы в жизни или на работе. Сюда же можно отнести телефонную книгу и пароли.</li>
+<li><strong>Развлечения</strong> - музыка, фильмы, игры. Не восстановилось? Ну и ладно, в основном все это сейчас можно либо заново скачать, либо установить с диска.</li>
+<li><strong>Другое</strong> - возможно, я что-то не упомянул. Пишите в комментарии, если здесь стоит добавить еще какую-то важную категорию данных.</li>
+</ul>
+<h2 id="Как-сохранять"><a href="#Как-сохранять" class="headerlink" title="Как сохранять?"></a>Как сохранять?</h2><p>Далее я предложу несколько сервисов для хранения каждого типа данных. Чтобы не запутаться в том, где какие данные лежат, нужно установить для себя некоторые правила хранения: фотографии лежат тут, документы лежат здесь, и так далее… Тогда в нужный момент получить доступ к данным будет просто.</p>
+<ul>
+<li><strong>Памятные фото&#x2F;видео</strong><ul>
+<li><strong><a target="_blank" rel="noopener" href="http://photos.google.com/">Google Фото</a></strong> - этот сервис первым предоставил пользователям возможность хранить неограниченный объем (немного сжатых, но приемлимых для домашнего архива) фотографий и видео. Конечно же есть возможность включить автозагрузку с мобильного устройства. Время от времени напоминает о том, что произошло в этот день несколько лет назад, а так же делает автоматические фильмы и коллажи на основе загруженных фотографий.</li>
+<li><strong><a href="/r/ydisk">Яндекс.Диск</a></strong> - совсем недавно также разрешили загружать неограниченный объем фотографий, если они загружаются с мобильного устройства. Функция напоминания о том, что произошло  несколько лет назад также в наличии. Кроме того, есть возможность публикации фотографий в социальные сети.</li>
+</ul>
+</li>
+<li><strong>Проекты&#x2F;документы</strong><ul>
+<li><strong><a target="_blank" rel="noopener" href="http://drive.google.com/">Google Диск</a></strong> - это не просто хранилище файлов, но и онлайн офис, который почти ничем не уступает офисному пакету от Microsoft или Apple. Пользователи могут не только делиться файлами и папками, но и совместно редактировать их.</li>
+<li><strong><a href="/r/ydisk">Яндекс.Диск</a></strong> - а на втором месте снова продукт от Яндекса, в котором <a target="_blank" rel="noopener" href="https://yandex.ru/company/services_news/2015/1116">около двух лет назад появился</a> Microsoft Office Online и разрешил пользователям редактировать документы, не выходя из <del>дома</del> онлайн-интерфейса. Стоит отметить, что у Яндекса самая быстрая синхронизация данных, так как большинство серверов находится в России.</li>
+<li><strong>Сервисы <a target="_blank" rel="noopener" href="http://google.ru/">Google</a></strong> могут сохранять еще и <a target="_blank" rel="noopener" href="http://contacts.google.com/">контакты</a> и <a target="_blank" rel="noopener" href="http://calendar.google.com/">события</a>. Многие пользователи Android-устройств смогут уже сейчас найти там свои данные, а владельцы iPhone, iPad и другой продукции Apple предпочтут <a target="_blank" rel="noopener" href="http://icloud.com/">iCloud</a>. Но стоит отметить, что гугловые сервисы могут синхронизироваться с устройствами на iOS и Android, а Apple не может похвастаться такой возможностью.</li>
+<li><strong>Git</strong>, как уже неоднократно <a href="/posts/2017/edu-open-data/">говорилось</a>, должен использовать каждый уважающий себя разработчик. Кроме всего прочего, git-хостинги типа <a target="_blank" rel="noopener" href="http://github.com/">Github</a>, <a target="_blank" rel="noopener" href="http://gitlab.com/">Gitlab</a> или <a target="_blank" rel="noopener" href="http://bitbucket.org/">Bitbucket</a> устанавливают просто космические ограничения на размеры файлов в репозиториях. А ограничения по количеству пользователей обходятся просто правильным выбором из трех вышеуказанных сервисов:)</li>
+</ul>
+</li>
+<li><strong>Развлечения</strong><ul>
+<li><strong><a href="/r/disk">Яндекс.Диск</a></strong> - если для хранения музыки и фильмов достаточно 10 гигабайт, то это очень круто:)</li>
+<li><strong><a target="_blank" rel="noopener" href="http://cloud.mail.ru/">Облако Mail.ru</a></strong> в момент открытия сервиса раздали всем по целому терабайту, который вместит все то, что не загрузилось в другие облака. Здесь, кроме нескольких папочек с музыкой, я храню еще и архивы проектов, так как они занимают очень много места.</li>
+<li>В последние несколько лет заработало множество сервисов по лицензионному прослушиванию музыки: <a target="_blank" rel="noopener" href="http://apple.com/music">Apple Music</a>, <a target="_blank" rel="noopener" href="http://music.google.com/">Google Music</a>, <a target="_blank" rel="noopener" href="http://music.yandex.ru/">Яндекс.Музыка</a>, а так же Boom от ВКонтакте. В области просмотра видео также есть неплохие сервисы. Возможно пора переходить на лицензионную сторону?</li>
+</ul>
+</li>
+</ul>
+<h2 id="Сколько-данных-можно-хранить-в-облаках"><a href="#Сколько-данных-можно-хранить-в-облаках" class="headerlink" title="Сколько данных можно хранить в облаках?"></a>Сколько данных можно хранить в облаках?</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://photos.google.com/">Google Фото</a> сохраняет неограниченное число фотографий с небольшим сжатием. При выключенном сжатии, фотографии начинают храниться на Google Диске и тратить запас свободных гигабайт из этого сервиса</li>
+<li><a target="_blank" rel="noopener" href="http://drive.google.com/">Google Диск</a> позволяет хранить до 15 гигабайт бесплатно. Кроме несжатых фотографий, место на Диске занимают еще и вложения Gmail.</li>
+<li><a href="/r/ydisk">Яндекс.Диск</a> бесплатно разместит 10 гигабайт любых файлов и неограниченное количество фотографий, загруженных с мобильных устройств. Также Яндекс <a target="_blank" rel="noopener" href="https://yandex.ru/support/disk/enlarge/bonus-space.html">сотрудничает</a> с компаниями и проводит <a href="/posts/2013/yandex-disk-32gb/">свои акции</a>, которые добавляют бесплатное место к Диску. Кстати, предоставяется по полгига за каждого приглашенного Вами пользователя.</li>
+<li><a href="/r/drop">Dropbox</a> остался почти нетронутым в нашем обсуждении облачных сервисов, потому что предоставляет всего лишь 2 гигабайта на бесплатном тарифе, но также имеет удобные интерфейсы для работы с документами, фотографиями и простыми файлами. Как и Яндекс.Диск, Dropbox дает по полгига за каждого приглашенного пользователя. </li>
+<li><a target="_blank" rel="noopener" href="http://cloud.mail.ru/">Облако Mail.ru</a> как говорилось выше, сюда можно загрузить 1 терабайт данных.</li>
+</ul>
+<p>На самом деле, не обязательно придерживаться всех этих правил, чтобы работать с облачными хранилищами. Я просто рассказал про свой подход, при котором, как мне кажется, можно сохранить больше всего данных в облаках. </p>
+<p>Ну а пост, конечно же, эмоциональный. Уже в третий раз мой ноутбук ломается в самый неподходящий момент, а доступ к данным, которые остались внутри, получить необходимо <del>прямо сейчас</del> внезапно. Благодаря облакам, я могу просто взять другой аппарат, в течение дня развернуть все необходимое, и продолжить заниматься своими делами. Предлагаю и Вам перенести всё в облака и избежать лишних проблем и волнения в экстренных ситуациях:)</p>
+
+	  	
+	</div>
+	
+	<div class="post_footer">
+		<div class="post_info">	
+			<i class="fa fa-calendar-o"></i> <a href="/posts/2018/clouds/" class="article-date">
+  	<time datetime="2018-01-17T17:19:39.000Z" itemprop="datePublished">17.01.2018</time>
+</a> 
+			 |
+				<i class="fa fa-folder-o"></i> 
+    <a class="article-category-link" href="/categories/%D0%A1%D0%BE%D1%84%D1%82/">Софт</a>
+ 
+				
+			
+		</div>
+		
+		
+	</div>
+</article>
+
+</div>
+
+			</div>
+			
+				<aside class="col-md-3" id="sidebar">
+	
+		<div class="widget">
+			<form onsubmit="return false;" method="get" accept-charset="UTF-8" class="search-form">
+	<input type="hidden" name="sitesearch" value="http://atnartur.ru">
+	<input type="text" class="form-control" placeholder="Поиск" type="search" name="q" results="0" id="search" autocomplete="off">
+	<div id="local-search-result"></div>
+</form><!-- /input-group -->
+		</div>
+  	
+		<div class="widget">
+			
+	<h2>Категории</h2>
+	<div class="list-group">
+		
+			<a href="/categories/Другое/" class="list-group-item">Другое <small>4</small></a>
+		
+			<a href="/categories/Жизнь/" class="list-group-item">Жизнь <small>9</small></a>
+		
+			<a href="/categories/Новости-проектов/" class="list-group-item">Новости проектов <small>3</small></a>
+		
+			<a href="/categories/О-разработке/" class="list-group-item">О разработке <small>15</small></a>
+		
+			<a href="/categories/Софт/" class="list-group-item">Софт <small>16</small></a>
+		
+	</div>    
+
+		</div>
+  	
+</aside>
+			
+		</div>
+	</div>
+	<footer>
+	<div class="container">
+		<p>
+			&copy; 2013-2025 <a href="http://i.atnartur.ru" target="_blank" class="logo">Артур Атнагулов</a>
+		</p>
+		<p class="links">
+			<a href="http://github.com/atnartur/blog" target="_blank">
+				Если нашел ошибку, помоги проекту на <kbd><i class="fa fa-github"></i> Github</kbd>
+			</a>
+		</p>
+	</div>
+</footer>
+	
+
+<script src="/libs/jquery.min.js"></script>
+<!--<script src="/libs/bootstrap.min.js"></script>-->
+<script src="/libs/bootstrap3-typeahead.min.js"></script>
+<!--<script src="/libs/highlight.pack.min.js"></script>-->
+<script async src="/js/main.js"></script>
+
+<script
+    data-goatcounter="https://atnartur-ru.goatcounter.com/count"
+    async
+    src="//gc.zgo.at/count.js"
+    crossorigin="anonymous"
+></script>
+
+	
+</body>
+</html>
