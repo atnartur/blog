@@ -4,37 +4,37 @@
 	<meta charset="utf-8">
 	
 
-	<title>Сводим все задачи в Google Calendar | atnartur.ru</title>
+	<title>Сводим все задачи в Google Calendar | atnartur</title>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 	<meta name="description" content="Во многих статьях о продуктивности пишут, что у человека всегда должен быть список дел, которые он должен сделат за день. Однако во время работы нередко происходит так, что личные задачи лежат в одном">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Сводим все задачи в Google Calendar">
-<meta property="og:url" content="http://atnartur.ru/posts/2018/all-in-one-tasks/index.html">
-<meta property="og:site_name" content="atnartur.ru">
+<meta property="og:url" content="https://ru.atnartur.dev/posts/2018/all-in-one-tasks/index.html">
+<meta property="og:site_name" content="atnartur">
 <meta property="og:description" content="Во многих статьях о продуктивности пишут, что у человека всегда должен быть список дел, которые он должен сделат за день. Однако во время работы нередко происходит так, что личные задачи лежат в одном">
 <meta property="og:locale" content="ru_RU">
-<meta property="og:image" content="http://atnartur.ru/content/2018/02/all-in-one-tasks/google-calendar-logo.jpg">
-<meta property="og:image" content="http://atnartur.ru/content/2018/02/all-in-one-tasks/import.png">
+<meta property="og:image" content="https://ru.atnartur.dev/content/2018/02/all-in-one-tasks/google-calendar-logo.jpg">
+<meta property="og:image" content="https://ru.atnartur.dev/content/2018/02/all-in-one-tasks/import.png">
 <meta property="article:published_time" content="2018-02-18T15:52:57.000Z">
-<meta property="article:modified_time" content="2025-02-01T17:45:09.744Z">
+<meta property="article:modified_time" content="2026-06-14T17:55:57.221Z">
 <meta property="article:author" content="Артур Атнагулов">
-<meta property="article:tag" content="Google">
-<meta property="article:tag" content="Wunderlist">
 <meta property="article:tag" content="Flow">
 <meta property="article:tag" content="Gitlab">
+<meta property="article:tag" content="Google">
 <meta property="article:tag" content="Trello">
+<meta property="article:tag" content="Wunderlist">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://atnartur.ru/content/2018/02/all-in-one-tasks/google-calendar-logo.jpg">
+<meta name="twitter:image" content="https://ru.atnartur.dev/content/2018/02/all-in-one-tasks/google-calendar-logo.jpg">
 
 				
-		<link rel="alternate" href="/atom.xml" title="atnartur.ru" type="application/atom+xml">
+		<link rel="alternate" href="/atom.xml" title="atnartur" type="application/atom+xml">
 	
 
 	
 
-	<meta name="keywords" content="atnartur.ru, Блог веб-разработчика, веб-разработка, создание сайта, web-разработка, web, Атнагулов Артур, atnartur" />
+	<meta name="keywords" content="atnartur.dev, Блог веб-разработчика, веб-разработка, создание сайта, web-разработка, web, Атнагулов Артур, atnartur" />
 
 	<link rel="stylesheet" href="/styles/main.min.css">
 	<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -43,7 +43,7 @@
 	<meta name='yandex-verification' content='4cef18e7b73150a8' />
     <meta name="google-site-verification" content="qAxWEQPavOYoENugvm5uJblx9ZIKvUZUq7nRhovUvjc" />
     <meta name="theme-color" content="#0099cc">
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 8.1.2"></head>
 
 <body>
 	<header>
@@ -146,38 +146,27 @@
 <h3 id="Gitlab"><a href="#Gitlab" class="headerlink" title="Gitlab"></a><a target="_blank" rel="noopener" href="http://gitlab.com/">Gitlab</a></h3><p>Let’s hardcore begins! Нету у них никакой поддержки экспорта крайних сроков issue. Можно попробовать сделать костыль на <a target="_blank" rel="noopener" href="http://zapier.com/">Zapier</a>, который умеет подключаться к обоим сервисам, но я не рискнул это сделать.</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/le1ca/gitlab-calendar">На github есть проект</a>, который умеет осуществлять синхронизацию через Webhook. Я дописал поддержку <a href="/posts/2017/edu-open-data/">Docker</a>, кому надо - <a target="_blank" rel="noopener" href="https://github.com/atnartur/gitlab-calendar/tree/feat_docker">пользуйтесь</a>. Конечно же минус такого решения: придется заморачиваться с сервером. Но если у Вас нет проблем с этим, перейдем к настройке:</p>
 <ol>
-<li><p>Переходим в <a target="_blank" rel="noopener" href="https://console.developers.google.com/iam-admin/serviceaccounts/">Google Developer Console</a></p>
-</li>
-<li><p>Создаем проект</p>
-</li>
-<li><p>Создаем сервисный аккаунт</p>
-</li>
-<li><p>Создаем ключ сервисного аккаунта, скачиваем его и кладем в папку с проектом</p>
-</li>
-<li><p>С помощью верхнего поиска находим <code>Google Calendar API</code> и включаем его </p>
-</li>
-<li><p>Создаем календарь в Google Calendar, и даем доступ сервисному аккаунту на внесение изменений</p>
-</li>
-<li><p>Отредактировать конфигурационный файл:</p>
+<li>Переходим в <a target="_blank" rel="noopener" href="https://console.developers.google.com/iam-admin/serviceaccounts/">Google Developer Console</a></li>
+<li>Создаем проект</li>
+<li>Создаем сервисный аккаунт</li>
+<li>Создаем ключ сервисного аккаунта, скачиваем его и кладем в папку с проектом</li>
+<li>С помощью верхнего поиска находим <code>Google Calendar API</code> и включаем его </li>
+<li>Создаем календарь в Google Calendar, и даем доступ сервисному аккаунту на внесение изменений</li>
+<li>Отредактировать конфигурационный файл:</li>
+</ol>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br><br>    <span class="hljs-attr">&quot;logLevel&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;INFO&quot;</span><span class="hljs-punctuation">,</span><br><br>    <span class="hljs-attr">&quot;timezone&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Europe/Moscow&quot;</span><span class="hljs-punctuation">,</span><br>    <br>    <span class="hljs-attr">&quot;googleSecretFile&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;НАЗВАНИЕ ФАЙЛА ИЗ 4 ПУНКТА&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;gitlabSecret&quot;</span><span class="hljs-punctuation">:</span>     <span class="hljs-string">&quot;ЛЮБОЕ СЛУЧАЙНОЕ СЛОВО (БУДЕТ ИСПОЛЬЗОВАТЬСЯ ДЛЯ ПРОВЕРКИ ДОСТУПА)&quot;</span><span class="hljs-punctuation">,</span><br>    <br>    <span class="hljs-attr">&quot;gitlabApi&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;enable&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;url&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://gitlab.com/&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;token&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;paste_impersonation_token_here&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;inviteAssignees&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <br>    <span class="hljs-attr">&quot;authorizedDomain&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;your-gsuite-domain.net&quot;</span><span class="hljs-punctuation">,</span><br>    <br>    <span class="hljs-attr">&quot;listenPort&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">8080</span><span class="hljs-punctuation">,</span><br>    <br>    <span class="hljs-attr">&quot;ssl&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;enable&quot;</span><span class="hljs-punctuation">:</span>   <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;keyfile&quot;</span><span class="hljs-punctuation">:</span>  <span class="hljs-string">&quot;/etc/letsencrypt/live/domain_name/privkey.pem&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;certfile&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/etc/letsencrypt/live/domain_name/fullchain.pem&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <br>    <span class="hljs-attr">&quot;repoMap&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;НАЗВАНИЕ РЕПОЗИТОРИЯ&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;НАЗВАНИЕ КАЛЕНДАРЯ&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;НАЗВАНИЕ РЕПОЗИТОРИЯ 2&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;НАЗВАНИЕ КАЛЕНДАРЯ 2&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <br>    <span class="hljs-attr">&quot;dropPrivileges&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;enable&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;user&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;nobody&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;group&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;nobody&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
-</li>
-<li><p>Выкладываем приложение gitlab-calendar на какой-нибудь сервер. Оно должно запуститься на порту <code>8080</code> (если Вы ничего не меняли)</p>
-</li>
-<li><p>Идем на <a target="_blank" rel="noopener" href="http://gitlab.com/">http://gitlab.com</a></p>
-</li>
-<li><p>Открываем нужный проект, затем Settings &#x2F; Integrations</p>
-</li>
-<li><p>Вставляем ссылку на работающее приложение</p>
-</li>
-<li><p>В Secret Token вставляем <code>ЛЮБОЕ СЛУЧАЙНОЕ СЛОВО</code>, которое Вы написали в конфигурационном файле в 7 пункте</p>
-</li>
-<li><p>Добавлем webhook</p>
-</li>
-<li><p>Готово (да, наконец-то)</p>
-</li>
+
+<ol start="8">
+<li>Выкладываем приложение gitlab-calendar на какой-нибудь сервер. Оно должно запуститься на порту <code>8080</code> (если Вы ничего не меняли)</li>
+<li>Идем на <a target="_blank" rel="noopener" href="http://gitlab.com/">http://gitlab.com</a></li>
+<li>Открываем нужный проект, затем Settings &#x2F; Integrations</li>
+<li>Вставляем ссылку на работающее приложение</li>
+<li>В Secret Token вставляем <code>ЛЮБОЕ СЛУЧАЙНОЕ СЛОВО</code>, которое Вы написали в конфигурационном файле в 7 пункте</li>
+<li>Добавлем webhook</li>
+<li>Готово (да, наконец-то)</li>
 </ol>
 <p>Постарался описать все подробно, надеюсь, у Вас получится:)</p>
-<p>Если инструкции по интеграции Вашего любимого сервиса тут нет, <a target="_blank" rel="noopener" href="http://i.atnartur.ru/">напишите мне</a> или <a target="_blank" rel="noopener" href="http://github.com/atnartur/blog">дополните</a> статью самостоятельно.</p>
+<p>Если инструкции по интеграции Вашего любимого сервиса тут нет, <a target="_blank" rel="noopener" href="http://atnartur.dev/">напишите мне</a> или <a target="_blank" rel="noopener" href="http://github.com/atnartur/blog">дополните</a> статью самостоятельно.</p>
 <p>Продуктивной Вам недели!:)</p>
 
 	  	
@@ -208,7 +197,7 @@
 	
 		<div class="widget">
 			<form onsubmit="return false;" method="get" accept-charset="UTF-8" class="search-form">
-	<input type="hidden" name="sitesearch" value="http://atnartur.ru">
+	<input type="hidden" name="sitesearch" value="https://ru.atnartur.dev">
 	<input type="text" class="form-control" placeholder="Поиск" type="search" name="q" results="0" id="search" autocomplete="off">
 	<div id="local-search-result"></div>
 </form><!-- /input-group -->
@@ -240,7 +229,7 @@
 	<footer>
 	<div class="container">
 		<p>
-			&copy; 2013-2025 <a href="http://i.atnartur.ru" target="_blank" class="logo">Артур Атнагулов</a>
+			&copy; 2013-2026 <a href="http://atnartur.dev" target="_blank" class="logo">Артур Атнагулов</a>
 		</p>
 		<p class="links">
 			<a href="http://github.com/atnartur/blog" target="_blank">

@@ -6,5 +6,5 @@ Disallow: /categories/
 Disallow: /page/
 Allow:*
 
-Host: atnartur.ru
-Sitemap: http://atnartur.ru/sitemap.xml
+Host: ru.atnartur.dev
+Sitemap: https://ru.atnartur.dev/sitemap.xml

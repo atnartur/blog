@@ -3,23 +3,23 @@
 
 
     <sitemap>
-        <loc>http://atnartur.ru/post-sitemap.xml</loc>
-        <lastmod>2025-02-01T17:45:09.748Z</lastmod>
+        <loc>https://ru.atnartur.dev/post-sitemap.xml</loc>
+        <lastmod>2026-06-14T17:55:57.223Z</lastmod>
     </sitemap>
 
     <sitemap>
-        <loc>http://atnartur.ru/page-sitemap.xml</loc>
-        <lastmod>2025-02-01T17:45:09.828Z</lastmod>
+        <loc>https://ru.atnartur.dev/page-sitemap.xml</loc>
+        <lastmod>2026-06-14T17:55:57.218Z</lastmod>
     </sitemap>
 
     <sitemap>
-        <loc>http://atnartur.ru/category-sitemap.xml</loc>
-        <lastmod>2025-02-01T17:45:09.748Z</lastmod>
+        <loc>https://ru.atnartur.dev/category-sitemap.xml</loc>
+        <lastmod>2026-06-14T17:55:57.223Z</lastmod>
     </sitemap>
 
     <sitemap>
-        <loc>http://atnartur.ru/tag-sitemap.xml</loc>
-        <lastmod>2025-02-01T17:45:09.748Z</lastmod>
+        <loc>https://ru.atnartur.dev/tag-sitemap.xml</loc>
+        <lastmod>2026-06-14T17:55:57.223Z</lastmod>
     </sitemap>
 
 </sitemapindex>
