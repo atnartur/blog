@@ -11,7 +11,7 @@ alias: /git-tchasty-vtoraya-registratsiya-i-ustanovka/
 
 В статье показано, как работать с GIT на практике, используя [BitBucket](http://bitbucket.org) и GIT Bash. <!--more-->
 
-Перед прочтением этой статьи рекомендуется прочитать её [первую часть](http://atnartur.ru/git-tchasty-pervaya-osnov/ "GIT — часть первая: основы").
+Перед прочтением этой статьи рекомендуется прочитать её [первую часть](http://ru.atnartur.dev/git-tchasty-pervaya-osnov/ "GIT — часть первая: основы").
 
 [BitBucket - регистрация](#reg) 
 [BitBucket - создание репозитория](#repo_create) 

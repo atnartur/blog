@@ -51,7 +51,7 @@ alias: /veb-programmirovanie-v-baytike/
 [![](/content/2013/10/Image-001-250x300.png)](/content/2013/10/Image-001.png)
 
 Мой экран блокировки делал чудеса. Не было ни дня, чтобы меня не спросили про какой-нибудь из проектов. И это было приятно:) Даже сфоткал кто-то!
-Как поставить свою картинку на экран блокировки, можно прочитать [здесь](http://atnartur.ru/kak-izmenity-fon-okna-privetstviya-v-windows-7/ "Как изменить фон окна приветствия в Windows 7").
+Как поставить свою картинку на экран блокировки, можно прочитать [здесь](http://ru.atnartur.dev/kak-izmenity-fon-okna-privetstviya-v-windows-7/ "Как изменить фон окна приветствия в Windows 7").
 
 [![](/content/2013/10/DSC_0223-300x200.jpg)](/content/2013/10/DSC_0223.jpg)
 

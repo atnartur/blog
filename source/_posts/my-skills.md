@@ -60,7 +60,7 @@ category:
     + express
     + websocket
 - Redis
-- [Первый open source проект](http://atnartur.ru/posts/2014/php-qiwi/)
+- [Первый open source проект](http://ru.atnartur.dev/posts/2014/php-qiwi/)
 
 ## 2015
 - PHP

@@ -28,4 +28,4 @@ alias: /t-bl-na-itjump-i-ne-tchital-togo-kak-tak-mozhno/
 
 Читаем статью [здесь](http://mubinov.com/2013/10/it-jump-2-goda/), подписываемся на [группу ITJump ВКонтакте](http://vk.com/itjump)!
 
-Также недавно вышла моя статья о прошедшей смене по веб-программированию. Прочитать её можно [здесь](http://atnartur.ru/veb-programmirovanie-v-baytike/ "Веб-программирование в Байтике").
+Также недавно вышла моя статья о прошедшей смене по веб-программированию. Прочитать её можно [здесь](http://ru.atnartur.dev/veb-programmirovanie-v-baytike/ "Веб-программирование в Байтике").

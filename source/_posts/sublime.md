@@ -65,7 +65,7 @@ category:
 ```
 
 - [FileHeader](https://packagecontrol.io/packages/FileHeader) - в начало файла добавляет информацию об авторе, дате создания и изменения файла
-- [Git](https://packagecontrol.io/packages/Git) - добавляет в Command palette команды [git](http://atnartur.ru/posts/2013/git-1/)
+- [Git](https://packagecontrol.io/packages/Git) - добавляет в Command palette команды [git](http://ru.atnartur.dev/posts/2013/git-1/)
 - [GitGutter](https://packagecontrol.io/packages/GitGutter) - в начале строки добавляет символы, информирующие об удалении, добавлении или изменении строки. Информацию предоставляет git
 ![](/content/2016/07/sublime/gitgutter.png)
 - [Gulp](https://packagecontrol.io/packages/Gulp) - запускает gulp-задачи прямо в Sublime Text

@@ -54,6 +54,6 @@ git commit -a -m "Commit message"
 
 `git push` отправит ваши изменения на сервер.
 
-[Продолжение здесь](http://atnartur.ru/git-tchasty-vtoraya-registratsiya-i-ustanovka/)
+[Продолжение здесь](http://ru.atnartur.dev/git-tchasty-vtoraya-registratsiya-i-ustanovka/)
 
 Остались вопросы? Напишите в комментарии! Статья помогла вам? Поделитесь!

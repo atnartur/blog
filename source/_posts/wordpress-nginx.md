@@ -28,8 +28,8 @@ define('FS_METHOD', 'direct');
 
 Если у Вас стоит (или стоял) какой-нибудь кеширующий плагин (например WP-Super-Cache), нужно проверить, очищен ли кеш в директории `wp-content/cache` (если она есть), на всякий случай проставить на нее права 777 (опять же, если она есть) и убрать константу `WPCACHEHOME` и `WP_CACHE` из `wp-config.php`.
 
-Теперь [atnartur.ru](http://atnartur.ru), [wikitatar.ru](http://wikitatar.ru), [old.atnartur.ru](http://old.atnartur.ru) работают быстрее:)
+Теперь [atnartur.ru](http://ru.atnartur.dev), [wikitatar.ru](http://wikitatar.ru), [old.atnartur.ru](http://old.atnartur.ru) работают быстрее:)
 
 Задавайте вопросы в комментариях и делитесь с записью, если информация из этой статьи помогла Вам.
 
-P. S. Скорость отдачи Wordpress страниц на [atnartur.ru](http://atnartur.ru) увеличилась в 5 раз (на старом была 500 мс, на новом 130 мс)
+P. S. Скорость отдачи Wordpress страниц на [atnartur.ru](http://ru.atnartur.dev) увеличилась в 5 раз (на старом была 500 мс, на новом 130 мс)
